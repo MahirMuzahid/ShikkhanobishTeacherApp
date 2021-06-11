@@ -2,11 +2,77 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShikkhanobishTeacherApp.Views.HomePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Home"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".7*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="blacklogo.png"  Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit"/>
+            <Label Text="Active Student: 257" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".6*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Frame BackgroundColor="#6741DD" Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="20" HasShadow="False"/>
+            <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#F0F0F0" Margin="10,0,0,0" FontSize="11"/>
+            <Label Text="500.34 Taka" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="White"/>
+            <Button Text="Withdraw" Grid.RowSpan="2" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" CornerRadius="20" TextColor="White" BackgroundColor="#6741DD" Margin="0,15,10,15" FontSize="13" FontAttributes="Bold"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.Row="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".2*"/>
+                    <RowDefinition Height=".7*"/>
+                    <RowDefinition Height=".2*"/>
+                    <RowDefinition Height=".4*"/>
+                    <RowDefinition Height=".7*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height=".1*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Frame BackgroundColor="Black" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+                <Frame BackgroundColor="White" Grid.RowSpan="7" Margin="1" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+                <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                <Label Text="Active" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="22" Grid.Column="1" FontAttributes="Bold"/>
+                <Switch IsToggled="True" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+        
+
+    </Grid>
 </ContentPage>
