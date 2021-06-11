@@ -2,11 +2,85 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShikkhanobishTeacherApp.Views.Profile">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Profile"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1*"/>
+
+            </Grid.RowDefinitions>
+            <Label Text="Mahir Muzahid" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End" FontSize="25" FontAttributes="Bold"/>
+            <Label Text="01833368125" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13"/>
+        </Grid>
+        <Frame BackgroundColor="#774CD5" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" CornerRadius="20"/>
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="#774CD5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="3.5*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Edit Info" Grid.Row="0" FontSize="15" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                <Button Text="Change Phone Number" Grid.Row="1" Grid.Column="0" BackgroundColor="#7F54DE" TextColor="White" FontSize="12"/>
+                <Button Text="Change Password" Grid.Row="1" Grid.Column="1" BackgroundColor="#7F54DE" TextColor="White" FontSize="12"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Tuition Info" Grid.Row="0" FontSize="15" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                <Frame BackgroundColor="White" Grid.Row="1" Grid.RowSpan="2"  Grid.ColumnSpan="2" CornerRadius="20"/>
+                <Label Text="Total Earned" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="End" TextColor="#9E9E9E"/>
+                <Label Text="460 Taka" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="Total Tuition Time" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="End" TextColor="#9E9E9E"/>
+                <Label Text="1200 minuites" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start" FontAttributes="Bold" FontSize="20"/>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Grid.Row="0"/>
+                <CheckBox Grid.Column="2" Grid.Row="0"/>
+                <Label Text="Tuition History" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
+                <Label Text="Withdraw History" Grid.Column="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
+            </Grid>
+        </Grid>
+    </Grid>
 </ContentPage>
