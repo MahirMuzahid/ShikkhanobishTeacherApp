@@ -17,7 +17,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1*"/>
-
             </Grid.RowDefinitions>
             <Label Text="Mahir Muzahid" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End" FontSize="25" FontAttributes="Bold"/>
             <Label Text="01833368125" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13"/>

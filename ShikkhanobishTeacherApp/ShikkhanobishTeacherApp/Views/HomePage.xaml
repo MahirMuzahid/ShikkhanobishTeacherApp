@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="ShikkhanobishTeacherApp.Views.HomePage">
     <Grid>
         <Grid.RowDefinitions>
@@ -8,14 +9,14 @@
             <RowDefinition Height="1.2*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height=".005*"/>
-            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height=".005*"/>
-            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".2*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -39,14 +40,13 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Frame BackgroundColor="Black" Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="15" HasShadow="False"/>
-            <Frame BackgroundColor="White" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="1" CornerRadius="15" HasShadow="False"/>
+            <material:MaterialCard CornerRadius="20" Grid.RowSpan="2" Grid.ColumnSpan="2" Elevation="30" BackgroundColor="White"/>
             <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#B0B0B0" Margin="10,0,0,0" FontSize="11"/>
             <Label Text="500.34 Taka" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="#3B3B3B"/>
-            <Button Text="Withdraw" Grid.RowSpan="2" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" CornerRadius="20" TextColor="White" BackgroundColor="#6741DD" Margin="0,22,10,22" FontSize="13" FontAttributes="Bold"/>
+            <material:MaterialButton Text="Withdraw"  ButtonType="Text" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#3667E1"  BackgroundColor="White" FontSize="12" PressedBackgroundColor="#20000000"/>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1">
@@ -75,11 +75,14 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Frame BackgroundColor="#C3FFA1" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+                
                 <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                 <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                
                 <Label Text="Active" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="22" Grid.Column="1" FontAttributes="Bold"/>
+                
                 <Switch IsToggled="True" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" />
+                
             </Grid>
             <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
                 <Grid.RowDefinitions>
@@ -97,7 +100,7 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Frame BackgroundColor="#A1E1FF" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+
                 <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                 <Label Text="Total Number Of Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                 <Label Text="2500" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="22" Grid.Column="1" FontAttributes="Bold"/>
@@ -118,10 +121,11 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Frame BackgroundColor="#FFEFA1" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+
                 <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                 <Label Text="Ratting" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                 <Label Text="4.5" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="22" Grid.Column="1" FontAttributes="Bold"/>
+
             </Grid>
             <Grid Grid.Column="1" Grid.Row="1" RowSpacing="0">
                 <Grid.RowDefinitions>
@@ -139,7 +143,7 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Frame BackgroundColor="#FFB4B4" Grid.RowSpan="7" CornerRadius="20" Grid.ColumnSpan="3" HasShadow="False"/>
+
                 <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                 <Label Text="Total Minuite" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                 <Label Text="150" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="22" Grid.Column="1" FontAttributes="Bold"/>
@@ -149,26 +153,70 @@
 
         <Frame BackgroundColor="#80000000" Grid.Row="3" Grid.Column="1" HasShadow="False"/>
 
-        <Grid Grid.Row="4" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.RowSpan="3" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="See All ->" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" HorizontalOptions="End" VerticalOptions="Start" FontSize="12" BackgroundColor="White" TextColor="#3667E1" FontAttributes="Bold"/>
-            <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold"/>
-            <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-            <Label Text="College" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-            <Label Text="University" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-            <Label Text="Science" Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-            <Label Text="CSE" Grid.Row="1" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>           
+            
+            <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+            <Label Text="To change your tags please contact at this number: 01833368125" Grid.Row="0" Grid.ColumnSpan="6" HorizontalOptions="End" VerticalOptions="Center" FontSize="9"/>
+
+            <Frame BackgroundColor="#10000000" Grid.Row="1" Grid.ColumnSpan="6" CornerRadius="10"/>
+            
+            <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
+            <Label Text="Science" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            
+            <Label Text="Physics" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Chemistry" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Biology" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+            <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="6" CornerRadius="10"/>
+
+            <Label Text="College" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
+            <Label Text="Science" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            
+            <Label Text="Physics 1" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Physics 2" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Chemistry 1" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Chemistry 2" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="Math 1" Grid.Row="4" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            
+            <Label Text="Math 2" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+            <Frame BackgroundColor="#10000000" Grid.Row="6" Grid.ColumnSpan="6" CornerRadius="10"/>
+
+            <Label Text="Univerisy" Grid.Row="6" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
+            <Label Text="NSU" Grid.Row="6" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE" Grid.Row="6" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            
+            <Label Text="CSE 115" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 116" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 225" Grid.Row="7" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 235" Grid.Row="7" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 261" Grid.Row="7" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+            <Label Text="CSE 315" Grid.Row="8" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 321" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 326" Grid.Row="8" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 365" Grid.Row="8" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+            <Label Text="CSE 415" Grid.Row="8" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
         </Grid>
 
       

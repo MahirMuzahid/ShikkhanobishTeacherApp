@@ -10,7 +10,7 @@ namespace ShikkhanobishTeacherApp
         public App()
         {
             InitializeComponent();
-
+            XF.Material.Forms.Material.Init(this);
             MainPage = new AppShell();
         }
 
