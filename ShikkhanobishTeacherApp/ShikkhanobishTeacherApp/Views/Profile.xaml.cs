@@ -15,6 +15,7 @@ namespace ShikkhanobishTeacherApp.Views
         public Profile()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:ShikkhanobishTeacherApp.Views"
+       xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
        Title="ShikkhanobishTeacherApp"
+       SelectedTabColor="Blue"   
+      x:Name="tabbedPage"
        x:Class="ShikkhanobishTeacherApp.AppShell">
 
     <!--
@@ -11,30 +14,21 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="#774CD5" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
-            </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-        </ResourceDictionary>
-    </Shell.Resources>
 
-    <TabBar>
-        <ShellContent Title="Home" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:HomePage}" />
-        <ShellContent Title="Profile" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:Profile}" />
-    </TabBar>
+    <NavigationPage Title="Home" IconImageSource="icon_about.png"  BarBackground="White">
+        <x:Arguments>
+            <local:HomePage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Profile" IconImageSource="icon_feed.png"  BarBackground="#774CD5">
+        <x:Arguments>
+            <local:Profile />
+        </x:Arguments>
+    </NavigationPage>
 
 
 
 
-</Shell>
+
+
+</TabbedPage>

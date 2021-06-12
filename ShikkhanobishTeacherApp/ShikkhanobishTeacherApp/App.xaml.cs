@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShikkhanobishTeacherApp.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace ShikkhanobishTeacherApp
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
