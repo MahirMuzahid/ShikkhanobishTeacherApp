@@ -2,7 +2,6 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:ShikkhanobishTeacherApp.Views"
-       xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
        Title="ShikkhanobishTeacherApp"
        SelectedTabColor="Blue"   
       x:Name="tabbedPage"
@@ -15,12 +14,12 @@
     -->
 
 
-    <NavigationPage Title="Home" IconImageSource="icon_about.png"  BarBackground="White">
+    <NavigationPage Title="Home" IconImageSource="icon_about.png" >
         <x:Arguments>
             <local:HomePage />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Profile" IconImageSource="icon_feed.png"  BarBackground="#774CD5">
+    <NavigationPage Title="Profile" IconImageSource="icon_feed.png"  >
         <x:Arguments>
             <local:Profile />
         </x:Arguments>

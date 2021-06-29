@@ -6,15 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xam.Plugins.Forms.Svg" Version="1.0.0.27" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
-    <PackageReference Include="XF.Material" Version="1.7.8" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="ViewModels\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="Models\**" />
+    <None Remove="ViewModels\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
+    <PackageReference Include="Flurl" Version="3.0.2" />
+    <PackageReference Include="Flurl.Http" Version="3.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
+    <PackageReference Include="XF.Material" Version="1.7.8" />
   </ItemGroup>
 
   <ItemGroup>
