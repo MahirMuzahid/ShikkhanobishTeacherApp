@@ -93,6 +93,14 @@ namespace ShikkhanobishTeacherApp.View_Model
             totalMin = ThisTeacher.totalMinuite + "";
             favTeacher = ThisTeacher.favTeacherCount + "";
             report = ThisTeacher.reportCount+"";
+            if(ThisTeacher.reportCount == 0)
+            {
+                reportTextColor = Color.Green;
+            }
+            else
+            {
+                reportTextColor = Color.Red;
+            }
             totalTuition = ThisTeacher.totalTuition + "";
             star5 = ThisTeacher.fiveStar +"";
             star4 = ThisTeacher.fourStar + "";
@@ -100,6 +108,28 @@ namespace ShikkhanobishTeacherApp.View_Model
             star2 = ThisTeacher.twoStar + "";
             star1 = ThisTeacher.oneStar + "";
             isrefreshing = false;
+
+            sub1 = thisSubList[0].name;
+            sub2 = thisSubList[1].name;
+            sub3 = thisSubList[2].name;
+            sub4 = thisSubList[3].name;
+            sub5 = thisSubList[4].name;
+            sub6 = thisSubList[5].name;
+            sub7 = thisSubList[6].name;
+            sub8 = thisSubList[7].name;
+            sub9 = thisSubList[8].name;
+
+            crs1 = thisCrsList[0].name;
+            crs2 = thisCrsList[1].name;
+            crs3 = thisCrsList[2].name;
+            crs4 = thisCrsList[3].name;
+            crs5 = thisCrsList[4].name;
+            crs6 = thisCrsList[5].name;
+            crs7 = thisCrsList[6].name;
+            crs8 = thisCrsList[7].name;
+            crs9 = thisCrsList[8].name;
+            crs10 = thisCrsList[9].name;
+
         }
         private void PerformwithdrawCmd()
         {
@@ -247,6 +277,86 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool activeswitchEnabled1;
 
         public bool activeswitchEnabled { get => activeswitchEnabled1; set => SetProperty(ref activeswitchEnabled1, value); }
+
+        private string sub11;
+
+        public string sub1 { get => sub11; set => SetProperty(ref sub11, value); }
+
+        private string sub21;
+
+        public string sub2 { get => sub21; set => SetProperty(ref sub21, value); }
+
+        private string sub31;
+
+        public string sub3 { get => sub31; set => SetProperty(ref sub31, value); }
+
+        private string sub41;
+
+        public string sub4 { get => sub41; set => SetProperty(ref sub41, value); }
+
+        private string sub51;
+
+        public string sub5 { get => sub51; set => SetProperty(ref sub51, value); }
+
+        private string sub61;
+
+        public string sub6 { get => sub61; set => SetProperty(ref sub61, value); }
+
+        private string sub71;
+
+        public string sub7 { get => sub71; set => SetProperty(ref sub71, value); }
+
+        private string sub81;
+
+        public string sub8 { get => sub81; set => SetProperty(ref sub81, value); }
+
+        private string sub91;
+
+        public string sub9 { get => sub91; set => SetProperty(ref sub91, value); }
+
+        private string crs11;
+
+        public string crs1 { get => crs11; set => SetProperty(ref crs11, value); }
+
+        private string crs21;
+
+        public string crs2 { get => crs21; set => SetProperty(ref crs21, value); }
+
+        private string crs31;
+
+        public string crs3 { get => crs31; set => SetProperty(ref crs31, value); }
+
+        private string crs41;
+
+        public string crs4 { get => crs41; set => SetProperty(ref crs41, value); }
+
+        private string crs51;
+
+        public string crs5 { get => crs51; set => SetProperty(ref crs51, value); }
+
+        private string crs61;
+
+        public string crs6 { get => crs61; set => SetProperty(ref crs61, value); }
+
+        private string crs71;
+
+        public string crs7 { get => crs71; set => SetProperty(ref crs71, value); }
+
+        private string crs81;
+
+        public string crs8 { get => crs81; set => SetProperty(ref crs81, value); }
+
+        private string crs91;
+
+        public string crs9 { get => crs91; set => SetProperty(ref crs91, value); }
+
+        private string crs101;
+
+        public string crs10 { get => crs101; set => SetProperty(ref crs101, value); }
+
+        private Color reportTextColor1;
+
+        public Color reportTextColor { get => reportTextColor1; set => SetProperty(ref reportTextColor1, value); }
         #endregion
 
 

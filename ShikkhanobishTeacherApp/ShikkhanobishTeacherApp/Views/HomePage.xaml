@@ -204,7 +204,7 @@
 
                         <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                        <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="#E53A3A"/>
+                        <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
                     </Grid>
 
                     <Grid Grid.Column="0" Grid.Row="2" RowSpacing="0">
@@ -308,22 +308,22 @@
                     <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
                     <Label Text="Science" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
-                    <Label Text="Physics" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="Chemistry" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="Biology" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
                     <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="6" CornerRadius="10"/>
 
                     <Label Text="College" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
                     <Label Text="Science" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
-                    <Label Text="Physics 1" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                    <Label Text="Physics 2" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                    <Label Text="Chemistry 1" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                    <Label Text="Chemistry 2" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                    <Label Text="Math 1" Grid.Row="4" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub4}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub5}" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub6}" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub7}" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub8}" Grid.Row="4" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
-                    <Label Text="Math 2" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
                     <Frame BackgroundColor="#10000000" Grid.Row="6" Grid.ColumnSpan="6" CornerRadius="10"/>
 
@@ -331,17 +331,17 @@
                     <Label Text="NSU" Grid.Row="6" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
                     <Label Text="CSE" Grid.Row="6" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
-                    <Label Text="CSE 115" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 116" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 225" Grid.Row="7" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 235" Grid.Row="7" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 261" Grid.Row="7" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs1}" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs2}" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs3}" Grid.Row="7" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs4}" Grid.Row="7" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs5}" Grid.Row="7" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
-                    <Label Text="CSE 315" Grid.Row="8" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 321" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 326" Grid.Row="8" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 365" Grid.Row="8" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE 415" Grid.Row="8" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs6}" Grid.Row="8" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs7}" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs8}" Grid.Row="8" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs9}" Grid.Row="8" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    <Label Text="{Binding crs10}" Grid.Row="8" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
                 </Grid>
 
             </Grid>
