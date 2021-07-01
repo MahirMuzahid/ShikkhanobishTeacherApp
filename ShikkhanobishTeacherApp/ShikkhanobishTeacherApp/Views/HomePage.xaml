@@ -139,7 +139,7 @@
                         <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
-                        <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" />
+                        <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}"/>
 
                     </Grid>
 

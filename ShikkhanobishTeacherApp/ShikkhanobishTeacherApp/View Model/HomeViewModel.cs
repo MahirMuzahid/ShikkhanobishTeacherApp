@@ -12,6 +12,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 {
     public class HomeViewModel: BaseViewMode, INotifyPropertyChanged
     {
+        Teacher ThisTeacher { get; set; }
         #region Methods
         public HomeViewModel()
         {
@@ -20,9 +21,9 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public async Task GetAllInfo()
         {
-            var ThisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
+            ThisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
       .ReceiveJson<Teacher>();
-
+            activeswitchEnabled = true;
             amount = ""+ThisTeacher.amount;
             if(ThisTeacher.selectionStatus == 0)
             {
@@ -53,9 +54,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             else
             {
                 teacheractivity = "Active";
-                tracheractColor = Color.Default;
+                tracheractColor = Color.Black ;
             }
-            teacheractivity = ""+ThisTeacher.activeStatus;
             totalMin = ThisTeacher.totalMinuite + "";
             favTeacher = ThisTeacher.favTeacherCount + "";
             report = ThisTeacher.reportCount+"";
@@ -77,13 +77,15 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task ActiveTeacher()
         {
-            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeTeacher = 1 })
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1 , teacherID = ThisTeacher.teacherID})
                    .ReceiveJson<Response>();
+            activeswitchEnabled = true;
         }
         public async Task inActiveTeacher()
         {
-            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeTeacher = 0 })
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0 , teacherID = ThisTeacher.teacherID})
                    .ReceiveJson<Response>();
+            activeswitchEnabled = true;
         }
         #endregion
 
@@ -194,15 +196,23 @@ namespace ShikkhanobishTeacherApp.View_Model
                 
                 if(activeToggle == true)
                 {
+                    activeswitchEnabled = false;
                     teacheractivity = "Active";
+                    tracheractColor = Color.Black;
                     ActiveTeacher();
                 }
                 else
                 {
+                    activeswitchEnabled = false;
                     teacheractivity = "Inactive";
+                    tracheractColor = Color.FromHex("#D4D4D4");
                     inActiveTeacher();
                 }
                 OnPropertyChanged(); } }
+
+        private bool activeswitchEnabled1;
+
+        public bool activeswitchEnabled { get => activeswitchEnabled1; set => SetProperty(ref activeswitchEnabled1, value); }
         #endregion
 
 
