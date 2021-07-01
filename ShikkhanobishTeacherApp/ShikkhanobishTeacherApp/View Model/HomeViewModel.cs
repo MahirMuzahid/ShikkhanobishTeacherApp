@@ -29,6 +29,9 @@ namespace ShikkhanobishTeacherApp.View_Model
             thisCourseList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getCousrListWithID".PostUrlEncodedAsync(new { teacherID = ThisTeacher.teacherID })
       .ReceiveJson<CousrList>();
 
+            StaticPageForPassingData.tuitionList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherTuitionHistoryWithID".PostUrlEncodedAsync(new { teacherID = ThisTeacher.teacherID }).ReceiveJson<IEnumerable<TeacherTuitionHistory>>();
+
+            StaticPageForPassingData.thisTeacher = ThisTeacher;
 
             thisSubList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetSubListInfo".PostUrlEncodedAsync(new {
             sub1 = thisCourseList.sub1,

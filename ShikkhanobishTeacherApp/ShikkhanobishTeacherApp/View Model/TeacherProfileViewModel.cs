@@ -13,22 +13,201 @@ namespace ShikkhanobishTeacherApp.View_Model
 {
     class TeacherProfileViewModel: BaseViewMode, INotifyPropertyChanged
     {
-        private void changepn()
+        Teacher thisTeacher { get; set; }
+        int changeFlag = 0;
+        public TeacherProfileViewModel()
         {
+            GetAllInfo();
+            thisTeacher = StaticPageForPassingData.thisTeacher;
+            name = StaticPageForPassingData.thisTeacher.name;
+            phonenumber = StaticPageForPassingData.thisTeacher.phonenumber;
+            tuitionHisChanged = true;
+            paymentHistoryChaged = false;
+            hisVisibility = true;
+            payVisiblity = false;
+            popUpVisibility = false;
+            popBtnEnabled = false;
+            popBtnTxt = "Change";
+        }
 
+        public async Task GetAllInfo()
+        {
+            await PopulateTuitionList();
         }
         private void changepass()
         {
-
+            hasErrorF = false;
+            hasErrorS = false;
+            errorTxtF = "";
+            errorTxtS = "";
+            changeFlag = 1;
+            popUpVisibility = true;
+            popupTitle = "Change Password";
+            popuptxtFieldPlcHolder = "New Password";
+            popBtnEnabled = false;
+        }
+        private void changepn()
+        {
+            hasErrorF = false;
+            hasErrorS = false;
+            errorTxtF = "";
+            errorTxtS = "";
+            changeFlag = 2;
+            popUpVisibility = true;
+            popupTitle = "Change Phone Number";
+            popuptxtFieldPlcHolder = "New Phone Number";
+            popBtnEnabled = false;
         }
         private void changeNmae()
         {
-
+            hasErrorF = false;
+            hasErrorS = false;
+            errorTxtF = "";
+            errorTxtS = "";
+            changeFlag = 3;
+            popUpVisibility = true;
+            popupTitle = "Change Name";
+            popuptxtFieldPlcHolder = "New Name";
+            popBtnEnabled = false;
         }
         private void PerformpopOut()
         {
+            popUpVisibility = false;
+            popupTitle = "";
+            popuptxtFieldPlcHolder = "";
+            hasErrorS = false;
+            errorTxtS = "";
+            hasErrorF = false;
+            errorTxtF = "";
+            passtext = "";
+            newInfoText = "";
+        }
+
+
+        public async Task PopulateTuitionList()
+        {
+           
+            tuiListItemSource = StaticPageForPassingData.tuitionList;
+        }
+
+
+        public void Check()
+        {
+            bool error = false;
+            if (passtext != null)
+            {
+                if (passtext != StaticPageForPassingData.thisTeacher.password)
+                {
+                    hasErrorS = true;
+                    errorTxtS = "This is not your current password";
+
+                    popBtnEnabled = false;
+                    error = true;
+                }
+                else
+                {
+                    hasErrorS = false;
+                    errorTxtS = "";
+                }
+            }
+            else
+            {
+                error = true;
+            }
+            if (newInfoText != null)
+            {
+                bool isdigit = newInfoText.Any(char.IsDigit);
+                if (changeFlag == 1 && (!isdigit || newInfoText.Length < 6))
+                {
+                    hasErrorF = true;
+                    errorTxtF = "Minimum 6 character with 1 digit";
+                    popBtnEnabled = false;
+
+                    error = true;
+                }
+                else
+                {
+                    hasErrorF = false;
+                    errorTxtF = "";
+                }
+            }
+            else
+            {
+                error = true;
+            }
+
+            if (changeFlag == 2 && newInfoText.Length != 11)
+            {
+                hasErrorF = true;
+                errorTxtF = "Invalid Phone Number";
+                popBtnEnabled = false;
+
+                error = true;
+            }
+            if (!error)
+            {
+                popBtnEnabled = true;
+                hasErrorF = false;
+                hasErrorS = false;
+                errorTxtF = "";
+                errorTxtS = "";
+            }
 
         }
+        public ICommand changeCommand =>
+              new Command(async () =>
+              {
+                  popBtnEnabled = false;
+                  popBtnTxt = "Wait..";
+                  if (changeFlag == 1)
+                  {
+                      Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
+                .PostUrlEncodedAsync(new
+                {
+                    info= newInfoText,
+                    index= 2,
+                    teacherID= thisTeacher.teacherID
+                })
+                .ReceiveJson<Response>();
+                  }
+
+                  if (changeFlag == 2)
+                  {
+                      Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
+               .PostUrlEncodedAsync(new
+               {
+                   info = newInfoText,
+                   index = 1,
+                   teacherID = thisTeacher.teacherID
+               })
+               .ReceiveJson<Response>();
+                  }
+
+                  if (changeFlag == 3)
+                  {
+                      Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
+               .PostUrlEncodedAsync(new
+               {
+                   info = newInfoText,
+                   index = 3,
+                   teacherID = thisTeacher.teacherID
+               })
+               .ReceiveJson<Response>();
+                  }
+
+                  StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
+      .ReceiveJson<Teacher>();
+                  name = StaticPageForPassingData.thisTeacher.name;
+                  phonenumber = StaticPageForPassingData.thisTeacher.phonenumber;
+                  popUpVisibility = false;
+                  popupTitle = "";
+                  popBtnEnabled = true;
+                  newInfoText = "";
+                  passtext = "";
+                  popBtnTxt = "Change";
+              });
+
+
         #region Binding
         private string name1;
 
@@ -173,11 +352,11 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string newInfoText1;
 
-        public string newInfoText { get { return newInfoText1; } set { newInfoText1 = value;  OnPropertyChanged(); } }
+        public string newInfoText { get { return newInfoText1; } set { newInfoText1 = value; Check(); OnPropertyChanged(); } }
 
         private string passtext1;
 
-        public string passtext { get { return passtext1; } set { passtext1 = value;  OnPropertyChanged(); } }
+        public string passtext { get { return passtext1; } set { passtext1 = value; Check(); OnPropertyChanged(); } }
 
 
 

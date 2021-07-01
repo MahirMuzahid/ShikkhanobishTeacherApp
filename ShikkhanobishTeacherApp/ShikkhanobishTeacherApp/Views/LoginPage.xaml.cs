@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flurl.Http;
+using ShikkhanobishTeacherApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +18,13 @@ namespace ShikkhanobishTeacherApp.Views
         public LoginPage()
         {
             InitializeComponent();
+            GetTeacher();
         }
-
+        public async Task GetTeacher()
+        {
+            StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
+      .ReceiveJson<Teacher>();
+        }
         private void MaterialButton_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
