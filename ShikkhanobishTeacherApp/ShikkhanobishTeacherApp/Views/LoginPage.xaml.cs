@@ -18,16 +18,16 @@ namespace ShikkhanobishTeacherApp.Views
         public LoginPage()
         {
             InitializeComponent();
-            GetTeacher();
         }
         public async Task GetTeacher()
         {
             StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
       .ReceiveJson<Teacher>();
+            Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
         }
         private void MaterialButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+            GetTeacher();
         }
 
         public async Task ShowLoading()

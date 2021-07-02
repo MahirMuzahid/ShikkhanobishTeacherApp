@@ -17,7 +17,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         int changeFlag = 0;
         public TeacherProfileViewModel()
         {
-            GetAllInfo();
+            PopulateTuitionList();
+            PopulateWithdrawList();
             thisTeacher = StaticPageForPassingData.thisTeacher;
             name = StaticPageForPassingData.thisTeacher.name;
             phonenumber = StaticPageForPassingData.thisTeacher.phonenumber;
@@ -28,11 +29,6 @@ namespace ShikkhanobishTeacherApp.View_Model
             popUpVisibility = false;
             popBtnEnabled = false;
             popBtnTxt = "Change";
-        }
-
-        public async Task GetAllInfo()
-        {
-            await PopulateTuitionList();
         }
         private void changepass()
         {
@@ -86,11 +82,21 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public async Task PopulateTuitionList()
         {
-           
-            tuiListItemSource = StaticPageForPassingData.tuitionList;
+            StaticPageForPassingData.tuitionList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherTuitionHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherTuitionHistory>>();
+            List<TeacherTuitionHistory> tuilist = StaticPageForPassingData.tuitionList;
+
+            for(int i = 0; i < tuilist.Count; i++)
+            {
+                tuilist[i].teacherCost = tuilist[i].cost * 0.85;
+            }
+            tuiListItemSource = tuilist;
         }
 
-
+        public async Task PopulateWithdrawList()
+        {
+            var wdrawList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithdrawHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherWithdrawHistory>>();
+            withdrawList = wdrawList;
+        }
         public void Check()
         {
             bool error = false;
@@ -386,13 +392,17 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public string popBtnTxt { get => popBtnTxt1; set => SetProperty(ref popBtnTxt1, value); }
 
-        private System.Collections.IEnumerable tuiListItemSource1;
+        private List<TeacherTuitionHistory> tuiListItemSource1;
 
-        public System.Collections.IEnumerable tuiListItemSource { get => tuiListItemSource1; set => SetProperty(ref tuiListItemSource1, value); }
+        public List<TeacherTuitionHistory> tuiListItemSource { get => tuiListItemSource1; set => SetProperty(ref tuiListItemSource1, value); }
 
         private System.Collections.IEnumerable paymentList1;
 
         public System.Collections.IEnumerable paymentList { get => paymentList1; set => SetProperty(ref paymentList1, value); }
+
+        private List<TeacherWithdrawHistory> withdrawList1;
+
+        public List<TeacherWithdrawHistory> withdrawList { get => withdrawList1; set => SetProperty(ref withdrawList1, value); }
 
 
 

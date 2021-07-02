@@ -7,7 +7,7 @@ namespace ShikkhanobishTeacherApp.Model
     public class StaticPageForPassingData
     {
         public static Teacher thisTeacher { get; set; }
-        public static IEnumerable<TeacherTuitionHistory> tuitionList { get; set; }
+        public static List<TeacherTuitionHistory> tuitionList { get; set; }
     }
 }
 

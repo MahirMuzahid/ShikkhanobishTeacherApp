@@ -344,6 +344,9 @@
                     <Label Text="{Binding crs10}" Grid.Row="8" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
                 </Grid>
 
+                <Grid Grid.RowSpan="7" Grid.ColumnSpan="3">
+                    
+                </Grid>
             </Grid>
         </ScrollView>
     </RefreshView>

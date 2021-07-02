@@ -27,17 +27,7 @@
             </Grid.RowDefinitions>
             <Image Source="profilebac.jpg" Grid.Row="0" Aspect="AspectFill" Grid.RowSpan="4"/>
 
-            <Label Text="" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="25" Margin="20,20,0,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="X" TextColor="Black">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding closeWindow}" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            
             <Label Text="{Binding name}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
             <Label Text="{Binding phonenumber}" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Start" FontSize="13"/>
         </Grid>
@@ -109,7 +99,7 @@
                                         <Label  Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Start" FontAttributes="Bold">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding teacherName}" TextColor="White" FontSize="14"/>
+                                                    <Span Text="{Binding studentName}" TextColor="White" FontSize="14"/>
                                                     <Span Text=" "/>
                                                     <Span Text="{Binding date}"  TextColor="#90FFFFFF" FontSize="10"/>
                                                 </FormattedString>
@@ -130,8 +120,8 @@
                                             <RowDefinition Height="1*"/>
                                             <RowDefinition Height="1*"/>
                                         </Grid.RowDefinitions>
-                                        <Label Text="Cost" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="10"/>
-                                        <Label Text="{Binding cost}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="14" FontAttributes="Bold"/>
+                                        <Label Text="Earned" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="10"/>
+                                        <Label Text="{Binding teacherCost}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="14" FontAttributes="Bold"/>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="0">
                                         <Grid.ColumnDefinitions>
@@ -151,26 +141,24 @@
                 <!--#endregion-->
 
                 <!--#region Payment List-->
-                <ListView ItemsSource="{Binding paymentList}" Grid.Row="1" Grid.ColumnSpan="5" RowHeight="120" SeparatorColor="#ffffff" IsVisible="{Binding payVisiblity}">
+                <ListView ItemsSource="{Binding withdrawList}" Grid.Row="1" Grid.ColumnSpan="5" RowHeight="100" SeparatorColor="#ffffff" IsVisible="{Binding payVisiblity}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Margin="0,10,0,10">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="1.5*"/>
-                                        <RowDefinition Height=".1*"/>
+                                        <RowDefinition Height="1*"/>
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="1*"/>
                                             <RowDefinition Height="1*"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.RowSpan="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" >
+                                        <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" >
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="Bkash " TextColor="White" FontSize="14"/>
@@ -181,23 +169,16 @@
                                         <Label Grid.Row="0" Grid.Column="1"  HorizontalOptions="Center" VerticalOptions="Center" TextColor="#4CF766" FontSize="14" FontAttributes="Bold">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="+"/>
-                                                    <Span Text="{Binding amountCoin}"/>
-                                                    <Span Text=" Coin"/>
+                                                    <Span Text=""/>
+                                                    <Span Text="{Binding amountTaka}"/>
+                                                    <Span Text=" Taka"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        <Label  Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10" TextColor="White">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Voucher: "/>
-                                                    <Span Text="{Binding name}"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
+                                        
                                     </Grid>
 
-                                    <Grid Grid.Row="2">
+                                    <Grid Grid.Row="1">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1*"/>
                                             <RowDefinition Height="1*"/>
@@ -207,13 +188,15 @@
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="PaymentID" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10" TextColor="White"/>
-                                        <Label Text="Trans ID" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10" TextColor="White"/>
-                                        <Label Text="Cost (Taka)" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10" TextColor="White"/>
+                                        <Label Text="Withdraw ID" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" TextColor="White"/>
+                                        <Label Text="Trans ID" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" TextColor="White"/>
+                                        <Label Text="Phone Number" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" TextColor="White"/>
 
-                                        <Label Text="{Binding paymentID}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="10" TextColor="White"/>
-                                        <Label Text="{Binding trxID}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="10" TextColor="White"/>
-                                        <Label Text="{Binding amountTaka}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="10" FontAttributes="Bold" TextColor="White"/>
+
+                                        <Label Text="{Binding withdrawID}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"  FontSize="10" TextColor="White"/>
+                                        <Label Text="{Binding trxID}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"  FontSize="10" TextColor="White"/>
+                                        <Label Text="{Binding phoneNumber}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center"  FontSize="10" TextColor="White"/>
+
                                     </Grid>
 
                                 </Grid>
