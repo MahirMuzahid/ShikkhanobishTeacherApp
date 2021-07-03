@@ -19,6 +19,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region Methods
         public HomeViewModel()
         {
+            withdrawVisibility = false;
             GetAllInfo();
         }
 
@@ -136,6 +137,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformwithdrawCmd()
         {
+            withdrawVisibility = true;
         }
         private void PerformrefreshNow()
         {
@@ -153,6 +155,10 @@ namespace ShikkhanobishTeacherApp.View_Model
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0 , teacherID = ThisTeacher.teacherID})
                    .ReceiveJson<Response>();
             activeswitchEnabled = true;
+        }
+        private void Performclocsepopup()
+        {
+            withdrawVisibility = false;
         }
         #endregion
 
@@ -360,6 +366,85 @@ namespace ShikkhanobishTeacherApp.View_Model
         private Color reportTextColor1;
 
         public Color reportTextColor { get => reportTextColor1; set => SetProperty(ref reportTextColor1, value); }
+
+        private bool withdrawVisibility1;
+
+        public bool withdrawVisibility { get => withdrawVisibility1; set => SetProperty(ref withdrawVisibility1, value); }
+
+        private string withdrawAmount1;
+
+        public string withdrawAmount { get => withdrawAmount1; set => SetProperty(ref withdrawAmount1, value); }
+
+        private string bnumber1;
+
+        public string bnumber { get => bnumber1; set => SetProperty(ref bnumber1, value); }
+
+        private string withdrawPassword1;
+
+        public string withdrawPassword { get => withdrawPassword1; set => SetProperty(ref withdrawPassword1, value); }
+
+        private Command clocsepopup1;
+
+        public ICommand clocsepopup
+        {
+            get
+            {
+                if (clocsepopup1 == null)
+                {
+                    clocsepopup1 = new Command(Performclocsepopup);
+                }
+
+                return clocsepopup1;
+            }
+        }
+
+        private Command withdrawNowComd1;
+
+        public ICommand withdrawNowComd
+        {
+            get
+            {
+                if (withdrawNowComd1 == null)
+                {
+                    withdrawNowComd1 = new Command(PerformwithdrawNowComd);
+                }
+
+                return withdrawNowComd1;
+            }
+        }
+
+        private void PerformwithdrawNowComd()
+        {
+        }
+
+        private bool wamError1;
+
+        public bool wamError { get => wamError1; set => SetProperty(ref wamError1, value); }
+
+        private string wamErrorText1;
+
+        public string wamErrorText { get => wamErrorText1; set => SetProperty(ref wamErrorText1, value); }
+
+        private bool wbnError1;
+
+        public bool wbnError { get => wbnError1; set => SetProperty(ref wbnError1, value); }
+
+        private string wbnErrorText1;
+
+        public string wbnErrorText { get => wbnErrorText1; set => SetProperty(ref wbnErrorText1, value); }
+
+        private bool wpass1;
+
+        public bool wpass { get => wpass1; set => SetProperty(ref wpass1, value); }
+
+        private bool wpassError1;
+
+        public bool wpassError { get => wpassError1; set => SetProperty(ref wpassError1, value); }
+
+        private string wpassErrorText1;
+
+        public string wpassErrorText { get => wpassErrorText1; set => SetProperty(ref wpassErrorText1, value); }
+
         #endregion
 
 
