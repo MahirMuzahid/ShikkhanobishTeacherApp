@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
-    public class HomeViewModel: BaseViewMode, INotifyPropertyChanged
+    public class HomeViewModel : BaseViewMode, INotifyPropertyChanged
     {
         Teacher ThisTeacher { get; set; }
         CousrList thisCourseList { get; set; }
@@ -20,9 +20,9 @@ namespace ShikkhanobishTeacherApp.View_Model
         public HomeViewModel()
         {
             withdrawVisibility = false;
+            withdrawEnabled = false;
             GetAllInfo();
         }
-
         public async Task GetAllInfo()
         {
             ThisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
@@ -30,40 +30,40 @@ namespace ShikkhanobishTeacherApp.View_Model
             thisCourseList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getCousrListWithID".PostUrlEncodedAsync(new { teacherID = ThisTeacher.teacherID })
       .ReceiveJson<CousrList>();
 
-           
+
 
             StaticPageForPassingData.thisTeacher = ThisTeacher;
 
             thisSubList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetSubListInfo".PostUrlEncodedAsync(new {
-            sub1 = thisCourseList.sub1,
-            sub2 = thisCourseList.sub2,
-            sub3 = thisCourseList.sub3,
-            sub4 = thisCourseList.sub4,
-            sub5 = thisCourseList.sub5,
-            sub6 = thisCourseList.sub6,
-            sub7 = thisCourseList.sub7,
-            sub8 = thisCourseList.sub8,
-            sub9 = thisCourseList.sub9
+                sub1 = thisCourseList.sub1,
+                sub2 = thisCourseList.sub2,
+                sub3 = thisCourseList.sub3,
+                sub4 = thisCourseList.sub4,
+                sub5 = thisCourseList.sub5,
+                sub6 = thisCourseList.sub6,
+                sub7 = thisCourseList.sub7,
+                sub8 = thisCourseList.sub8,
+                sub9 = thisCourseList.sub9
             })
       .ReceiveJson<List<SubList>>();
 
 
             thisCrsList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getCrsListInfo".PostUrlEncodedAsync(new {
-            crs1 = thisCourseList.crs1,
-            crs2 = thisCourseList.crs2,
-            crs3 = thisCourseList.crs3,
-            crs4 = thisCourseList.crs4,
-            crs5 = thisCourseList.crs5,
-            crs6 = thisCourseList.crs6,
-            crs7 = thisCourseList.crs7,
-            crs8 = thisCourseList.crs8,
-            crs9 = thisCourseList.crs9,
-            crs10 = thisCourseList.crs10
+                crs1 = thisCourseList.crs1,
+                crs2 = thisCourseList.crs2,
+                crs3 = thisCourseList.crs3,
+                crs4 = thisCourseList.crs4,
+                crs5 = thisCourseList.crs5,
+                crs6 = thisCourseList.crs6,
+                crs7 = thisCourseList.crs7,
+                crs8 = thisCourseList.crs8,
+                crs9 = thisCourseList.crs9,
+                crs10 = thisCourseList.crs10
             })
      .ReceiveJson<List<SubList>>();
             activeswitchEnabled = true;
-            amount = ""+ThisTeacher.amount;
-            if(ThisTeacher.selectionStatus == 0)
+            amount = "" + ThisTeacher.amount;
+            if (ThisTeacher.selectionStatus == 0)
             {
                 selectionSts = "Not Selected";
                 selectionStsColor = Color.FromHex("#DFC628");
@@ -74,7 +74,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 selectionStsColor = Color.ForestGreen;
             }
 
-            if(ThisTeacher.monetizetionStatus == 0)
+            if (ThisTeacher.monetizetionStatus == 0)
             {
                 monetizationSts = "Not Monetized";
                 monistscolor = Color.FromHex("#DFC628");
@@ -92,12 +92,12 @@ namespace ShikkhanobishTeacherApp.View_Model
             else
             {
                 teacheractivity = "Active";
-                tracheractColor = Color.Black ;
+                tracheractColor = Color.Black;
             }
             totalMin = ThisTeacher.totalMinuite + "";
             favTeacher = ThisTeacher.favTeacherCount + "";
-            report = ThisTeacher.reportCount+"";
-            if(ThisTeacher.reportCount == 0)
+            report = ThisTeacher.reportCount + "";
+            if (ThisTeacher.reportCount == 0)
             {
                 reportTextColor = Color.Green;
             }
@@ -106,12 +106,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                 reportTextColor = Color.Red;
             }
             totalTuition = ThisTeacher.totalTuition + "";
-            star5 = ThisTeacher.fiveStar +"";
+            star5 = ThisTeacher.fiveStar + "";
             star4 = ThisTeacher.fourStar + "";
             star3 = ThisTeacher.threeStar + "";
             star2 = ThisTeacher.twoStar + "";
             star1 = ThisTeacher.oneStar + "";
-            isrefreshing = false;
+           
 
             sub1 = thisSubList[0].name;
             sub2 = thisSubList[1].name;
@@ -133,10 +133,11 @@ namespace ShikkhanobishTeacherApp.View_Model
             crs8 = thisCrsList[7].name;
             crs9 = thisCrsList[8].name;
             crs10 = thisCrsList[9].name;
-
+            isrefreshing = false;
         }
         private void PerformwithdrawCmd()
         {
+            withdrawEnabled = false;
             withdrawVisibility = true;
         }
         private void PerformrefreshNow()
@@ -146,13 +147,13 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task ActiveTeacher()
         {
-            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1 , teacherID = ThisTeacher.teacherID})
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
             activeswitchEnabled = true;
         }
         public async Task inActiveTeacher()
         {
-            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0 , teacherID = ThisTeacher.teacherID})
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
             activeswitchEnabled = true;
         }
@@ -160,6 +161,126 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             withdrawVisibility = false;
         }
+
+        public void CheckWithdraw()
+        {
+            int errornum = 0;
+
+            if(withdrawAmount != null)
+            {
+                if (int.Parse(withdrawAmount) < 0)
+                {
+                    errornum = 1;
+                }
+                if (int.Parse(withdrawAmount) > ThisTeacher.amount && withdrawAmount != null)
+                {
+                    errornum = 2;
+                }
+                if (ThisTeacher.amount < 50 && withdrawAmount != null)
+                {
+                    errornum = 3;
+                }
+            }
+            
+            if(bnumber != null)
+            {
+                if (bnumber.Length != 11)
+                {
+                    errornum = 4;
+                }
+            }
+            
+            if(withdrawPassword != null)
+            {
+                if (withdrawPassword != ThisTeacher.password)
+                {
+                    errornum = 5;
+                }
+            }           
+
+            if (withdrawAmount != "" || withdrawAmount != null)
+            {
+                if (errornum == 1)
+                {
+                    wamError = true;
+                    wamErrorText = "Invalid Amount";
+                }
+                else if (errornum == 2)
+                {
+                    wamError = true;
+                    wamErrorText = "You have less then " + withdrawAmount + " Taka";
+                }
+                else if (errornum == 3)
+                {
+                    wamError = true;
+                    wamErrorText = "You have to have at least 50 taka before making any withdraw";
+                }
+                else
+                {
+                    wamError = false;
+                    wamErrorText = "";
+                }
+            }
+            if (bnumber != "" || bnumber != null)
+            {
+                if (errornum == 4)
+                {
+                    wbnError = true;
+                    wbnErrorText = "Invalid Number";
+                }
+                else
+                {
+                    wbnError = false;
+                    wbnErrorText = "";
+                }
+            }
+            if (withdrawPassword != "" || withdrawPassword != null)
+            {
+                if (errornum == 5)
+                {
+                    wpassError = true;
+                    wpassErrorText = "Passowed doesn't match";
+                }
+                else
+                {
+                    wpassError = false;
+                    wpassErrorText = "";
+                }
+            }
+            if ((withdrawAmount != "" || withdrawAmount != null) && (bnumber != "" || bnumber != null) && (withdrawPassword != "" || withdrawPassword != null) && errornum == 0)
+            {
+                withdrawEnabled = true;
+            }
+            else
+            {
+                withdrawEnabled = false;
+            }
+
+        }
+
+        private void PerformwithdrawNowComd()
+        {
+            SetWithdrawRequest();
+        }
+
+        public async Task SetWithdrawRequest()
+        {
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherWithdrawHistory".PostUrlEncodedAsync(new
+            {
+                withdrawID = StaticPageForPassingData.GenarateNewID(),
+                date = DateTime.Now.ToString("MM/dd/yyyy h:mm tt"),
+                trxID = "N/A",
+                amountTaka = withdrawAmount,
+                medium = 1,
+                status = 0,
+                phoneNumber = bnumber,
+                teacherID = ThisTeacher.teacherID
+            })
+                  .ReceiveJson<Response>();
+                   withdrawVisibility = false;
+        }
+
+        
         #endregion
 
         #region Bindings
@@ -373,15 +494,15 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string withdrawAmount1;
 
-        public string withdrawAmount { get => withdrawAmount1; set => SetProperty(ref withdrawAmount1, value); }
+        public string withdrawAmount { get { return withdrawAmount1; } set { withdrawAmount1 = value ; CheckWithdraw(); SetProperty(ref withdrawAmount1, value); } }
 
         private string bnumber1;
 
-        public string bnumber { get => bnumber1; set => SetProperty(ref bnumber1, value); }
+        public string bnumber { get { return bnumber1; } set { bnumber1 = value ; CheckWithdraw(); SetProperty(ref bnumber1, value); } }
 
         private string withdrawPassword1;
 
-        public string withdrawPassword { get => withdrawPassword1; set => SetProperty(ref withdrawPassword1, value); }
+        public string withdrawPassword { get { return withdrawPassword1; } set { withdrawPassword1 = value; CheckWithdraw(); SetProperty(ref withdrawPassword1, value); } }
 
         private Command clocsepopup1;
 
@@ -413,10 +534,6 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-        private void PerformwithdrawNowComd()
-        {
-        }
-
         private bool wamError1;
 
         public bool wamError { get => wamError1; set => SetProperty(ref wamError1, value); }
@@ -444,6 +561,12 @@ namespace ShikkhanobishTeacherApp.View_Model
         private string wpassErrorText1;
 
         public string wpassErrorText { get => wpassErrorText1; set => SetProperty(ref wpassErrorText1, value); }
+
+        private bool withdrawEnabled1;
+
+        public bool withdrawEnabled { get => withdrawEnabled1; set => SetProperty(ref withdrawEnabled1, value); }
+
+       
 
         #endregion
 

@@ -346,9 +346,9 @@
 
                 <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height=".30*"/>
-                        <RowDefinition Height="1.3*"/>
-                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -361,12 +361,12 @@
 
                     <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".7*"/>
                             <RowDefinition Height=".001*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".7*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".1*"/>
@@ -376,11 +376,11 @@
                         <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
                         <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
                         <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                        <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
-                        <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
-                        <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
+                        <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
+                        <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
+                        <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
                         <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
-                        <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}"/>
+                        <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
                     </Grid>
                     
                 </Grid>

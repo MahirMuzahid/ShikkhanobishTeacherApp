@@ -17,6 +17,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         int changeFlag = 0;
         public TeacherProfileViewModel()
         {
+            getAllInfo();
+        }
+        public void getAllInfo()
+        {
             PopulateTuitionList();
             PopulateWithdrawList();
             thisTeacher = StaticPageForPassingData.thisTeacher;
@@ -29,6 +33,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             popUpVisibility = false;
             popBtnEnabled = false;
             popBtnTxt = "Change";
+            isrefreshing = false ;
         }
         private void changepass()
         {
@@ -95,6 +100,22 @@ namespace ShikkhanobishTeacherApp.View_Model
         public async Task PopulateWithdrawList()
         {
             var wdrawList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithdrawHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherWithdrawHistory>>();
+            List<TeacherWithdrawHistory> withList = wdrawList;
+
+            for (int i = 0; i < withList.Count; i++)
+            {
+                if (withList[i].status == 0)
+                {
+                    withList[i].statusText = "Pending";
+                    withList[i].amountColor = "#90FFFFFF";
+                }
+                else
+                {
+                    withList[i].statusText = "";
+                    withList[i].amountColor = "#3EE755";
+                }
+               
+            }
             withdrawList = wdrawList;
         }
         public void Check()
@@ -213,7 +234,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                   popBtnTxt = "Change";
               });
 
-
+        private void PerformrefreshNow()
+        {
+            isrefreshing = true;
+            getAllInfo();
+        }
         #region Binding
         private string name1;
 
@@ -276,6 +301,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     paymentHistoryChaged = false;
                     hisVisibility = true;
                     payVisiblity = false;
+                    PopulateTuitionList();
                 }
 
                 OnPropertyChanged();
@@ -295,6 +321,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     tuitionHisChanged = false;
                     hisVisibility = false;
                     payVisiblity = true;
+                    PopulateWithdrawList();
                 }
                 OnPropertyChanged();
             }
@@ -403,6 +430,30 @@ namespace ShikkhanobishTeacherApp.View_Model
         private List<TeacherWithdrawHistory> withdrawList1;
 
         public List<TeacherWithdrawHistory> withdrawList { get => withdrawList1; set => SetProperty(ref withdrawList1, value); }
+
+        private bool refreshow1;
+
+        public bool refreshow { get { return refreshow1; } set { refreshow1 = value; SetProperty(ref refreshow1, value); } }
+
+        private Command refreshNow1;
+
+        public ICommand refreshNow
+        {
+            get
+            {
+                if (refreshNow1 == null)
+                {
+                    refreshNow1 = new Command(PerformrefreshNow);
+                }
+
+                return refreshNow1;
+            }
+        }
+
+        private bool isrefreshing1;
+
+        public bool isrefreshing { get => isrefreshing1; set => SetProperty(ref isrefreshing1, value); }
+
 
 
 
