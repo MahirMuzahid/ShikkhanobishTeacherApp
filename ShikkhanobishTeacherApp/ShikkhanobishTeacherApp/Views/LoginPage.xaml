@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+              xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model"
              x:Class="ShikkhanobishTeacherApp.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <viewmodel:LoginViewModel/>
+    </ContentPage.BindingContext>
+    
     <Grid BackgroundColor="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -23,11 +28,24 @@
                 <RowDefinition Height=".4*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <material:MaterialTextField InputType="Numeric" Grid.Row="0" Placeholder="Teacher Token" BackgroundColor="#06000000" PlaceholderColor="Black"/>
+            <material:MaterialTextField InputType="Numeric" Grid.Row="0" Placeholder="Phone Number" BackgroundColor="#06000000" PlaceholderColor="Black"/>
             <material:MaterialTextField InputType="NumericPassword" Grid.Row="1" Placeholder="Password" BackgroundColor="#06000000" PlaceholderColor="Black"/>
             <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password or Token?" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Start"/>
 
             <material:MaterialButton Text="Login" Grid.Row="3" ButtonType="Elevated" Elevation="40" Clicked="MaterialButton_Clicked"/>
         </Grid>
+        <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,30">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Do not have an account? "/>
+                    <Span Text="Register Now" FontAttributes="Bold">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Registercmd}"/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span Text=" as a teacher"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </Grid>
 </ContentPage>

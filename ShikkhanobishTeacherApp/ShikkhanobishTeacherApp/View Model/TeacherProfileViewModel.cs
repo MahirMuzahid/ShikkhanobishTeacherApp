@@ -15,6 +15,8 @@ namespace ShikkhanobishTeacherApp.View_Model
     {
         Teacher thisTeacher { get; set; }
         int changeFlag = 0;
+
+        #region Methods
         public TeacherProfileViewModel()
         {
             getAllInfo();
@@ -239,6 +241,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             isrefreshing = true;
             getAllInfo();
         }
+        #endregion
+
         #region Binding
         private string name1;
 
