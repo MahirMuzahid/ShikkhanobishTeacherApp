@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+              xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model"
              x:Class="ShikkhanobishTeacherApp.Views.TeacherRegistration">
+    <ContentPage.BindingContext>
+        <viewmodel:RegisterViewModel/>
+    </ContentPage.BindingContext>
     <ScrollView>
         <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
@@ -39,10 +43,10 @@
                 </Grid.ColumnDefinitions>
                 <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
                 <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" />
-                <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" CardBackgroundColor="Transparent"/>
-                <material:MaterialTextField Placeholder="Passwoard" Grid.Row="3" Grid.Column="0" CardBackgroundColor="Transparent"/>
-                <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="Transparent"/>
+                <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding name}"/>
+                <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" CardBackgroundColor="Transparent" Text="{Binding pnumber}"/>
+                <material:MaterialTextField Placeholder="Passwoard" Grid.Row="3" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding password}"/>
+                <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="Transparent" Text="{Binding conFirmPassword}"/>
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="1" RowSpacing="5">
@@ -67,9 +71,9 @@
                 </Label>
                 <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-                <material:MaterialButton Text="Science" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="0" FontSize="9" TextColor="Black"/>
-                <material:MaterialButton Text="Commerce" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="1" FontSize="9" TextColor="Black"/>
-                <material:MaterialButton Text="Arts" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="2" FontSize="9" TextColor="Black"/>
+                <material:MaterialButton Text="Science" BackgroundColor="{Binding scScColor}" Grid.Row="2" Grid.Column="0" FontSize="9" TextColor="Black" Command="{Binding popupSchool}" CommandParameter="1"/>
+                <material:MaterialButton Text="Commerce" BackgroundColor="{Binding scCmColor}" Grid.Row="2" Grid.Column="1" FontSize="9" TextColor="Black" Command="{Binding popupSchool}" CommandParameter="2"/>
+                <material:MaterialButton Text="Arts" BackgroundColor="{Binding scarColor}" Grid.Row="2" Grid.Column="2" FontSize="9" TextColor="Black" Command="{Binding popupSchool}" CommandParameter="3"/>
                 <Grid Grid.Row="3" Grid.ColumnSpan="3">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="1*"/>
@@ -82,10 +86,11 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width=".1*"/>
                     </Grid.ColumnDefinitions>
+                    <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubScMsgVsi}"/>
                     <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-                    <Label Text="Physics" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Chemistry" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Higher Math" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub1}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
+                    <Label Text="{Binding sub2}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub3}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
                 </Grid>
                 
             </Grid>
@@ -106,15 +111,15 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Choose Group From Class " />
-                            <Span Text="9 - 10" FontAttributes="Bold"/>
+                            <Span Text="11 - 12" FontAttributes="Bold"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="3"/>
 
-                <material:MaterialButton Text="Science" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="0" FontSize="9" TextColor="Black"/>
-                <material:MaterialButton Text="Commerce" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="1" FontSize="9" TextColor="Black"/>
-                <material:MaterialButton Text="Arts" BackgroundColor="#10000000" Grid.Row="2" Grid.Column="2" FontSize="9" TextColor="Black"/>
+                <material:MaterialButton Text="Science" BackgroundColor="{Binding clgScColor}" Grid.Row="2" Grid.Column="0" FontSize="9" TextColor="Black" Command="{Binding popupCollege}" CommandParameter="1" IsEnabled="{Binding  clgScEnabled}"/>
+                <material:MaterialButton Text="Commerce" BackgroundColor="{Binding clgChColor}" Grid.Row="2" Grid.Column="1" FontSize="9" TextColor="Black" Command="{Binding popupCollege}" CommandParameter="2" IsEnabled="{Binding  clgCmEnabled}"/>
+                <material:MaterialButton Text="Arts" BackgroundColor="{Binding clgArColor}" Grid.Row="2" Grid.Column="2" FontSize="9" TextColor="Black" Command="{Binding popupCollege}" CommandParameter="3" IsEnabled="{Binding  clgArEnabled}"/>
                 <Grid Grid.Row="3" Grid.ColumnSpan="3">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="1*"/>
@@ -130,21 +135,23 @@
                         <ColumnDefinition Width=".1*"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
+                    <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubMsgVsi}"/>
+                    <Label Text="{Binding sub4}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub5}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub6}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
 
-                    <Label Text="Physics 1st Psper" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Chemistry 1st Paper" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Math 1st Paper" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-
-                    <Label Text="Physics 2nd Paper" Grid.Column="1"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Chemistry" Grid.Column="2"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="Higher Math" Grid.Column="3"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub7}" Grid.Column="1"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub8}" Grid.Column="2"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub9}" Grid.Column="3"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
                     <material:MaterialButton Text="Send OTP" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" />
                 </Grid>
             </Grid>
-            <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="#50000000">
+            
+            <!--School -->
+            <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="#50000000" IsVisible="{Binding schholPopUpVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -152,7 +159,7 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popoutSchool}"/>
                 <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
@@ -165,14 +172,55 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Choose Any Three Group From Class9-10" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="Choose Any Three Subject From Class 9-10" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
-                    <material:MaterialButton Text="Physics" Grid.Row="2" ButtonType="Text" TextColor="Black" PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Chemistry" Grid.Row="3" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Biology" Grid.Row="4" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Math" Grid.Row="5" ButtonType="Text" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Higher Math" ButtonType="Text" Grid.Row="6" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Save" Grid.Row="7" TextColor="White" BackgroundColor="#1ECF66"/>
+                    <material:MaterialButton Text="Physics" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scPhyColor}" PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="1"/>
+                    <material:MaterialButton Text="Chemistry" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding scCheColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="2"/>
+                    <material:MaterialButton Text="Biology" Grid.Row="4" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scBioColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="3"/>
+                    <material:MaterialButton Text="Math" Grid.Row="5" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scMatColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="4"/>
+                    <material:MaterialButton Text="Higher Math" ButtonType="Flat" Grid.Row="6" TextColor="Black" BackgroundColor="{Binding scHmColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="5"/>
+                    <material:MaterialButton Text="Save" Grid.Row="7" TextColor="White" BackgroundColor="#1ECF66" Command="{Binding schSaved}" IsEnabled="{Binding scEnabled}" />
+                </Grid>
+            </Grid>
+            <!--College -->
+            <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="#50000000" IsVisible="{Binding CollegePopupVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popoutCollege}"/>
+                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".01*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Choose Any Six Subject From Class 11-12" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Frame BackgroundColor="Black" Grid.Row="1"/>
+                    <material:MaterialButton Text="Physics 1st Paper" Grid.Row="2" ButtonType="Text" TextColor="Black" PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Physics 2nd Paper" Grid.Row="3" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Chemistry 1st Paper" Grid.Row="4" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Chemistry 2nd Paper" Grid.Row="5" ButtonType="Text" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Biology 1st Paper" ButtonType="Text" Grid.Row="6" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Biology 2nd Paper" ButtonType="Text" Grid.Row="7" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Higher Match 1st Paper" ButtonType="Text" Grid.Row="8" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Higher Math 2nd Paper" ButtonType="Text" Grid.Row="9" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Save" Grid.Row="10" TextColor="White" BackgroundColor="#1ECF66" Command="{Binding clgSaved}" IsEnabled="{Binding clgEnabled}"/>
                 </Grid>
             </Grid>
         </Grid>

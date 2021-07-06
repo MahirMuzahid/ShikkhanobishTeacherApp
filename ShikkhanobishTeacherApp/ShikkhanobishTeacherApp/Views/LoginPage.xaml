@@ -43,7 +43,6 @@
                             <TapGestureRecognizer Command="{Binding Registercmd}"/>
                         </Span.GestureRecognizers>
                     </Span>
-                    <Span Text=" as a teacher"/>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
