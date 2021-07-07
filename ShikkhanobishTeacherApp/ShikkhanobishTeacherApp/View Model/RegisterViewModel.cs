@@ -29,6 +29,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region Methods
         public RegisterViewModel ()
         {
+            otpWindow = false;
             sendotpEnabled = false;
             selectedscIndex = 0;
             selectedClgIndex = 0;
@@ -581,7 +582,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         #endregion
 
-
+        private void Performcomandotp()
+        {
+            otpWindow = true;
+        }
         #endregion
 
 
@@ -945,6 +949,26 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool sendotpEnabled1;
 
         public bool sendotpEnabled { get => sendotpEnabled1; set => SetProperty(ref sendotpEnabled1, value); }
+
+        private Command comandotp1;
+
+        public ICommand comandotp
+        {
+            get
+            {
+                if (comandotp1 == null)
+                {
+                    comandotp1 = new Command(Performcomandotp);
+                }
+
+                return comandotp1;
+            }
+        }
+
+        private bool otpWindow1;
+
+        public bool otpWindow { get => otpWindow1; set => SetProperty(ref otpWindow1, value); }
+
 
 
 
