@@ -88,9 +88,9 @@
                     </Grid.ColumnDefinitions>
                     <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubScMsgVsi}"/>
                     <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-                    <Label Text="{Binding sub1}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-                    <Label Text="{Binding sub2}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                    <Label Text="{Binding sub3}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub1}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub2}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                    <Label Text="{Binding sub3}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
                 </Grid>
                 
             </Grid>
@@ -174,11 +174,11 @@
                     </Grid.RowDefinitions>
                     <Label Text="Choose Any Three Subject From Class 9-10" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
-                    <material:MaterialButton Text="Physics" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scPhyColor}" PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="1"/>
-                    <material:MaterialButton Text="Chemistry" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding scCheColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="2"/>
-                    <material:MaterialButton Text="Biology" Grid.Row="4" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scBioColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="3"/>
-                    <material:MaterialButton Text="Math" Grid.Row="5" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scMatColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="4"/>
-                    <material:MaterialButton Text="Higher Math" ButtonType="Flat" Grid.Row="6" TextColor="Black" BackgroundColor="{Binding scHmColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="5"/>
+                    <material:MaterialButton Text="{Binding scsubName1}" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scPhyColor}" PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="0"/>
+                    <material:MaterialButton Text="{Binding scsubName2}" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding scCheColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="1"/>
+                    <material:MaterialButton Text="{Binding scsubName3}" Grid.Row="4" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scBioColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="2"/>
+                    <material:MaterialButton Text="{Binding scsubName4}" Grid.Row="5" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scMatColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="3"/>
+                    <material:MaterialButton Text="{Binding scsubName5}" ButtonType="Flat" Grid.Row="6" TextColor="Black" BackgroundColor="{Binding scHmColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="4" IsEnabled="{Binding artSubEnabled}"/>
                     <material:MaterialButton Text="Save" Grid.Row="7" TextColor="White" BackgroundColor="#1ECF66" Command="{Binding schSaved}" IsEnabled="{Binding scEnabled}" />
                 </Grid>
             </Grid>
@@ -212,14 +212,14 @@
                     </Grid.RowDefinitions>
                     <Label Text="Choose Any Six Subject From Class 11-12" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
-                    <material:MaterialButton Text="Physics 1st Paper" Grid.Row="2" ButtonType="Text" TextColor="Black" PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Physics 2nd Paper" Grid.Row="3" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Chemistry 1st Paper" Grid.Row="4" ButtonType="Text" TextColor="Black"   PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Chemistry 2nd Paper" Grid.Row="5" ButtonType="Text" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Biology 1st Paper" ButtonType="Text" Grid.Row="6" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Biology 2nd Paper" ButtonType="Text" Grid.Row="7" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Higher Match 1st Paper" ButtonType="Text" Grid.Row="8" TextColor="Black"  PressedBackgroundColor="#30000000"/>
-                    <material:MaterialButton Text="Higher Math 2nd Paper" ButtonType="Text" Grid.Row="9" TextColor="Black"  PressedBackgroundColor="#30000000"/>
+                    <material:MaterialButton Text="Physics 1st Paper" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding clgPhy1st}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="0"/>
+                    <material:MaterialButton Text="Physics 2nd Paper" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding clgPhy2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="1"/>
+                    <material:MaterialButton Text="Chemistry 1st Paper" Grid.Row="4" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding clgChe1st}"  PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="2"/>
+                    <material:MaterialButton Text="Chemistry 2nd Paper" Grid.Row="5" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding clgChe2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="3"/>
+                    <material:MaterialButton Text="Biology 1st Paper" ButtonType="Flat" Grid.Row="6" TextColor="Black"  BackgroundColor="{Binding clgBio1st}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="4"/>
+                    <material:MaterialButton Text="Biology 2nd Paper" ButtonType="Flat" Grid.Row="7" TextColor="Black"  BackgroundColor="{Binding clgBio2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="5"/>
+                    <material:MaterialButton Text="Higher Match 1st Paper" ButtonType="Flat" Grid.Row="8" TextColor="Black"  BackgroundColor="{Binding clgHm1st}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="6"/>
+                    <material:MaterialButton Text="Higher Math 2nd Paper" ButtonType="Flat" Grid.Row="9" TextColor="Black"  BackgroundColor="{Binding clgHm2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="7"/>
                     <material:MaterialButton Text="Save" Grid.Row="10" TextColor="White" BackgroundColor="#1ECF66" Command="{Binding clgSaved}" IsEnabled="{Binding clgEnabled}"/>
                 </Grid>
             </Grid>

@@ -12,10 +12,41 @@ namespace ShikkhanobishTeacherApp.View_Model
     {
 
         List<int> scSelectCount { get; set; }
+        List<int> clgSelectCount { get; set; }
+        List<string> scsubName { get; set; }
+
+        List<string> scScsubName { get; set; }
+        List<string> scChsubName { get; set; }
+        List<string> scArsubName { get; set; }
         #region Methods
         public RegisterViewModel ()
         {
+            artSubEnabled = false;
             scSelectCount = new List<int>();
+            clgSelectCount = new List<int>();
+            scsubName = new List<string>();
+            scScsubName = new List<string>();
+            scChsubName = new List<string>();
+            scArsubName = new List<string>();
+
+            scScsubName.Add("Physics");
+            scScsubName.Add("Chemistry");
+            scScsubName.Add("Biology");
+            scScsubName.Add("Math");
+            scScsubName.Add("Higher Math");
+
+            scChsubName.Add("Economics");
+            scChsubName.Add("Back");
+            scChsubName.Add("Marketing");
+            scChsubName.Add("Math");
+            scChsubName.Add("Finance");
+
+            scArsubName.Add("Loigc");
+            scArsubName.Add("Math");
+            scArsubName.Add("Bangla");
+            scArsubName.Add("English");
+
+
             CollegePopupVisibility = false;
             schholPopUpVisibility =  false;
             scScColor = Color.FromHex("#10000000");
@@ -67,9 +98,16 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformpopupSchool(string index)
         {
+            scSelectCount.Clear();
+            scPhyColor = Color.White;
+            scCheColor = Color.White;
+            scBioColor = Color.White;
+            scHmColor = Color.White;
+            scMatColor = Color.White;
             schholPopUpVisibility = true;
             if (int.Parse(index) == 1)
             {
+                artSubEnabled = true;
                 scScColor = Color.FromHex("#42ED88");
                 scCmColor = Color.FromHex("#10000000");
                 scarColor = Color.FromHex("#10000000");
@@ -79,9 +117,17 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScEnabled = true;
                 clgCmEnabled = true;
                 clgArEnabled = true;
+                scsubName = scScsubName;
+                scsubName1 = scsubName[0];
+                scsubName2 = scsubName[1];
+                scsubName3 = scsubName[2];
+                scsubName4 = scsubName[3];
+                scsubName5 = scsubName[4];
+
             }
             else if (int.Parse(index) == 2)
             {
+                artSubEnabled = true;
                 scScColor = Color.FromHex("#10000000");
                 scCmColor = Color.FromHex("#42ED88");
                 scarColor = Color.FromHex("#10000000");
@@ -91,9 +137,16 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScEnabled = false;
                 clgCmEnabled = true;
                 clgArEnabled = true;
+                scsubName = scChsubName;
+                scsubName1 = scsubName[0];
+                scsubName2 = scsubName[1];
+                scsubName3 = scsubName[2];
+                scsubName4 = scsubName[3];
+                scsubName5 = scsubName[4];
             }
             else if (int.Parse(index) == 3)
             {
+                artSubEnabled = false;
                 scScColor = Color.FromHex("#10000000");
                 scCmColor = Color.FromHex("#10000000");
                 scarColor = Color.FromHex("#42ED88");
@@ -103,7 +156,14 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScEnabled = false;
                 clgCmEnabled = false;
                 clgArEnabled = true;
+                scsubName = scArsubName;
+                scsubName1 = scsubName[0];
+                scsubName2 = scsubName[1];
+                scsubName3 = scsubName[2];
+                scsubName4 = scsubName[3];
+                scsubName5 = "N/A";
             }
+           
         }
         private void PerformpopoutSchool()
         {
@@ -114,20 +174,16 @@ namespace ShikkhanobishTeacherApp.View_Model
             CollegePopupVisibility = false;
         }
 
-
+        #region school popup
         private void PerformschSaved()
         {
             schholPopUpVisibility = false;
             noSubScMsgVsi = false;
 
-            List<string> subName = new List<string>();
-           //Had to add
-        }
-        private void PerformclgSaved()
-        {
-            CollegePopupVisibility = false;
-            noSubMsgVsi = false;
-        }
+            sub1 = scsubName[scSelectCount[0]];
+            sub2 = scsubName[scSelectCount[1]];
+            sub3 = scsubName[scSelectCount[2]];
+        }       
         private void PerformschSubSelect(string subIndex)
         {
             bool go = true;
@@ -149,76 +205,76 @@ namespace ShikkhanobishTeacherApp.View_Model
             
             if(go)
             {
-                if (int.Parse(subIndex) == 1)
+                if (int.Parse(subIndex) == 0)
                 {
-                    if(scPhyColor == Color.FromHex("#42ED88"))
+                    if(scPhyColor == Color.FromHex("#D9FFBA"))
                     {
                         scPhyColor = Color.White;
                         scSelectCount.Remove(int.Parse(subIndex));
                     }
                     else
                     {
-                        scPhyColor = Color.FromHex("#42ED88");
+                        scPhyColor = Color.FromHex("#D9FFBA");
                         scSelectCount.Add(int.Parse(subIndex));
                     }
                    
                 }
-                if (int.Parse(subIndex) == 2)
+                if (int.Parse(subIndex) == 1)
                 {
-                    if(scCheColor == Color.FromHex("#42ED88"))
+                    if(scCheColor == Color.FromHex("#D9FFBA"))
                     {
                         scCheColor = Color.White;
                         scSelectCount.Remove(int.Parse(subIndex));
                     }
                     else
                     {
-                        scCheColor = Color.FromHex("#42ED88");
+                        scCheColor = Color.FromHex("#D9FFBA");
                         scSelectCount.Add(int.Parse(subIndex));
                     }
                 }
-                if (int.Parse(subIndex) == 3)
+                if (int.Parse(subIndex) == 2)
                 {
-                    if(scBioColor == Color.FromHex("#42ED88"))
+                    if(scBioColor == Color.FromHex("#D9FFBA"))
                     {
                         scBioColor = Color.White;
                         scSelectCount.Remove(int.Parse(subIndex));
                     }
                     else
                     {
-                        scBioColor = Color.FromHex("#42ED88");
+                        scBioColor = Color.FromHex("#D9FFBA");
                         scSelectCount.Add(int.Parse(subIndex));
                     }
                 }
-                if (int.Parse(subIndex) == 4)
+                if (int.Parse(subIndex) == 3)
                 {
-                    if (scMatColor == Color.FromHex("#42ED88"))
+                    if (scMatColor == Color.FromHex("#D9FFBA"))
                     {
                         scMatColor = Color.White;
                         scSelectCount.Remove(int.Parse(subIndex));
                     }
                     else
                     {
-                        scMatColor = Color.FromHex("#42ED88");
+                        scMatColor = Color.FromHex("#D9FFBA");
                         scSelectCount.Add(int.Parse(subIndex));
                     }
                 }
-                if (int.Parse(subIndex) == 5)
+                if (int.Parse(subIndex) == 4)
                 {
-                    if (scHmColor == Color.FromHex("#42ED88"))
+                    if (scHmColor == Color.FromHex("#D9FFBA"))
                     {
                         scHmColor = Color.White;
                         scSelectCount.Remove(int.Parse(subIndex));
                     }
                     else
                     {
-                        scHmColor = Color.FromHex("#42ED88");
+                        scHmColor = Color.FromHex("#D9FFBA");
                         scSelectCount.Add(int.Parse(subIndex));
                     }
                 }               
             }
 
             if (scSelectCount.Count == 3)
-            {
+            { 
                 scEnabled = true;
             }
             else
@@ -227,6 +283,199 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             
         }
+        #endregion
+
+
+        #region College Pop
+        private void PerformclgSaved()
+        {
+            CollegePopupVisibility = false;
+            noSubMsgVsi = false;
+
+            List<string> subName = new List<string>();
+            for (int i = 0; i < 6; i++)
+            {
+                if (clgSelectCount[i] == 1)
+                {
+                    subName.Add("Physics 1st Paper");
+                }
+                if (clgSelectCount[i] == 2)
+                {
+                    subName.Add("Physics 2nd Paper");
+                }
+                if (clgSelectCount[i] == 3)
+                {
+                    subName.Add("Chemistry 1st Paper");
+                }
+                if (clgSelectCount[i] == 4)
+                {
+                    subName.Add("Chemistry 2nd Paper");
+                }
+                if (clgSelectCount[i] == 5)
+                {
+                    subName.Add("Biology 1st Paper");
+                }
+                if (clgSelectCount[i] == 6)
+                {
+                    subName.Add("Biology 2nd Paper");
+                }
+                if (clgSelectCount[i] == 7)
+                {
+                    subName.Add("Higher Math 1st Paper");
+                }
+                if (clgSelectCount[i] == 8)
+                {
+                    subName.Add("Higher Math 2nd Paper");
+                }
+            }
+
+            sub4 = subName[0];
+            sub5 = subName[1];
+            sub6 = subName[2];
+            sub7 = subName[3];
+            sub8 = subName[4];
+            sub9 = subName[5]; 
+        }
+        private void PerformschClgSelect(string clgIndex)
+        {
+            bool go = true;
+            if (clgSelectCount != null)
+            {
+                for (int i = 0; i < clgSelectCount.Count; i++)
+                {
+                    if (clgSelectCount[i] == int.Parse(clgIndex) || clgSelectCount.Count < 6)
+                    {
+                        go = true;
+                        break;
+                    }
+                    else
+                    {
+                        go = false;
+                    }
+                }
+            }
+
+            if (go)
+            {
+                if (int.Parse(clgIndex) == 1)
+                {
+                    if (clgPhy1st == Color.FromHex("#D9FFBA"))
+                    {
+                        clgPhy1st = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgPhy1st = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+
+                }
+                if (int.Parse(clgIndex) == 2)
+                {
+                    if (clgPhy2nd == Color.FromHex("#D9FFBA"))
+                    {
+                        clgPhy2nd = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgPhy2nd = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 3)
+                {
+                    if (clgChe1st == Color.FromHex("#D9FFBA"))
+                    {
+                        clgChe1st = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgChe1st = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 4)
+                {
+                    if (clgChe2nd == Color.FromHex("#D9FFBA"))
+                    {
+                        clgChe2nd = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgChe2nd = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 5)
+                {
+                    if (clgBio1st == Color.FromHex("#D9FFBA"))
+                    {
+                        clgBio1st = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgBio1st = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 6)
+                {
+                    if (clgBio2nd == Color.FromHex("#D9FFBA"))
+                    {
+                        clgBio2nd = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgBio2nd = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 7)
+                {
+                    if (clgHm1st == Color.FromHex("#D9FFBA"))
+                    {
+                        clgHm1st = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgHm1st = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+                if (int.Parse(clgIndex) == 8)
+                {
+                    if (clgHm2nd == Color.FromHex("#D9FFBA"))
+                    {
+                        clgHm2nd = Color.White;
+                        clgSelectCount.Remove(int.Parse(clgIndex));
+                    }
+                    else
+                    {
+                        clgHm2nd = Color.FromHex("#D9FFBA");
+                        clgSelectCount.Add(int.Parse(clgIndex));
+                    }
+                }
+            }
+
+            if (clgSelectCount.Count == 6)
+            {
+                clgEnabled = true;
+            }
+            else
+            {
+                clgEnabled = false;
+            }
+        }
+        #endregion
+
+
         #endregion
 
 
@@ -475,6 +724,78 @@ namespace ShikkhanobishTeacherApp.View_Model
         private Color scHmColor1;
 
         public Color scHmColor { get => scHmColor1; set => SetProperty(ref scHmColor1, value); }
+
+        private Command schClgSelect1;
+
+        public ICommand schClgSelect
+        {
+            get
+            {
+                if (schClgSelect1 == null)
+                {
+                    schClgSelect1 = new Command<string>(PerformschClgSelect);
+                }
+
+                return schClgSelect1;
+            }
+        }
+
+        private Color clgPhy1st1;
+
+        public Color clgPhy1st { get => clgPhy1st1; set => SetProperty(ref clgPhy1st1, value); }
+
+        private Color clgPhy2nd1;
+
+        public Color clgPhy2nd { get => clgPhy2nd1; set => SetProperty(ref clgPhy2nd1, value); }
+
+        private Color clgChe1st1;
+
+        public Color clgChe1st { get => clgChe1st1; set => SetProperty(ref clgChe1st1, value); }
+
+        private Color clgChe2nd1;
+
+        public Color clgChe2nd { get => clgChe2nd1; set => SetProperty(ref clgChe2nd1, value); }
+
+        private Color clgBio1st1;
+
+        public Color clgBio1st { get => clgBio1st1; set => SetProperty(ref clgBio1st1, value); }
+
+        private Color clgBio2nd1;
+
+        public Color clgBio2nd { get => clgBio2nd1; set => SetProperty(ref clgBio2nd1, value); }
+
+        private Color clgHm1st1;
+
+        public Color clgHm1st { get => clgHm1st1; set => SetProperty(ref clgHm1st1, value); }
+
+        private Color clgHm2nd1;
+
+        public Color clgHm2nd { get => clgHm2nd1; set => SetProperty(ref clgHm2nd1, value); }
+
+        private string scsubName11;
+
+        public string scsubName1 { get => scsubName11; set => SetProperty(ref scsubName11, value); }
+
+        private string scsubName21;
+
+        public string scsubName2 { get => scsubName21; set => SetProperty(ref scsubName21, value); }
+
+        private string scsubName31;
+
+        public string scsubName3 { get => scsubName31; set => SetProperty(ref scsubName31, value); }
+
+        private string scsubName41;
+
+        public string scsubName4 { get => scsubName41; set => SetProperty(ref scsubName41, value); }
+
+        private string scsubName51;
+
+        public string scsubName5 { get => scsubName51; set => SetProperty(ref scsubName51, value); }
+
+        private bool artSubEnabled1;
+
+        public bool artSubEnabled { get => artSubEnabled1; set => SetProperty(ref artSubEnabled1, value); }
+
 
 
 
