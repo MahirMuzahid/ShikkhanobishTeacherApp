@@ -14,20 +14,35 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<int> scSelectCount { get; set; }
         List<int> clgSelectCount { get; set; }
         List<string> scsubName { get; set; }
+        List<string> clgsubName { get; set; }
 
         List<string> scScsubName { get; set; }
         List<string> scChsubName { get; set; }
         List<string> scArsubName { get; set; }
+
+        List<string> clgScsubName { get; set; }
+        List<string> clgChsubName { get; set; }
+        List<string> clgArsubName { get; set; }
+
+        int clgSelectSubCountMax
         #region Methods
         public RegisterViewModel ()
         {
             artSubEnabled = false;
+            clgSubEnabled = false;
             scSelectCount = new List<int>();
             clgSelectCount = new List<int>();
+
             scsubName = new List<string>();
+            clgsubName = new List<string>();
+
             scScsubName = new List<string>();
             scChsubName = new List<string>();
             scArsubName = new List<string>();
+
+            clgScsubName = new List<string>();
+            clgChsubName = new List<string>();
+            clgArsubName = new List<string>();
 
             scScsubName.Add("Physics");
             scScsubName.Add("Chemistry");
@@ -45,6 +60,28 @@ namespace ShikkhanobishTeacherApp.View_Model
             scArsubName.Add("Math");
             scArsubName.Add("Bangla");
             scArsubName.Add("English");
+
+
+            /////////////////////////////
+            clgScsubName.Add("Physics 1st Paper");
+            clgScsubName.Add("Physics 2nd Paper");
+            clgScsubName.Add("Chemistry 1st Paper");
+            clgScsubName.Add("Chemistry 2nd Paper");
+            clgScsubName.Add("Biology First Paper");
+            clgScsubName.Add("Bilogy 2nd Paper");
+            clgScsubName.Add("Higher Math 1st Paper");
+            clgScsubName.Add("Higher Math 2nd Paper");
+
+            clgChsubName.Add("Economics");
+            clgChsubName.Add("Back");
+            clgChsubName.Add("Marketing");
+            clgChsubName.Add("Math");
+            clgChsubName.Add("Finance");
+
+            clgArsubName.Add("Loigc");
+            clgArsubName.Add("Math");
+            clgArsubName.Add("Bangla");
+            clgArsubName.Add("English");
 
 
             CollegePopupVisibility = false;
@@ -76,23 +113,64 @@ namespace ShikkhanobishTeacherApp.View_Model
         private void PerformpopupCollege( string  index)
         {
             CollegePopupVisibility = true;
+            clgSelectCount.Clear();
+            clgPhy1st = Color.White;
+            clgPhy2nd = Color.White;
+            clgChe1st = Color.White;
+            clgChe2nd = Color.White;
+            clgBio1st = Color.White;
+            clgBio2nd = Color.White;
+            clgHm1st = Color.White;
+            clgHm2nd = Color.White;
             if (int.Parse(index) == 1)
             {
+                clgSubEnabled = true;
                 clgScColor = Color.FromHex("#42ED88");
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#10000000");
+
+                clgsubName = clgScsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = clgsubName[4];
+                clgSubName6 = clgsubName[5];
+                clgSubName7 = clgsubName[6];
+                clgSubName8 = clgsubName[7];
+
             }
             else if (int.Parse(index) == 2)
             {
+                clgSubEnabled = false;
                 clgScColor = Color.FromHex("#10000000");
                 clgChColor = Color.FromHex("#42ED88");
                 clgArColor = Color.FromHex("#10000000");
+                clgsubName = clgChsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = "N/A";
+                clgSubName6 = "N/A";
+                clgSubName7 = "N/A";
+                clgSubName8 = "N/A";
             }
             else if (int.Parse(index) == 3)
             {
+                clgSubEnabled = false;
                 clgScColor = Color.FromHex("#10000000");
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#42ED88");
+                clgsubName = clgArsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = "N/A";
+                clgSubName6 = "N/A";
+                clgSubName7 = "N/A";
+                clgSubName8 = "N/A";
             }
 
         }
@@ -107,6 +185,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             schholPopUpVisibility = true;
             if (int.Parse(index) == 1)
             {
+                clgSelectSubCountMax = 6
                 artSubEnabled = true;
                 scScColor = Color.FromHex("#42ED88");
                 scCmColor = Color.FromHex("#10000000");
@@ -127,6 +206,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else if (int.Parse(index) == 2)
             {
+                clgSelectSubCountMax = 3;
                 artSubEnabled = true;
                 scScColor = Color.FromHex("#10000000");
                 scCmColor = Color.FromHex("#42ED88");
@@ -146,6 +226,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else if (int.Parse(index) == 3)
             {
+                clgSelectSubCountMax = 3;
                 artSubEnabled = false;
                 scScColor = Color.FromHex("#10000000");
                 scCmColor = Color.FromHex("#10000000");
@@ -291,50 +372,22 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             CollegePopupVisibility = false;
             noSubMsgVsi = false;
-
-            List<string> subName = new List<string>();
-            for (int i = 0; i < 6; i++)
+            if(clgSelectSubCountMax == 6)
             {
-                if (clgSelectCount[i] == 1)
-                {
-                    subName.Add("Physics 1st Paper");
-                }
-                if (clgSelectCount[i] == 2)
-                {
-                    subName.Add("Physics 2nd Paper");
-                }
-                if (clgSelectCount[i] == 3)
-                {
-                    subName.Add("Chemistry 1st Paper");
-                }
-                if (clgSelectCount[i] == 4)
-                {
-                    subName.Add("Chemistry 2nd Paper");
-                }
-                if (clgSelectCount[i] == 5)
-                {
-                    subName.Add("Biology 1st Paper");
-                }
-                if (clgSelectCount[i] == 6)
-                {
-                    subName.Add("Biology 2nd Paper");
-                }
-                if (clgSelectCount[i] == 7)
-                {
-                    subName.Add("Higher Math 1st Paper");
-                }
-                if (clgSelectCount[i] == 8)
-                {
-                    subName.Add("Higher Math 2nd Paper");
-                }
+                sub4 = clgsubName[clgSelectCount[0]];
+                sub5 = clgsubName[clgSelectCount[1]];
+                sub6 = clgsubName[clgSelectCount[2]];
+                sub7 = clgsubName[clgSelectCount[3]];
+                sub8 = clgsubName[clgSelectCount[4]];
+                sub9 = clgsubName[clgSelectCount[5]];
             }
-
-            sub4 = subName[0];
-            sub5 = subName[1];
-            sub6 = subName[2];
-            sub7 = subName[3];
-            sub8 = subName[4];
-            sub9 = subName[5]; 
+            else
+            {
+                sub4 = clgsubName[clgSelectCount[0]];
+                sub5 = clgsubName[clgSelectCount[1]];
+                sub6 = clgsubName[clgSelectCount[2]];
+            }
+            
         }
         private void PerformschClgSelect(string clgIndex)
         {
@@ -343,7 +396,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 for (int i = 0; i < clgSelectCount.Count; i++)
                 {
-                    if (clgSelectCount[i] == int.Parse(clgIndex) || clgSelectCount.Count < 6)
+                    if (clgSelectCount[i] == int.Parse(clgIndex) || clgSelectCount.Count < clgSelectSubCountMax)
                     {
                         go = true;
                         break;
@@ -795,6 +848,42 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool artSubEnabled1;
 
         public bool artSubEnabled { get => artSubEnabled1; set => SetProperty(ref artSubEnabled1, value); }
+
+        private string clgSubName11;
+
+        public string clgSubName1 { get => clgSubName11; set => SetProperty(ref clgSubName11, value); }
+
+        private string clgSubName21;
+
+        public string clgSubName2 { get => clgSubName21; set => SetProperty(ref clgSubName21, value); }
+
+        private string clgSubName31;
+
+        public string clgSubName3 { get => clgSubName31; set => SetProperty(ref clgSubName31, value); }
+
+        private string clgSubName41;
+
+        public string clgSubName4 { get => clgSubName41; set => SetProperty(ref clgSubName41, value); }
+
+        private string clgSubName51;
+
+        public string clgSubName5 { get => clgSubName51; set => SetProperty(ref clgSubName51, value); }
+
+        private string clgSubName61;
+
+        public string clgSubName6 { get => clgSubName61; set => SetProperty(ref clgSubName61, value); }
+
+        private string clgSubName71;
+
+        public string clgSubName7 { get => clgSubName71; set => SetProperty(ref clgSubName71, value); }
+
+        private string clgSubName81;
+
+        public string clgSubName8 { get => clgSubName81; set => SetProperty(ref clgSubName81, value); }
+
+        private bool clgSubEnabled1;
+
+        public bool clgSubEnabled { get => clgSubEnabled1; set => SetProperty(ref clgSubEnabled1, value); }
 
 
 
