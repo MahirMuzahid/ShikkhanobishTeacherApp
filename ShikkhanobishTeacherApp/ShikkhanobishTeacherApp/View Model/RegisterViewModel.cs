@@ -24,10 +24,14 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<string> clgChsubName { get; set; }
         List<string> clgArsubName { get; set; }
         int selectedscIndex;
+        int selectedClgIndex;
         int clgSelectSubCountMax;
         #region Methods
         public RegisterViewModel ()
         {
+            sendotpEnabled = false;
+            selectedscIndex = 0;
+            selectedClgIndex = 0;
             artSubEnabled = false;
             clgSubEnabled = false;
             scSelectCount = new List<int>();
@@ -115,6 +119,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region school popup
         private void PerformpopupSchool(string index)
         {
+            if(selectedscIndex != int.Parse(index))
+            {
+                scEnabled = false;
+            }
             selectedscIndex = int.Parse(index);
             scSelectCount.Clear();
             scPhyColor = Color.White;
@@ -174,6 +182,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformschSaved()
         {
+            sendotpEnabled = false;
             schholPopUpVisibility = false;
             noSubScMsgVsi = false;
 
@@ -208,6 +217,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#10000000");
             }
+            sub4 = "";
+            sub5 = "";
+            sub6 = "";
+            sub7 = "";
+            sub8 = "";
+            sub9 = ""; 
         }       
         private void PerformschSubSelect(string subIndex)
         {
@@ -314,7 +329,11 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region College Pop
         private void PerformpopupCollege(string index)
         {
-           
+            if (selectedClgIndex != int.Parse(index))
+            {
+                clgEnabled = false;
+            }
+            selectedClgIndex = int.Parse(index);
             CollegePopupVisibility = true;
             clgSelectCount.Clear();
             clgPhy1st = Color.White;
@@ -406,8 +425,22 @@ namespace ShikkhanobishTeacherApp.View_Model
                 sub4 = clgsubName[clgSelectCount[0]];
                 sub5 = clgsubName[clgSelectCount[1]];
                 sub6 = clgsubName[clgSelectCount[2]];
+                sub7 = "";
+                sub8 = "";
+                sub9 = "";
             }
-            
+            if (sub1 != null && sub2 != null && sub3 != null && sub4 != null && sub5 != null && sub6 != null && sub7 != null && sub8 != null && sub9 != null && clgSelectSubCountMax == 6)
+            {
+                sendotpEnabled = true;
+            }
+            else if(sub1 != null && sub2 != null && sub3 != null && sub4 != null && sub5 != null && sub6 != null && clgSelectSubCountMax == 3)
+            {
+                sendotpEnabled = true;
+            }
+            else
+            {
+                sendotpEnabled = true;
+            }
         }
         private void PerformschClgSelect(string clgIndex)
         {
@@ -908,6 +941,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private string clgpopUpTitle1;
 
         public string clgpopUpTitle { get => clgpopUpTitle1; set => SetProperty(ref clgpopUpTitle1, value); }
+
+        private bool sendotpEnabled1;
+
+        public bool sendotpEnabled { get => sendotpEnabled1; set => SetProperty(ref sendotpEnabled1, value); }
 
 
 
