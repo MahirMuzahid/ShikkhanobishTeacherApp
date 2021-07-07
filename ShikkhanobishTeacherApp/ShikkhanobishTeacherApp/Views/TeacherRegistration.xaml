@@ -210,7 +210,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Choose Any Six Subject From Class 11-12" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="{Binding clgpopUpTitle}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
                     <material:MaterialButton Text="{Binding clgSubName1}" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding clgPhy1st}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="0"/>
                     <material:MaterialButton Text="{Binding clgSubName2}" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding clgPhy2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="1"/>

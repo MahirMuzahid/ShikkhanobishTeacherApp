@@ -23,8 +23,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<string> clgScsubName { get; set; }
         List<string> clgChsubName { get; set; }
         List<string> clgArsubName { get; set; }
-
-        int clgSelectSubCountMax
+        int selectedscIndex;
+        int clgSelectSubCountMax;
         #region Methods
         public RegisterViewModel ()
         {
@@ -51,7 +51,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             scScsubName.Add("Higher Math");
 
             scChsubName.Add("Economics");
-            scChsubName.Add("Back");
+            scChsubName.Add("Bank");
             scChsubName.Add("Marketing");
             scChsubName.Add("Math");
             scChsubName.Add("Finance");
@@ -73,7 +73,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             clgScsubName.Add("Higher Math 2nd Paper");
 
             clgChsubName.Add("Economics");
-            clgChsubName.Add("Back");
+            clgChsubName.Add("Bank");
             clgChsubName.Add("Marketing");
             clgChsubName.Add("Math");
             clgChsubName.Add("Finance");
@@ -110,72 +110,12 @@ namespace ShikkhanobishTeacherApp.View_Model
             scHmColor = Color.White;
         }
 
-        private void PerformpopupCollege( string  index)
-        {
-            CollegePopupVisibility = true;
-            clgSelectCount.Clear();
-            clgPhy1st = Color.White;
-            clgPhy2nd = Color.White;
-            clgChe1st = Color.White;
-            clgChe2nd = Color.White;
-            clgBio1st = Color.White;
-            clgBio2nd = Color.White;
-            clgHm1st = Color.White;
-            clgHm2nd = Color.White;
-            if (int.Parse(index) == 1)
-            {
-                clgSubEnabled = true;
-                clgScColor = Color.FromHex("#42ED88");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#10000000");
+        
 
-                clgsubName = clgScsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = clgsubName[4];
-                clgSubName6 = clgsubName[5];
-                clgSubName7 = clgsubName[6];
-                clgSubName8 = clgsubName[7];
-
-            }
-            else if (int.Parse(index) == 2)
-            {
-                clgSubEnabled = false;
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#42ED88");
-                clgArColor = Color.FromHex("#10000000");
-                clgsubName = clgChsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = "N/A";
-                clgSubName6 = "N/A";
-                clgSubName7 = "N/A";
-                clgSubName8 = "N/A";
-            }
-            else if (int.Parse(index) == 3)
-            {
-                clgSubEnabled = false;
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#42ED88");
-                clgsubName = clgArsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = "N/A";
-                clgSubName6 = "N/A";
-                clgSubName7 = "N/A";
-                clgSubName8 = "N/A";
-            }
-
-        }
+        #region school popup
         private void PerformpopupSchool(string index)
         {
+            selectedscIndex = int.Parse(index);
             scSelectCount.Clear();
             scPhyColor = Color.White;
             scCheColor = Color.White;
@@ -185,14 +125,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             schholPopUpVisibility = true;
             if (int.Parse(index) == 1)
             {
-                clgSelectSubCountMax = 6
-                artSubEnabled = true;
-                scScColor = Color.FromHex("#42ED88");
-                scCmColor = Color.FromHex("#10000000");
-                scarColor = Color.FromHex("#10000000");
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#10000000");
+                clgSelectSubCountMax = 6;
+                artSubEnabled = true;                
                 clgScEnabled = true;
                 clgCmEnabled = true;
                 clgArEnabled = true;
@@ -207,13 +141,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             else if (int.Parse(index) == 2)
             {
                 clgSelectSubCountMax = 3;
-                artSubEnabled = true;
-                scScColor = Color.FromHex("#10000000");
-                scCmColor = Color.FromHex("#42ED88");
-                scarColor = Color.FromHex("#10000000");
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#10000000");
+                artSubEnabled = true;                
                 clgScEnabled = false;
                 clgCmEnabled = true;
                 clgArEnabled = true;
@@ -227,13 +155,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             else if (int.Parse(index) == 3)
             {
                 clgSelectSubCountMax = 3;
-                artSubEnabled = false;
-                scScColor = Color.FromHex("#10000000");
-                scCmColor = Color.FromHex("#10000000");
-                scarColor = Color.FromHex("#42ED88");
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#10000000");
+                artSubEnabled = false;              
                 clgScEnabled = false;
                 clgCmEnabled = false;
                 clgArEnabled = true;
@@ -244,18 +166,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                 scsubName4 = scsubName[3];
                 scsubName5 = "N/A";
             }
-           
+
         }
         private void PerformpopoutSchool()
         {
             schholPopUpVisibility = false;
         }
-        private void PerformpopoutCollege()
-        {
-            CollegePopupVisibility = false;
-        }
-
-        #region school popup
         private void PerformschSaved()
         {
             schholPopUpVisibility = false;
@@ -264,6 +180,34 @@ namespace ShikkhanobishTeacherApp.View_Model
             sub1 = scsubName[scSelectCount[0]];
             sub2 = scsubName[scSelectCount[1]];
             sub3 = scsubName[scSelectCount[2]];
+
+            if(selectedscIndex == 1)
+            {
+                scScColor = Color.FromHex("#42ED88");
+                scCmColor = Color.FromHex("#10000000");
+                scarColor = Color.FromHex("#10000000");
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#10000000");
+            }
+            else if(selectedscIndex == 2)
+            {
+                scScColor = Color.FromHex("#10000000");
+                scCmColor = Color.FromHex("#42ED88");
+                scarColor = Color.FromHex("#10000000");
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#10000000");
+            }
+            else
+            {
+                scScColor = Color.FromHex("#10000000");
+                scCmColor = Color.FromHex("#10000000");
+                scarColor = Color.FromHex("#42ED88");
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#10000000");
+            }
         }       
         private void PerformschSubSelect(string subIndex)
         {
@@ -368,6 +312,82 @@ namespace ShikkhanobishTeacherApp.View_Model
 
 
         #region College Pop
+        private void PerformpopupCollege(string index)
+        {
+           
+            CollegePopupVisibility = true;
+            clgSelectCount.Clear();
+            clgPhy1st = Color.White;
+            clgPhy2nd = Color.White;
+            clgChe1st = Color.White;
+            clgChe2nd = Color.White;
+            clgBio1st = Color.White;
+            clgBio2nd = Color.White;
+            clgHm1st = Color.White;
+            clgHm2nd = Color.White;
+            if (int.Parse(index) == 1)
+            {
+                clgpopUpTitle = "Choose Any Six Subject From Class 11-12";
+                clgSubEnabled = true;
+                clgScColor = Color.FromHex("#42ED88");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#10000000");
+
+                clgsubName = clgScsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = clgsubName[4];
+                clgSubName6 = clgsubName[5];
+                clgSubName7 = clgsubName[6];
+                clgSubName8 = clgsubName[7];
+                clgSelectSubCountMax = 6;
+
+            }
+            else if (int.Parse(index) == 2)
+            {
+                clgpopUpTitle = "Choose Any three Subject From Class 11-12";
+                clgSubEnabled = false;
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#42ED88");
+                clgArColor = Color.FromHex("#10000000");
+                clgsubName = clgChsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = "N/A";
+                clgSubName6 = "N/A";
+                clgSubName7 = "N/A";
+                clgSubName8 = "N/A";
+                clgSelectSubCountMax = 3;
+            }
+            else if (int.Parse(index) == 3)
+            {
+                clgpopUpTitle = "Choose Any three Subject From Class 11-12";
+                clgSubEnabled = false;
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#42ED88");
+                clgsubName = clgArsubName;
+                clgSubName1 = clgsubName[0];
+                clgSubName2 = clgsubName[1];
+                clgSubName3 = clgsubName[2];
+                clgSubName4 = clgsubName[3];
+                clgSubName5 = "N/A";
+                clgSubName6 = "N/A";
+                clgSubName7 = "N/A";
+                clgSubName8 = "N/A";
+                clgSelectSubCountMax = 3;
+            }
+
+        }
+
+        private void PerformpopoutCollege()
+        {
+            CollegePopupVisibility = false;
+        }
         private void PerformclgSaved()
         {
             CollegePopupVisibility = false;
@@ -410,7 +430,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
             if (go)
             {
-                if (int.Parse(clgIndex) == 1)
+                if (int.Parse(clgIndex) == 0)
                 {
                     if (clgPhy1st == Color.FromHex("#D9FFBA"))
                     {
@@ -424,7 +444,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     }
 
                 }
-                if (int.Parse(clgIndex) == 2)
+                if (int.Parse(clgIndex) == 1)
                 {
                     if (clgPhy2nd == Color.FromHex("#D9FFBA"))
                     {
@@ -437,7 +457,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 3)
+                if (int.Parse(clgIndex) == 2)
                 {
                     if (clgChe1st == Color.FromHex("#D9FFBA"))
                     {
@@ -450,7 +470,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 4)
+                if (int.Parse(clgIndex) == 3)
                 {
                     if (clgChe2nd == Color.FromHex("#D9FFBA"))
                     {
@@ -463,7 +483,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 5)
+                if (int.Parse(clgIndex) == 4)
                 {
                     if (clgBio1st == Color.FromHex("#D9FFBA"))
                     {
@@ -476,7 +496,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 6)
+                if (int.Parse(clgIndex) == 5)
                 {
                     if (clgBio2nd == Color.FromHex("#D9FFBA"))
                     {
@@ -489,7 +509,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 7)
+                if (int.Parse(clgIndex) == 6)
                 {
                     if (clgHm1st == Color.FromHex("#D9FFBA"))
                     {
@@ -502,7 +522,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-                if (int.Parse(clgIndex) == 8)
+                if (int.Parse(clgIndex) == 7)
                 {
                     if (clgHm2nd == Color.FromHex("#D9FFBA"))
                     {
@@ -517,7 +537,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
             }
 
-            if (clgSelectCount.Count == 6)
+            if (clgSelectCount.Count == clgSelectSubCountMax)
             {
                 clgEnabled = true;
             }
@@ -884,6 +904,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool clgSubEnabled1;
 
         public bool clgSubEnabled { get => clgSubEnabled1; set => SetProperty(ref clgSubEnabled1, value); }
+
+        private string clgpopUpTitle1;
+
+        public string clgpopUpTitle { get => clgpopUpTitle1; set => SetProperty(ref clgpopUpTitle1, value); }
 
 
 
