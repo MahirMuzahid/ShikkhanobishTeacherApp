@@ -1,8 +1,10 @@
-﻿using ShikkhanobishTeacherApp.Model;
+﻿using Flurl.Http;
+using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -26,9 +28,17 @@ namespace ShikkhanobishTeacherApp.View_Model
         int selectedscIndex;
         int selectedClgIndex;
         int clgSelectSubCountMax;
+
+        List<Subject> AllsubList = new List<Subject>();
         #region Methods
         public RegisterViewModel ()
         {
+            GetAllInfo();
+        }
+
+        public async Task GetAllInfo()
+        {
+            await GetAllSub();
             otpWindow = false;
             sendotpEnabled = false;
             selectedscIndex = 0;
@@ -48,49 +58,39 @@ namespace ShikkhanobishTeacherApp.View_Model
             clgScsubName = new List<string>();
             clgChsubName = new List<string>();
             clgArsubName = new List<string>();
+            for(int i = 0; i < AllsubList.Count; i++)
+            {
+                if(AllsubList[i].groupName == "Science" && AllsubList[i].classID == 101)
+                {
+                    scScsubName.Add(AllsubList[i].name);
+                }
+                else if (AllsubList[i].groupName == "Commerce" && AllsubList[i].classID == 101)
+                {
+                    scChsubName.Add(AllsubList[i].name);
+                }
+                else if (AllsubList[i].groupName == "Arts" && AllsubList[i].classID == 101)
+                {
+                    scArsubName.Add(AllsubList[i].name);
+                }
+                else if (AllsubList[i].groupName == "Science" && AllsubList[i].classID == 102)
+                {
+                    clgScsubName.Add(AllsubList[i].name);
+                }
+                else if (AllsubList[i].groupName == "Commerce" && AllsubList[i].classID == 102)
+                {
+                    clgChsubName.Add(AllsubList[i].name);
+                }
+                else if (AllsubList[i].groupName == "Arts" && AllsubList[i].classID == 102)
+                {
+                    clgArsubName.Add(AllsubList[i].name);
+                }
+            }
 
-            scScsubName.Add("Physics");
-            scScsubName.Add("Chemistry");
-            scScsubName.Add("Biology");
-            scScsubName.Add("Math");
-            scScsubName.Add("Higher Math");
-
-            scChsubName.Add("Economics");
-            scChsubName.Add("Bank");
-            scChsubName.Add("Marketing");
-            scChsubName.Add("Math");
-            scChsubName.Add("Finance");
-
-            scArsubName.Add("Loigc");
-            scArsubName.Add("Math");
-            scArsubName.Add("Bangla");
-            scArsubName.Add("English");
-
-
-            /////////////////////////////
-            clgScsubName.Add("Physics 1st Paper");
-            clgScsubName.Add("Physics 2nd Paper");
-            clgScsubName.Add("Chemistry 1st Paper");
-            clgScsubName.Add("Chemistry 2nd Paper");
-            clgScsubName.Add("Biology First Paper");
-            clgScsubName.Add("Bilogy 2nd Paper");
-            clgScsubName.Add("Higher Math 1st Paper");
-            clgScsubName.Add("Higher Math 2nd Paper");
-
-            clgChsubName.Add("Economics");
-            clgChsubName.Add("Bank");
-            clgChsubName.Add("Marketing");
-            clgChsubName.Add("Math");
-            clgChsubName.Add("Finance");
-
-            clgArsubName.Add("Loigc");
-            clgArsubName.Add("Math");
-            clgArsubName.Add("Bangla");
-            clgArsubName.Add("English");
+            
 
 
             CollegePopupVisibility = false;
-            schholPopUpVisibility =  false;
+            schholPopUpVisibility = false;
             scScColor = Color.FromHex("#10000000");
             scCmColor = Color.FromHex("#10000000");
             scarColor = Color.FromHex("#10000000");
@@ -105,7 +105,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             noSubMsgVsi = true;
             noSubScMsgVsi = true;
 
-            clgEnabled = false;
+            ClgSavedEnabled = false;
             scEnabled = false;
 
             scPhyColor = Color.White;
@@ -114,16 +114,28 @@ namespace ShikkhanobishTeacherApp.View_Model
             scMatColor = Color.White;
             scHmColor = Color.White;
         }
-
-        
-
+        public async Task GetAllSub()
+        {
+            AllsubList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
+        }
         #region school popup
         private void PerformpopupSchool(string index)
         {
-            if(selectedscIndex != int.Parse(index))
+            GetAllSub();
+            if (selectedscIndex != int.Parse(index))
             {
                 scEnabled = false;
-            }
+            }            
+            scsubName1 = "";
+            scsubName2 = "";
+            scsubName3 = "";
+            scsubName4 = "";
+            scsubName5 = "";
+            SubEnabled = false;
+            SubEnabled1 = false;
+            SubEnabled2 = false;
+            SubEnabled3 = false;
+            SubEnabled4 = false;
             selectedscIndex = int.Parse(index);
             scSelectCount.Clear();
             scPhyColor = Color.White;
@@ -135,47 +147,59 @@ namespace ShikkhanobishTeacherApp.View_Model
             if (int.Parse(index) == 1)
             {
                 clgSelectSubCountMax = 6;
-                artSubEnabled = true;                
+              
                 clgScEnabled = true;
                 clgCmEnabled = true;
                 clgArEnabled = true;
-                scsubName = scScsubName;
-                scsubName1 = scsubName[0];
-                scsubName2 = scsubName[1];
-                scsubName3 = scsubName[2];
-                scsubName4 = scsubName[3];
-                scsubName5 = scsubName[4];
-
+                scsubName = scScsubName;              
             }
             else if (int.Parse(index) == 2)
             {
                 clgSelectSubCountMax = 3;
-                artSubEnabled = true;                
+                            
                 clgScEnabled = false;
                 clgCmEnabled = true;
                 clgArEnabled = true;
-                scsubName = scChsubName;
-                scsubName1 = scsubName[0];
-                scsubName2 = scsubName[1];
-                scsubName3 = scsubName[2];
-                scsubName4 = scsubName[3];
-                scsubName5 = scsubName[4];
+                scsubName = scChsubName;               
             }
             else if (int.Parse(index) == 3)
             {
                 clgSelectSubCountMax = 3;
-                artSubEnabled = false;              
+                     
                 clgScEnabled = false;
                 clgCmEnabled = false;
                 clgArEnabled = true;
-                scsubName = scArsubName;
-                scsubName1 = scsubName[0];
-                scsubName2 = scsubName[1];
-                scsubName3 = scsubName[2];
-                scsubName4 = scsubName[3];
-                scsubName5 = "N/A";
+                scsubName = scArsubName;              
             }
-
+            for (int i = 0; i < scsubName.Count; i++)
+            {
+                string thisname = "";
+                if (i == 0)
+                {
+                    SubEnabled = true;
+                    scsubName1 = scsubName[i];
+                }
+                if (i == 1)
+                {
+                    SubEnabled1 = true;
+                    scsubName2 = scsubName[i];
+                }
+                if (i == 2)
+                {
+                    SubEnabled2 = true;
+                    scsubName3 = scsubName[i];
+                }
+                if (i == 3)
+                {
+                    SubEnabled3 = true;
+                    scsubName4 = scsubName[i];
+                }
+                if (i == 4)
+                {
+                    SubEnabled4 = true;
+                    scsubName5 = scsubName[i];
+                }
+            }
         }
         private void PerformpopoutSchool()
         {
@@ -330,10 +354,6 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region College Pop
         private void PerformpopupCollege(string index)
         {
-            if (selectedClgIndex != int.Parse(index))
-            {
-                clgEnabled = false;
-            }
             selectedClgIndex = int.Parse(index);
             CollegePopupVisibility = true;
             clgSelectCount.Clear();
@@ -345,6 +365,23 @@ namespace ShikkhanobishTeacherApp.View_Model
             clgBio2nd = Color.White;
             clgHm1st = Color.White;
             clgHm2nd = Color.White;
+            clgenabled1 = false;
+            clgSubEnabled2 = false;
+            clgSubEnabled3 = false;
+            clgSubEnabled4 = false;
+            clgSubEnabled5 = false;
+            clgSubEnabled6 = false;
+            clgSubEnabled7 = false;
+            clgSubEnabled8 = false;
+
+            clgSubName1 = "";
+            clgSubName2 = "";
+            clgSubName3 = "";
+            clgSubName4 = "";
+            clgSubName5 = "";
+            clgSubName6 = "";
+            clgSubName7 = "";
+            clgSubName8 = "";
             if (int.Parse(index) == 1)
             {
                 clgpopUpTitle = "Choose Any Six Subject From Class 11-12";
@@ -354,14 +391,6 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgArColor = Color.FromHex("#10000000");
 
                 clgsubName = clgScsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = clgsubName[4];
-                clgSubName6 = clgsubName[5];
-                clgSubName7 = clgsubName[6];
-                clgSubName8 = clgsubName[7];
                 clgSelectSubCountMax = 6;
 
             }
@@ -373,14 +402,6 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgChColor = Color.FromHex("#42ED88");
                 clgArColor = Color.FromHex("#10000000");
                 clgsubName = clgChsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = "N/A";
-                clgSubName6 = "N/A";
-                clgSubName7 = "N/A";
-                clgSubName8 = "N/A";
                 clgSelectSubCountMax = 3;
             }
             else if (int.Parse(index) == 3)
@@ -391,17 +412,53 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#42ED88");
                 clgsubName = clgArsubName;
-                clgSubName1 = clgsubName[0];
-                clgSubName2 = clgsubName[1];
-                clgSubName3 = clgsubName[2];
-                clgSubName4 = clgsubName[3];
-                clgSubName5 = "N/A";
-                clgSubName6 = "N/A";
-                clgSubName7 = "N/A";
-                clgSubName8 = "N/A";
+
                 clgSelectSubCountMax = 3;
             }
+            for (int i = 0; i < clgsubName.Count; i++)
+            {
+                if (i == 0)
+                {
+                    clgenabled1 = true;
+                    clgSubName1 = clgsubName[i];
+                }
+                if (i == 1)
+                {
+                    clgSubEnabled2 = true;
+                    clgSubName2 = clgsubName[i];
+                }
+                if (i == 2)
+                {
+                    clgSubEnabled3 = true;
+                    clgSubName3 = clgsubName[i];
+                }
+                if (i == 3)
+                {
+                    clgSubEnabled4 = true;
+                    clgSubName4 = clgsubName[i];
+                }
+                if (i == 4)
+                {
+                    clgSubEnabled5 = true;
+                    clgSubName5 = clgsubName[i];
+                }
+                if (i == 5)
+                {
+                    clgSubEnabled6 = true;
+                    clgSubName6 = clgsubName[i];
+                }
+                if (i == 6)
+                {
+                    clgSubEnabled7 = true;
+                    clgSubName7 = clgsubName[i];
+                }
+                if (i == 7)
+                {
+                    clgSubEnabled8 = true;
+                    clgSubName8 = clgsubName[i];
+                }
 
+            }
         }
 
         private void PerformpopoutCollege()
@@ -569,15 +626,15 @@ namespace ShikkhanobishTeacherApp.View_Model
                         clgSelectCount.Add(int.Parse(clgIndex));
                     }
                 }
-            }
 
-            if (clgSelectCount.Count == clgSelectSubCountMax)
-            {
-                clgEnabled = true;
-            }
-            else
-            {
-                clgEnabled = false;
+                if ((clgSelectCount.Count == 3 && clgSelectSubCountMax == 3) || (clgSelectCount.Count == 6 && clgSelectSubCountMax == 6))
+                {
+                    ClgSavedEnabled = true;
+                }
+                else
+                {
+                    ClgSavedEnabled = false;
+                }
             }
         }
         #endregion
@@ -796,9 +853,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool scEnabled { get => scEnabled1; set => SetProperty(ref scEnabled1, value); }
 
-        private bool clgEnabled1;
-
-        public bool clgEnabled { get => clgEnabled1; set => SetProperty(ref clgEnabled1, value); }
+       
 
         private Command schSubSelect1;
 
@@ -968,6 +1023,62 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool otpWindow1;
 
         public bool otpWindow { get => otpWindow1; set => SetProperty(ref otpWindow1, value); }
+
+        private bool subEnabled;
+
+        public bool SubEnabled { get => subEnabled; set => SetProperty(ref subEnabled, value); }
+
+        private bool subEnabled1;
+
+        public bool SubEnabled1 { get => subEnabled1; set => SetProperty(ref subEnabled1, value); }
+
+        private bool subEnabled2;
+
+        public bool SubEnabled2 { get => subEnabled2; set => SetProperty(ref subEnabled2, value); }
+
+        private bool subEnabled3;
+
+        public bool SubEnabled3 { get => subEnabled3; set => SetProperty(ref subEnabled3, value); }
+
+        private bool subEnabled4;
+
+        public bool SubEnabled4 { get => subEnabled4; set => SetProperty(ref subEnabled4, value); }
+
+        private bool clgenabled11;
+
+        public bool clgenabled1 { get => clgenabled11; set => SetProperty(ref clgenabled11, value); }
+
+        private bool clgSubEnabled21;
+
+        public bool clgSubEnabled2 { get => clgSubEnabled21; set => SetProperty(ref clgSubEnabled21, value); }
+
+        private bool clgSubEnabled31;
+
+        public bool clgSubEnabled3 { get => clgSubEnabled31; set => SetProperty(ref clgSubEnabled31, value); }
+
+        private bool clgSubEnabled41;
+
+        public bool clgSubEnabled4 { get => clgSubEnabled41; set => SetProperty(ref clgSubEnabled41, value); }
+
+        private bool clgSubEnabled51;
+
+        public bool clgSubEnabled5 { get => clgSubEnabled51; set => SetProperty(ref clgSubEnabled51, value); }
+
+        private bool clgSubEnabled61;
+
+        public bool clgSubEnabled6 { get => clgSubEnabled61; set => SetProperty(ref clgSubEnabled61, value); }
+
+        private bool clgSubEnabled71;
+
+        public bool clgSubEnabled7 { get => clgSubEnabled71; set => SetProperty(ref clgSubEnabled71, value); }
+
+        private bool clgSubEnabled81;
+
+        public bool clgSubEnabled8 { get => clgSubEnabled81; set => SetProperty(ref clgSubEnabled81, value); }
+
+        private bool clgSavedEnabled;
+
+        public bool ClgSavedEnabled { get => clgSavedEnabled; set => SetProperty(ref clgSavedEnabled, value); }
 
 
 
