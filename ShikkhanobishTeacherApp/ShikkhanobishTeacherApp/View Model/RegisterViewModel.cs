@@ -25,6 +25,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<string> clgScsubName { get; set; }
         List<string> clgChsubName { get; set; }
         List<string> clgArsubName { get; set; }
+        int OTPsec;
+        bool OTPTimerContinue;
         int selectedscIndex;
         int selectedClgIndex;
         int clgSelectSubCountMax;
@@ -118,6 +120,110 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             AllsubList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
         }
+        public void CheckEverything()
+        {
+            bool allOK = true;
+            if (name != null && pnumber != null && password != null && conFirmPassword != null)
+            {
+                if (name == null || name == "")
+                {
+                    hasNameError = true;
+                    nameErrorTxt = "Name can't be empty";
+                    allOK = false;
+                }
+                else
+                {
+                    hasNameError = false;
+                    nameErrorTxt = "";
+                }
+                if (pnumber == null || pnumber == "")
+                {
+                    haspnError = true;
+                    pnErrorTxt = "Phone Number can't be empty";
+                    allOK = false;
+                }
+                else
+                {
+                    haspnError = false;
+                    pnErrorTxt = "";
+                }
+                if (password == null || password == "")
+                {
+                    hasPassError = true;
+                    passErrorTxt = "Password can't be empty";
+                    allOK = false;
+                }
+                else
+                {
+                    hasPassError = false;
+                    passErrorTxt = "";
+                }
+                if (conFirmPassword == null || conFirmPassword == "")
+                {
+                    hasConPassError = true;
+                    conPassErrorTxt = "Confirm Password can't be empty";
+                    allOK = false;
+                }
+                else
+                {
+                    hasConPassError = false;
+                    conPassErrorTxt = "";
+                }
+                if (password != null || conFirmPassword != null)
+                {
+                    if (password.Length < 6)
+                    {
+                        hasPassError = true;
+                        passErrorTxt = "Minimum Password Length is 6";
+                        allOK = false;
+                    }
+                    else
+                    {
+                        hasPassError = false;
+                        passErrorTxt = "";
+                    }
+                    if (password != conFirmPassword)
+                    {
+                        hasConPassError = true;
+                        conPassErrorTxt = "Password Doesn't Match";
+                        allOK = false;
+                    }
+                    else
+                    {
+                        hasConPassError = false;
+                        conPassErrorTxt = "";
+                    }
+                }
+                if (sub1 != "" && sub1 != null && sub2 != "" && sub2 != null && sub3 != "" && sub3 != null && sub5 != "" && sub5 != null && sub6 != "" && sub6 != null && sub7 != "" && sub7 != null && sub8 != "" && sub8 != null && sub9 != "" && sub9 != null && allOK)
+                {
+                    allOK = true;
+                }
+                else
+                {
+                    allOK = false;
+                }
+                if (allOK)
+                {
+                    hasNameError = false;
+                    haspnError = false;
+                    hasPassError = false;
+                    hasConPassError = false;
+                    sendotpEnabled = true;
+                }
+                else
+                {
+                    sendotpEnabled = false;
+                }
+
+
+            }
+            else
+            {
+                sendotpEnabled = false;
+            }
+
+        }
+
         #region school popup
         private void PerformpopupSchool(string index)
         {
@@ -148,27 +254,21 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 clgSelectSubCountMax = 6;
               
-                clgScEnabled = true;
-                clgCmEnabled = true;
-                clgArEnabled = true;
+               
                 scsubName = scScsubName;              
             }
             else if (int.Parse(index) == 2)
             {
                 clgSelectSubCountMax = 3;
                             
-                clgScEnabled = false;
-                clgCmEnabled = true;
-                clgArEnabled = true;
+               
                 scsubName = scChsubName;               
             }
             else if (int.Parse(index) == 3)
             {
                 clgSelectSubCountMax = 3;
                      
-                clgScEnabled = false;
-                clgCmEnabled = false;
-                clgArEnabled = true;
+               
                 scsubName = scArsubName;              
             }
             for (int i = 0; i < scsubName.Count; i++)
@@ -207,7 +307,6 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformschSaved()
         {
-            sendotpEnabled = false;
             schholPopUpVisibility = false;
             noSubScMsgVsi = false;
 
@@ -223,6 +322,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScColor = Color.FromHex("#10000000");
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#10000000");
+                clgScEnabled = true;
+                clgCmEnabled = true;
+                clgArEnabled = true;
             }
             else if(selectedscIndex == 2)
             {
@@ -232,6 +334,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScColor = Color.FromHex("#10000000");
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#10000000");
+                clgScEnabled = false;
+                clgCmEnabled = true;
+                clgArEnabled = true;
             }
             else
             {
@@ -241,13 +346,17 @@ namespace ShikkhanobishTeacherApp.View_Model
                 clgScColor = Color.FromHex("#10000000");
                 clgChColor = Color.FromHex("#10000000");
                 clgArColor = Color.FromHex("#10000000");
+                clgScEnabled = false;
+                clgCmEnabled = false;
+                clgArEnabled = true;
             }
             sub4 = "";
             sub5 = "";
             sub6 = "";
             sub7 = "";
             sub8 = "";
-            sub9 = ""; 
+            sub9 = "";
+            CheckEverything();
         }       
         private void PerformschSubSelect(string subIndex)
         {
@@ -355,6 +464,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         private void PerformpopupCollege(string index)
         {
             selectedClgIndex = int.Parse(index);
+            selectedClgIndex = int.Parse(index);
             CollegePopupVisibility = true;
             clgSelectCount.Clear();
             clgPhy1st = Color.White;
@@ -386,9 +496,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 clgpopUpTitle = "Choose Any Six Subject From Class 11-12";
                 clgSubEnabled = true;
-                clgScColor = Color.FromHex("#42ED88");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#10000000");
+               
 
                 clgsubName = clgScsubName;
                 clgSelectSubCountMax = 6;
@@ -398,9 +506,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 clgpopUpTitle = "Choose Any three Subject From Class 11-12";
                 clgSubEnabled = false;
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#42ED88");
-                clgArColor = Color.FromHex("#10000000");
+               
                 clgsubName = clgChsubName;
                 clgSelectSubCountMax = 3;
             }
@@ -408,9 +514,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 clgpopUpTitle = "Choose Any three Subject From Class 11-12";
                 clgSubEnabled = false;
-                clgScColor = Color.FromHex("#10000000");
-                clgChColor = Color.FromHex("#10000000");
-                clgArColor = Color.FromHex("#42ED88");
+                
                 clgsubName = clgArsubName;
 
                 clgSelectSubCountMax = 3;
@@ -467,6 +571,24 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformclgSaved()
         {
+            if(selectedClgIndex == 1)
+            {
+                clgScColor = Color.FromHex("#42ED88");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#10000000");
+            }
+            else if (selectedClgIndex == 2)
+            {
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#42ED88");
+                clgArColor = Color.FromHex("#10000000");
+            }
+            else if (selectedClgIndex == 3)
+            {
+                clgScColor = Color.FromHex("#10000000");
+                clgChColor = Color.FromHex("#10000000");
+                clgArColor = Color.FromHex("#42ED88");
+            }
             CollegePopupVisibility = false;
             noSubMsgVsi = false;
             if(clgSelectSubCountMax == 6)
@@ -487,18 +609,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 sub8 = "";
                 sub9 = "";
             }
-            if (sub1 != null && sub2 != null && sub3 != null && sub4 != null && sub5 != null && sub6 != null && sub7 != null && sub8 != null && sub9 != null && clgSelectSubCountMax == 6)
-            {
-                sendotpEnabled = true;
-            }
-            else if(sub1 != null && sub2 != null && sub3 != null && sub4 != null && sub5 != null && sub6 != null && clgSelectSubCountMax == 3)
-            {
-                sendotpEnabled = true;
-            }
-            else
-            {
-                sendotpEnabled = true;
-            }
+            CheckEverything();
         }
         private void PerformschClgSelect(string clgIndex)
         {
@@ -638,30 +749,109 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
         #endregion
+       
 
+        #region OTP
         private void Performcomandotp()
         {
+            OTPsec = 60;
+            sendAgainEnabled = false;
+            otpEnabled = false;
             otpWindow = true;
+            OTPTimerContinue = true;
+            otpHasError = false;
+            otpErrorTxt = "";
+            SendSms();
+
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                OTPsec--;
+                sendAgainTxt = "Send Again in " + OTPsec + " Seconds";
+                if (OTPsec == 0)
+                {
+                    sendAgainEnabled = true;
+                    sendAgainTxt = "Send OTP Again";
+                    OTPTimerContinue = false;
+                }
+                return OTPTimerContinue;
+            });
         }
+       
+        public async Task SendSms()
+        {
+            Random rnd = new Random();
+            int rn = rnd.Next(1000,9999);
+            string MSG = "Your Shikkhanobish Teacher Registration OTP is: "+ rn;
+            string pn = "+88"+pnumber;
+            OTPCode = rn;
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/SendSmsAsync".PostUrlEncodedAsync(new { msg = MSG, number = pn }).ReceiveJson<SendSms>();
+            otpEnabled = true;
+        }
+        private void PerformpopoutOTP()
+        {
+            OTPTimerContinue = false;
+            OTPsec = 60;
+            otpWindow = false ;
+        }
+        int OTPCode;
+        private void PerformSendAgainOTPButton()
+        {
+            otpHasError = false;
+            otpErrorTxt = "";
+            OTPsec = 60;
+            sendAgainEnabled = false;
+            otpEnabled = false;
+            OTPTimerContinue = true;
+            SendSms();
+
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                OTPsec--;
+                sendAgainTxt = "Send Again in " + OTPsec + " Seconds";
+                if (OTPsec <= 0)
+                {
+                    sendAgainEnabled = true;
+                    sendAgainTxt = "Send OTP Again";
+                    OTPTimerContinue = false;
+                }
+                return OTPTimerContinue;
+            });
+
+        }
+        private void PerformregTeacherCmd()
+        {
+            if(int.Parse(otpText) != OTPCode)
+            {
+                otpHasError = true;
+                otpErrorTxt = "OTP Does't Match";
+            }
+            else
+            {
+                otpHasError = false;
+                otpErrorTxt = "";
+            }
+            
+        }
+        #endregion
         #endregion
 
 
         #region Binding
         private string name1;
 
-        public string name { get => name1; set => SetProperty(ref name1, value); }
+        public string name { get { return name1; } set { name1 = value; CheckEverything(); SetProperty(ref name1, value); } }
 
         private string pnumber1;
 
-        public string pnumber { get => pnumber1; set => SetProperty(ref pnumber1, value); }
+        public string pnumber { get { return pnumber1; } set { pnumber1 = value; CheckEverything(); SetProperty(ref pnumber1, value); } }
 
         private string password1;
 
-        public string password { get => password1; set => SetProperty(ref password1, value); }
+        public string password { get { return password1; } set { password1 = value; CheckEverything(); SetProperty(ref password1, value); } }
 
         private string conFirmPassword1;
 
-        public string conFirmPassword { get => conFirmPassword1; set => SetProperty(ref conFirmPassword1, value); }
+        public string conFirmPassword { get { return conFirmPassword1; } set { conFirmPassword1 = value; CheckEverything(); SetProperty(ref conFirmPassword1, value); } }
 
         private string sub11;
 
@@ -1080,8 +1270,106 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool ClgSavedEnabled { get => clgSavedEnabled; set => SetProperty(ref clgSavedEnabled, value); }
 
+        private bool otpEnabled1;
 
+        public bool otpEnabled { get => otpEnabled1; set => SetProperty(ref otpEnabled1, value); }
 
+        private string sendAgainTxt1;
+
+        public string sendAgainTxt { get => sendAgainTxt1; set => SetProperty(ref sendAgainTxt1, value); }
+
+        private bool sendAgainEnabled1;
+
+        public bool sendAgainEnabled { get => sendAgainEnabled1; set => SetProperty(ref sendAgainEnabled1, value); }
+
+        private Command popoutOTP1;
+
+        public ICommand popoutOTP
+        {
+            get
+            {
+                if (popoutOTP1 == null)
+                {
+                    popoutOTP1 = new Command(PerformpopoutOTP);
+                }
+
+                return popoutOTP1;
+            }
+        }
+
+        private Command sendAgainOTPButton;
+
+        public ICommand SendAgainOTPButton
+        {
+            get
+            {
+                if (sendAgainOTPButton == null)
+                {
+                    sendAgainOTPButton = new Command(PerformSendAgainOTPButton);
+                }
+
+                return sendAgainOTPButton;
+            }
+        }
+
+        private bool otpHasError1;
+
+        public bool otpHasError { get => otpHasError1; set => SetProperty(ref otpHasError1, value); }
+
+        private string otpErrorTxt1;
+
+        public string otpErrorTxt { get => otpErrorTxt1; set => SetProperty(ref otpErrorTxt1, value); }
+
+        private Command regTeacherCmd1;
+
+        public ICommand regTeacherCmd
+        {
+            get
+            {
+                if (regTeacherCmd1 == null)
+                {
+                    regTeacherCmd1 = new Command(PerformregTeacherCmd);
+                }
+
+                return regTeacherCmd1;
+            }
+        }
+
+        private string otpText1;
+
+        public string otpText { get => otpText1; set => SetProperty(ref otpText1, value); }
+
+        private string passErrorTxt1;
+
+        public string passErrorTxt { get => passErrorTxt1; set => SetProperty(ref passErrorTxt1, value); }
+
+        private string conPassErrorTxt1;
+
+        public string conPassErrorTxt { get => conPassErrorTxt1; set => SetProperty(ref conPassErrorTxt1, value); }
+
+        private string pnErrorTxt1;
+
+        public string pnErrorTxt { get => pnErrorTxt1; set => SetProperty(ref pnErrorTxt1, value); }
+
+        private string nameErrorTxt1;
+
+        public string nameErrorTxt { get => nameErrorTxt1; set => SetProperty(ref nameErrorTxt1, value); }
+
+        private bool hasNameError1;
+
+        public bool hasNameError { get => hasNameError1; set => SetProperty(ref hasNameError1, value); }
+
+        private bool haspnError1;
+
+        public bool haspnError { get => haspnError1; set => SetProperty(ref haspnError1, value); }
+
+        private bool hasPassError1;
+
+        public bool hasPassError { get => hasPassError1; set => SetProperty(ref hasPassError1, value); }
+
+        private bool hasConPassError1;
+
+        public bool hasConPassError { get => hasConPassError1; set => SetProperty(ref hasConPassError1, value); }
 
 
         #endregion
