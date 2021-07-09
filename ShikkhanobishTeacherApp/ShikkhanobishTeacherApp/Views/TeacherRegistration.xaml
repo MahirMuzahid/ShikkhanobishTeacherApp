@@ -186,7 +186,7 @@
             <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="#50000000" IsVisible="{Binding CollegePopupVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="7*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>

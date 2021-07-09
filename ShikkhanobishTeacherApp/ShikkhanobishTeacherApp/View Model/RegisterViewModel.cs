@@ -755,6 +755,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region OTP
         private void Performcomandotp()
         {
+            SaveThisTeacher();
             OTPsec = 60;
             sendAgainEnabled = false;
             otpEnabled = false;
@@ -777,7 +778,90 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return OTPTimerContinue;
             });
         }
-       
+        public void SaveThisTeacher()
+        {
+            Teacher thisTeacher = new Teacher();
+            thisTeacher.teacherID = StaticPageForPassingData.GenarateNewID();
+            thisTeacher.name = name;
+            thisTeacher.phonenumber = pnumber;
+            thisTeacher.password = password;
+            List<string> allselectedSub = new List<string>();
+            allselectedSub.Add(sub1);
+            allselectedSub.Add(sub2);
+            allselectedSub.Add(sub3);
+            allselectedSub.Add(sub4);
+            allselectedSub.Add(sub5);
+            allselectedSub.Add(sub6);
+            allselectedSub.Add(sub7);
+            allselectedSub.Add(sub8);
+            allselectedSub.Add(sub9);
+            List<int> selectedSubID = new List<int>();
+            int subIndexCount = 0;
+            CousrList thisCourseLIst = new CousrList();
+            for (int i = 0; i < AllsubList.Count; i++)
+            {
+                if (AllsubList[i].name == allselectedSub[subIndexCount])
+                {
+                    if(subIndexCount == 0)
+                    {
+                        thisCourseLIst.sub1 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 1)
+                    {
+                        thisCourseLIst.sub2 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 2)
+                    {
+                        thisCourseLIst.sub3 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 3)
+                    {
+                        thisCourseLIst.sub4 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 4)
+                    {
+                        thisCourseLIst.sub5 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 5)
+                    {
+                        thisCourseLIst.sub6 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 6)
+                    {
+                        thisCourseLIst.sub7 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 7)
+                    {
+                        thisCourseLIst.sub8 = AllsubList[i].subjectID;
+                        i = -1;
+                        subIndexCount++;
+                    }
+                    else if (subIndexCount == 8)
+                    {
+                        thisCourseLIst.sub9 = AllsubList[i].subjectID;
+                        break;
+                    }
+                }
+            }
+            thisCourseLIst.teacherID = thisTeacher.teacherID;
+
+            StaticPageForPassingData.ThisRegTeacher = thisTeacher;
+            StaticPageForPassingData.ThisTeacherCourseList = thisCourseLIst;
+        }
         public async Task SendSms()
         {
             Random rnd = new Random();
