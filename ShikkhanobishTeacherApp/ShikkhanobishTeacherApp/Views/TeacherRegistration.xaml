@@ -10,8 +10,8 @@
     <ScrollView>
         <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="230"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="260"/>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="300"/>
@@ -151,7 +151,7 @@
             <Grid Grid.RowSpan="5" Grid.ColumnSpan="3" BackgroundColor="#50000000" IsVisible="{Binding schholPopUpVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2.5*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>

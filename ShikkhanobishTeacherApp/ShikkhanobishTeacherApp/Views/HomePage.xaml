@@ -17,7 +17,7 @@
                     <RowDefinition Height=".5"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height=".5"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="150"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*"/>
@@ -325,23 +325,7 @@
 
                     <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
-                    <Frame BackgroundColor="#10000000" Grid.Row="6" Grid.ColumnSpan="6" CornerRadius="10"/>
-
-                    <Label Text="Univerisy" Grid.Row="6" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
-                    <Label Text="NSU" Grid.Row="6" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="CSE" Grid.Row="6" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-
-                    <Label Text="{Binding crs1}" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs2}" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs3}" Grid.Row="7" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs4}" Grid.Row="7" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs5}" Grid.Row="7" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-
-                    <Label Text="{Binding crs6}" Grid.Row="8" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs7}" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs8}" Grid.Row="8" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs9}" Grid.Row="8" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                    <Label Text="{Binding crs10}" Grid.Row="8" Grid.Column="5" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                    
                 </Grid>
 
                 <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">

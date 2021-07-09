@@ -75,15 +75,21 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformpopOut()
         {
+            if(passtext != null)
+            {
+                passtext = "";
+            }
+            if(newInfoText != null)
+            {
+                newInfoText = "";
+
+            }
             popUpVisibility = false;
             popupTitle = "";
             popuptxtFieldPlcHolder = "";
             hasErrorS = false;
             errorTxtS = "";
             hasErrorF = false;
-            errorTxtF = "";
-            passtext = "";
-            newInfoText = "";
         }
 
 

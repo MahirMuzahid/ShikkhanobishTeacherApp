@@ -25,42 +25,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetAllInfo()
         {
-            ThisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
-      .ReceiveJson<Teacher>();
-            thisCourseList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getCousrListWithID".PostUrlEncodedAsync(new { teacherID = ThisTeacher.teacherID })
-      .ReceiveJson<CousrList>();
+            ThisTeacher = StaticPageForPassingData.thisTeacher;
+            thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
+            thisSubList = StaticPageForPassingData.thisTeacherSubListName;
 
-
-
-            StaticPageForPassingData.thisTeacher = ThisTeacher;
-
-            thisSubList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetSubListInfo".PostUrlEncodedAsync(new {
-                sub1 = thisCourseList.sub1,
-                sub2 = thisCourseList.sub2,
-                sub3 = thisCourseList.sub3,
-                sub4 = thisCourseList.sub4,
-                sub5 = thisCourseList.sub5,
-                sub6 = thisCourseList.sub6,
-                sub7 = thisCourseList.sub7,
-                sub8 = thisCourseList.sub8,
-                sub9 = thisCourseList.sub9
-            })
-      .ReceiveJson<List<SubList>>();
-
-
-            thisCrsList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getCrsListInfo".PostUrlEncodedAsync(new {
-                crs1 = thisCourseList.crs1,
-                crs2 = thisCourseList.crs2,
-                crs3 = thisCourseList.crs3,
-                crs4 = thisCourseList.crs4,
-                crs5 = thisCourseList.crs5,
-                crs6 = thisCourseList.crs6,
-                crs7 = thisCourseList.crs7,
-                crs8 = thisCourseList.crs8,
-                crs9 = thisCourseList.crs9,
-                crs10 = thisCourseList.crs10
-            })
-     .ReceiveJson<List<SubList>>();
             activeswitchEnabled = true;
             amount = "" + ThisTeacher.amount;
             if (ThisTeacher.selectionStatus == 0)

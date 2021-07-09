@@ -24,9 +24,17 @@ namespace ShikkhanobishTeacherApp.Views
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Info..."))
             {
 
-                StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
-      .ReceiveJson<Teacher>();
-                Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+               await  StaticPageForPassingData.GetALlTeacherInfo(pass.Text, pn.Text);
+                if (StaticPageForPassingData.LoginOK)
+                {
+                    Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                }
+                else
+                {
+                    pn.HasError = true;
+                    pn.ErrorText = "Wrong User Info";
+                }
+                
                 await dialog.DismissAsync();
             }
         }

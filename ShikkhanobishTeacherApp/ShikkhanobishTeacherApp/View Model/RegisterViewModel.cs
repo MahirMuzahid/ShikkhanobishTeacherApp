@@ -121,7 +121,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             AllsubList = StaticPageForPassingData.allSubList;
         }
-        public void CheckEverything()
+        public async Task CheckEverything()
         {
             bool allOK = true;
             if (name != null && pnumber != null && password != null && conFirmPassword != null)
@@ -205,11 +205,22 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 if (allOK)
                 {
-                    hasNameError = false;
-                    haspnError = false;
-                    hasPassError = false;
-                    hasConPassError = false;
-                    sendotpEnabled = true;
+                    var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
+  .ReceiveJson<Teacher>();
+                    if (chkPn.teacherID != 0)
+                    {
+                        haspnError = true;
+                        pnErrorTxt = "Phone Number already exist";
+                    }
+                    else
+                    {
+                        hasNameError = false;
+                        haspnError = false;
+                        hasPassError = false;
+                        hasConPassError = false;
+                        sendotpEnabled = true;
+                    }
+                   
                 }
                 else
                 {
@@ -224,7 +235,24 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
 
         }
-
+        public async Task checkPnumber()
+        {
+            if (pnumber != null || pnumber != "")
+            {
+                var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
+  .ReceiveJson<Teacher>();
+                if(chkPn.teacherID != 0)
+                {
+                    haspnError = true;
+                    pnErrorTxt = "Phone Number already exist";
+                }
+                else
+                {
+                    haspnError = false;
+                    pnErrorTxt = "";
+                }
+            }
+        }
         #region school popup
         private void PerformpopupSchool(string index)
         {
@@ -780,7 +808,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public void SaveThisTeacher()
         {
-            Teacher thisTeacher = new Teacher();
+            setTeacher thisTeacher = new setTeacher();
             thisTeacher.teacherID = StaticPageForPassingData.GenarateNewID();
             thisTeacher.name = name;
             thisTeacher.phonenumber = pnumber;
@@ -795,72 +823,68 @@ namespace ShikkhanobishTeacherApp.View_Model
             allselectedSub.Add(sub7);
             allselectedSub.Add(sub8);
             allselectedSub.Add(sub9);
-            List<int> selectedSubID = new List<int>();
             int subIndexCount = 0;
-            CousrList thisCourseLIst = new CousrList();
             for (int i = 0; i < AllsubList.Count; i++)
             {
                 if (AllsubList[i].name == allselectedSub[subIndexCount])
                 {
                     if(subIndexCount == 0)
                     {
-                        thisCourseLIst.sub1 = AllsubList[i].subjectID;
+                        thisTeacher.sub1 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 1)
                     {
-                        thisCourseLIst.sub2 = AllsubList[i].subjectID;
+                        thisTeacher.sub2 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 2)
                     {
-                        thisCourseLIst.sub3 = AllsubList[i].subjectID;
+                        thisTeacher.sub3 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 3)
                     {
-                        thisCourseLIst.sub4 = AllsubList[i].subjectID;
+                        thisTeacher.sub4 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 4)
                     {
-                        thisCourseLIst.sub5 = AllsubList[i].subjectID;
+                        thisTeacher.sub5 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 5)
                     {
-                        thisCourseLIst.sub6 = AllsubList[i].subjectID;
+                        thisTeacher.sub6 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 6)
                     {
-                        thisCourseLIst.sub7 = AllsubList[i].subjectID;
+                        thisTeacher.sub7 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 7)
                     {
-                        thisCourseLIst.sub8 = AllsubList[i].subjectID;
+                        thisTeacher.sub8 = AllsubList[i].subjectID;
                         i = -1;
                         subIndexCount++;
                     }
                     else if (subIndexCount == 8)
                     {
-                        thisCourseLIst.sub9 = AllsubList[i].subjectID;
+                        thisTeacher.sub9 = AllsubList[i].subjectID;
                         break;
                     }
                 }
             }
-            thisCourseLIst.teacherID = thisTeacher.teacherID;
 
             StaticPageForPassingData.ThisRegTeacher = thisTeacher;
-            StaticPageForPassingData.ThisTeacherCourseList = thisCourseLIst;
         }
         public async Task SendSms()
         {
@@ -928,7 +952,8 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string pnumber1;
 
-        public string pnumber { get { return pnumber1; } set { pnumber1 = value; CheckEverything(); SetProperty(ref pnumber1, value); } }
+        public string pnumber { get { return pnumber1; } set { pnumber1 = value; CheckEverything(); checkPnumber();
+                    SetProperty(ref pnumber1, value); } }
 
         private string password1;
 
