@@ -234,7 +234,7 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button BackgroundColor="Transparent" Grid.RowSpan="2" Grid.ColumnSpan="3" Command="{Binding popoutOTP}"/>
+               
                 <Frame BackgroundColor="White" Grid.Row="1" Grid.ColumnSpan="3" HasShadow="False"/>
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -255,7 +255,8 @@
                     <Label Text="{Binding sendAgainTxt}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10"/>
                     <material:MaterialButton Text="{Binding sendAgainTxt}" Grid.Row="1" ButtonType="Flat" HorizontalOptions="Center" VerticalOptions="Center" FontSize="10"  IsVisible="{Binding sendAgainEnabled}" Command="{Binding SendAgainOTPButton}"/>
                     <material:MaterialTextField Placeholder="Enter OTP" Text="{Binding otpText}" Grid.Row="2" CardBackgroundColor="#09000000" MaxLength="4" InputType="Numeric" HasError="{Binding otpHasError}" ErrorText="{Binding otpErrorTxt}"/>
-                    <material:MaterialButton Text="Veryfy" Grid.Row="3" BackgroundColor="#F89825" TextColor="White" IsEnabled="{Binding otpEnabled}" Command="{Binding regTeacherCmd}"/>
+                    <material:MaterialButton Text="Veryfy" Grid.Row="3" BackgroundColor="#F89825" HorizontalOptions="End" VerticalOptions="Start" TextColor="White" IsEnabled="{Binding otpEnabled}" Command="{Binding regTeacherCmd}" Clicked="MaterialButton_Clicked"/>
+                    <material:MaterialButton ButtonType="Text" Text="Cancle" TextColor="#E63A3A" FontSize="11" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Command="{Binding popoutOTP}"/>
                 </Grid>
             </Grid>
         </Grid>

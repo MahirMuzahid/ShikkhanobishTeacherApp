@@ -21,7 +21,7 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task GetTeacher()
         {
-            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking..."))
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Info..."))
             {
 
                 StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = 100001 })
@@ -34,11 +34,21 @@ namespace ShikkhanobishTeacherApp.Views
         {
             GetTeacher();
         }
-
-        public async Task ShowLoading()
+        private async Task PerformRegistercmd()
         {
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Connecting..."))
+            {
+                StaticPageForPassingData.allSubList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
+                Application.Current.MainPage.Navigation.PushModalAsync(new TeacherRegistration());
+                await dialog.DismissAsync();
+            }
+            
+        }
 
-  
+
+        private void MaterialButton_Clicked_1(object sender, EventArgs e)
+        {
+            PerformRegistercmd();
         }
     }
 }

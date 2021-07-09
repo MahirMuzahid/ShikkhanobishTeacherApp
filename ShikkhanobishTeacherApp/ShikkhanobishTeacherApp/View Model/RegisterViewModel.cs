@@ -41,6 +41,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         public async Task GetAllInfo()
         {
             await GetAllSub();
+            otpEnabled = false;
             otpWindow = false;
             sendotpEnabled = false;
             selectedscIndex = 0;
@@ -118,7 +119,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetAllSub()
         {
-            AllsubList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
+            AllsubList = StaticPageForPassingData.allSubList;
         }
         public void CheckEverything()
         {
@@ -605,9 +606,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                 sub4 = clgsubName[clgSelectCount[0]];
                 sub5 = clgsubName[clgSelectCount[1]];
                 sub6 = clgsubName[clgSelectCount[2]];
-                sub7 = "";
-                sub8 = "";
-                sub9 = "";
+                sub7 = "n/a";
+                sub8 = "n/a";
+                sub9 = "n/a";
             }
             CheckEverything();
         }
@@ -785,7 +786,6 @@ namespace ShikkhanobishTeacherApp.View_Model
             string pn = "+88"+pnumber;
             OTPCode = rn;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/SendSmsAsync".PostUrlEncodedAsync(new { msg = MSG, number = pn }).ReceiveJson<SendSms>();
-            otpEnabled = true;
         }
         private void PerformpopoutOTP()
         {
@@ -827,6 +827,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else
             {
+                otpWindow = false;
                 otpHasError = false;
                 otpErrorTxt = "";
             }
@@ -1337,7 +1338,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string otpText1;
 
-        public string otpText { get => otpText1; set => SetProperty(ref otpText1, value); }
+        public string otpText { get { return otpText1; } set { otpText1 = value; if (otpText == null || otpText == "") { otpEnabled = false; } else { otpEnabled = true; } SetProperty(ref otpText1, value); } }
 
         private string passErrorTxt1;
 
@@ -1370,6 +1371,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool hasConPassError1;
 
         public bool hasConPassError { get => hasConPassError1; set => SetProperty(ref hasConPassError1, value); }
+
+        private bool completingTeacherRegVisbility1;
+
+        public bool completingTeacherRegVisbility { get => completingTeacherRegVisbility1; set => SetProperty(ref completingTeacherRegVisbility1, value); }
 
 
         #endregion

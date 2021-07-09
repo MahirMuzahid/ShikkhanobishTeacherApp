@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Label Text="Do not have an account?" Grid.Column="0" HorizontalOptions="End" VerticalOptions="Start" Margin="0,15,0,0"/>
-            <material:MaterialButton Text="Register Now" ButtonType="Text" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Start" Command="{Binding Registercmd}" FontSize="12"/>
+            <material:MaterialButton Text="Register Now" ButtonType="Text" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Start"  FontSize="12" Clicked="MaterialButton_Clicked_1" />
         </Grid>
         
     </Grid>

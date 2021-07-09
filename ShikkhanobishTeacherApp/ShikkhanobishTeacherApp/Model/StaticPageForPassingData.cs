@@ -8,6 +8,7 @@ namespace ShikkhanobishTeacherApp.Model
     {
         public static Teacher thisTeacher { get; set; }
         public static List<TeacherTuitionHistory> tuitionList { get; set; }
+        public static List<Subject> allSubList { get; set; }
 
         public static int GenarateNewID()
         {

@@ -1,9 +1,11 @@
-﻿using ShikkhanobishTeacherApp.Model;
+﻿using Flurl.Http;
+using ShikkhanobishTeacherApp.Model;
 using ShikkhanobishTeacherApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -32,10 +34,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return registercmd;
             }
         }
+       
         #endregion
 
 
 
-       
+
     }
 }
