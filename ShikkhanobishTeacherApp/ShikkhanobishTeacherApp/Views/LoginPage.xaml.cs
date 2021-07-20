@@ -24,7 +24,7 @@ namespace ShikkhanobishTeacherApp.Views
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Info..."))
             {
 
-               await  StaticPageForPassingData.GetALlTeacherInfo(pass.Text, pn.Text);
+                await  StaticPageForPassingData.GetALlTeacherInfo(pass.Text, pn.Text);
                 if (StaticPageForPassingData.LoginOK)
                 {
                     Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());

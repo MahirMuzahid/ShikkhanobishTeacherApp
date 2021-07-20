@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         CousrList thisCourseList { get; set; }
         List<SubList> thisSubList { get; set; }
         List<SubList> thisCrsList { get; set; }
+        HubConnection _connection = null;
+        string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         #region Methods
         public HomeViewModel()
         {
@@ -25,6 +28,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetAllInfo()
         {
+            
             ThisTeacher = StaticPageForPassingData.thisTeacher;
             thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
             thisSubList = StaticPageForPassingData.thisTeacherSubListName;
@@ -91,17 +95,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             sub8 = thisSubList[7].name;
             sub9 = thisSubList[8].name;
 
-            crs1 = thisCrsList[0].name;
-            crs2 = thisCrsList[1].name;
-            crs3 = thisCrsList[2].name;
-            crs4 = thisCrsList[3].name;
-            crs5 = thisCrsList[4].name;
-            crs6 = thisCrsList[5].name;
-            crs7 = thisCrsList[6].name;
-            crs8 = thisCrsList[7].name;
-            crs9 = thisCrsList[8].name;
-            crs10 = thisCrsList[9].name;
             isrefreshing = false;
+            await ConnectToRealTimeApiServer();
         }
         private void PerformwithdrawCmd()
         {
@@ -248,7 +243,32 @@ namespace ShikkhanobishTeacherApp.View_Model
                    withdrawVisibility = false;
         }
 
-        
+        public async Task ConnectToRealTimeApiServer()
+        {
+            _connection = new HubConnectionBuilder()
+                 .WithUrl(url)
+                 .Build();
+            try { await _connection.StartAsync(); }
+            catch (Exception ex) {
+                var ss = ex.InnerException;
+            }
+           
+
+            _connection.Closed += async (s) =>
+            {
+                await _connection.StartAsync();
+            };
+
+            _connection.On< int, string, string, string, string, int, string >("CallSelectedTeacher", async (teacherID, des, cls, sub, chapter, cost, name) =>
+            {
+                if(teacherID == ThisTeacher.teacherID)
+                {
+                    teacheractivity = "Inactive";
+                }
+
+
+            });
+        }
         #endregion
 
         #region Bindings
