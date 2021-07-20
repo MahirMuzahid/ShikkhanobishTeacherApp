@@ -368,6 +368,61 @@
                     </Grid>
                     
                 </Grid>
+                <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".7*"/>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height="2.5*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <material:MaterialCard Grid.RowSpan="7" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                        <Label Text="30 Senconds" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0"/>
+                        <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                        <Label Text="Mahir Muzahid" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
+                        <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Class: "/>
+                                    <Span Text="10 " FontAttributes="Bold"/>
+                                    <Span Text="|"/>
+                                    <Span Text=" Subject: "/>
+                                    <Span Text="Physics First Paper " FontAttributes="Bold"/>
+                                    <Span Text="|"/>
+                                    <Span Text=" Chapter: "/>
+                                    <Span Text="15" FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Description: How gravitational force works?" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Start" FontSize="12"/>
+                        <Label Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Payment: " FontSize="12"/>
+                                    <Span Text="3 Taka/Min " FontAttributes="Bold"/>
+                                    <Span Text="(Exclude 15% processing cost)" FontSize="11"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
+                        <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White"/>
+                        <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7"/>
+                    </Grid>
+                </Grid>
             </Grid>
         </ScrollView>
     </RefreshView>

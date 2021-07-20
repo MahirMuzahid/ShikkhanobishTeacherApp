@@ -33,6 +33,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
             thisSubList = StaticPageForPassingData.thisTeacherSubListName;
 
+            tuitionFoundVisibility = false;
             activeswitchEnabled = true;
             amount = "" + ThisTeacher.amount;
             if (ThisTeacher.selectionStatus == 0)
@@ -263,10 +264,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 if(teacherID == ThisTeacher.teacherID)
                 {
-                    teacheractivity = "Inactive";
+                    tuitionFoundVisibility = true;
                 }
-
-
             });
         }
         #endregion
@@ -554,7 +553,11 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool withdrawEnabled { get => withdrawEnabled1; set => SetProperty(ref withdrawEnabled1, value); }
 
-       
+        private bool tuitionFoundVisibility1;
+
+        public bool tuitionFoundVisibility { get => tuitionFoundVisibility1; set => SetProperty(ref tuitionFoundVisibility1, value); }
+
+
 
         #endregion
 
