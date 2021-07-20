@@ -111,14 +111,30 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task ActiveTeacher()
         {
+            activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
+            teacheractivity = "Active";
+            ThisTeacher.activeStatus = 1;
+            tracheractColor = Color.Black;
+            if(!activeToggle)
+            {
+                activeToggle = true;
+            }
             activeswitchEnabled = true;
         }
         public async Task inActiveTeacher()
         {
+            activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
+            teacheractivity = "Inactive";
+            ThisTeacher.activeStatus = 0;
+            tracheractColor = Color.FromHex("#D4D4D4");
+            if (activeToggle)
+            {
+                activeToggle = false;
+            }
             activeswitchEnabled = true;
         }
         private void Performclocsepopup()
@@ -262,11 +278,24 @@ namespace ShikkhanobishTeacherApp.View_Model
 
             _connection.On< int, string, string, string, string, int, string >("CallSelectedTeacher", async (teacherID, des, cls, sub, chapter, cost, name) =>
             {
-                if(teacherID == ThisTeacher.teacherID)
+                if(teacherID == ThisTeacher.teacherID && ThisTeacher.activeStatus == 1)
                 {
+                    await inActiveTeacher();
                     tuitionFoundVisibility = true;
+                    HRChapter = chapter;
+                    HRClass = cls;
+                    HRCost = cost+" Taka/Min";
+                    HRSubject = sub;
+                    HRStudentName = name;
+                    HRDescription = des;
+
                 }
             });
+        }
+        private async Task PerformDeclineHRCmd()
+        {
+            await ActiveTeacher();
+            tuitionFoundVisibility = false;
         }
         #endregion
 
@@ -377,16 +406,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                 
                 if(activeToggle == true)
                 {
-                    activeswitchEnabled = false;
-                    teacheractivity = "Active";
-                    tracheractColor = Color.Black;
                     ActiveTeacher();
+
                 }
                 else
                 {
-                    activeswitchEnabled = false;
-                    teacheractivity = "Inactive";
-                    tracheractColor = Color.FromHex("#D4D4D4");
                     inActiveTeacher();
                 }
                 OnPropertyChanged(); } }
@@ -557,6 +581,54 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool tuitionFoundVisibility { get => tuitionFoundVisibility1; set => SetProperty(ref tuitionFoundVisibility1, value); }
 
+        private string timeremaHireRequest1;
+
+        public string timeremaHireRequest { get => timeremaHireRequest1; set => SetProperty(ref timeremaHireRequest1, value); }
+
+        private string hRStudentName;
+
+        public string HRStudentName { get => hRStudentName; set => SetProperty(ref hRStudentName, value); }
+
+        private string hRClass;
+
+        public string HRClass { get => hRClass; set => SetProperty(ref hRClass, value); }
+
+        private string hRSubject;
+
+        public string HRSubject { get => hRSubject; set => SetProperty(ref hRSubject, value); }
+
+        private string hRChapter;
+
+        public string HRChapter { get => hRChapter; set => SetProperty(ref hRChapter, value); }
+
+        private string hRCost;
+
+        public string HRCost { get => hRCost; set => SetProperty(ref hRCost, value); }
+
+        private Command declineHRCmd;
+
+        public ICommand DeclineHRCmd
+        {
+            get
+            {
+                if (declineHRCmd == null)
+                {
+                    declineHRCmd = new Command(async =>PerformDeclineHRCmd());
+                }
+
+                return declineHRCmd;
+            }
+        }
+
+       
+
+        private string hRTimer;
+
+        public string HRTimer { get => hRTimer; set => SetProperty(ref hRTimer, value); }
+
+        private string hRDescription;
+
+        public string HRDescription { get => hRDescription; set => SetProperty(ref hRDescription, value); }
 
 
         #endregion
