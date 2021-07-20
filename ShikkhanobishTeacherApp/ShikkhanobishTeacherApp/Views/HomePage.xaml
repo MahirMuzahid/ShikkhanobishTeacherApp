@@ -419,7 +419,7 @@
                             </Label.FormattedText>
                         </Label>
                         <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
-                        <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White"/>
+                        <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White" Command="{Binding AcceptHRCmd}"/>
                         <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7" Command="{Binding DeclineHRCmd}"/>
                     </Grid>
                 </Grid>

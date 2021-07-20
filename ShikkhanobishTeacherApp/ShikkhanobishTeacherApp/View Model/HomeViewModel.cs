@@ -4,6 +4,7 @@ using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,6 +19,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<SubList> thisSubList { get; set; }
         List<SubList> thisCrsList { get; set; }
         HubConnection _connection = null;
+        int requestStudentID;
         string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         #region Methods
         public HomeViewModel()
@@ -276,7 +278,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await _connection.StartAsync();
             };
 
-            _connection.On< int, string, string, string, string, int, string >("CallSelectedTeacher", async (teacherID, des, cls, sub, chapter, cost, name) =>
+            _connection.On< int, string, string, string, string, int, string,int >("CallSelectedTeacher", async (teacherID, des, cls, sub, chapter, cost, name, studentID) =>
             {
                 if(teacherID == ThisTeacher.teacherID && ThisTeacher.activeStatus == 1)
                 {
@@ -288,14 +290,27 @@ namespace ShikkhanobishTeacherApp.View_Model
                     HRSubject = sub;
                     HRStudentName = name;
                     HRDescription = des;
+                    requestStudentID = studentID;
 
                 }
             });
         }
         private async Task PerformDeclineHRCmd()
         {
+            string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + false;
+            HttpClient client = new HttpClient();
+            StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
             await ActiveTeacher();
             tuitionFoundVisibility = false;
+        }
+        private async Task PerformAcceptHRCmd()
+        {
+            string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + true; 
+            HttpClient client = new HttpClient();
+            StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
+            //make ui for connection
         }
         #endregion
 
@@ -630,6 +645,22 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public string HRDescription { get => hRDescription; set => SetProperty(ref hRDescription, value); }
 
+        private Command acceptHRCmd;
+
+        public ICommand AcceptHRCmd
+        {
+            get
+            {
+                if (acceptHRCmd == null)
+                {
+                    acceptHRCmd = new Command(async => PerformAcceptHRCmd());
+                }
+
+                return acceptHRCmd;
+            }
+        }
+
+       
 
         #endregion
 
