@@ -380,7 +380,7 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding foundInfoVisibility}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height=".7*"/>
@@ -421,6 +421,15 @@
                         <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
                         <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White" Command="{Binding AcceptHRCmd}"/>
                         <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7" Command="{Binding DeclineHRCmd}"/>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding connectingstudentVisibility}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <material:MaterialCard Grid.Row="1" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                        <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
                     </Grid>
                 </Grid>
             </Grid>

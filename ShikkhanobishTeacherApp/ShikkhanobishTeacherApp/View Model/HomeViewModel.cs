@@ -1,6 +1,7 @@
 ﻿using Flurl.Http;
 using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
+using ShikkhanobishTeacherApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Vonage;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
@@ -284,6 +286,8 @@ namespace ShikkhanobishTeacherApp.View_Model
                 {
                     await inActiveTeacher();
                     tuitionFoundVisibility = true;
+                    foundInfoVisibility = true;
+                    connectingstudentVisibility = false;
                     HRChapter = chapter;
                     HRClass = cls;
                     HRCost = cost+" Taka/Min";
@@ -292,6 +296,21 @@ namespace ShikkhanobishTeacherApp.View_Model
                     HRDescription = des;
                     requestStudentID = studentID;
 
+                }
+            });
+            _connection.On<bool,int,int, int, string, string>("NowStartVieoCall", async (enter,teacherID,studentID, apikey, sessionID, token) =>
+            {
+                if(teacherID == ThisTeacher.teacherID && requestStudentID == studentID && enter == true)
+                {
+                    CrossVonage.Current.ApiKey = apikey + "";
+                    CrossVonage.Current.SessionId = sessionID;
+                    CrossVonage.Current.UserToken = token;
+
+                    if (!CrossVonage.Current.TryStartSession())
+                    {
+                        return;
+                    }
+                    Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
                 }
             });
         }
@@ -306,11 +325,18 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private async Task PerformAcceptHRCmd()
         {
+            if (!CrossVonage.Current.TryStartSession())
+            {
+                return;
+            }
+            foundInfoVisibility = false;
+            connectingstudentVisibility = true;
             string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + true; 
             HttpClient client = new HttpClient();
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
-            //make ui for connection
+            
+
         }
         #endregion
 
@@ -660,7 +686,15 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-       
+        private bool connectingstudentVisibility1;
+
+        public bool connectingstudentVisibility { get => connectingstudentVisibility1; set => SetProperty(ref connectingstudentVisibility1, value); }
+
+        private bool foundInfoVisibility1;
+
+        public bool foundInfoVisibility { get => foundInfoVisibility1; set => SetProperty(ref foundInfoVisibility1, value); }
+
+
 
         #endregion
 
