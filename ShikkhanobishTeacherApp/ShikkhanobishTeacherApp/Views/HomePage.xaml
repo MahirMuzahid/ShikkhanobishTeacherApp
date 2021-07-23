@@ -414,7 +414,7 @@
                                 <FormattedString>
                                     <Span Text="Payment: " FontSize="12"/>
                                     <Span Text="{Binding HRCost}" FontAttributes="Bold"/>
-                                    <Span Text="(Exclude 15% processing cost)" FontSize="11"/>
+                                    <Span Text="(Include 15% system cost)" FontSize="11"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
