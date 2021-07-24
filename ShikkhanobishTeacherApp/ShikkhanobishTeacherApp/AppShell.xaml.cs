@@ -1,8 +1,4 @@
 ﻿
-using ShikkhanobishTeacherApp.Views;
-using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace ShikkhanobishTeacherApp
@@ -15,6 +11,6 @@ namespace ShikkhanobishTeacherApp
             On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
 
-
+      
     }
 }

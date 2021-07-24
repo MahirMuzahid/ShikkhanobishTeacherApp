@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flurl.Http;
+using ShikkhanobishTeacherApp.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Vonage;
 using Xamarin.Forms.Xaml;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace ShikkhanobishTeacherApp.Views
 {
@@ -21,13 +24,24 @@ namespace ShikkhanobishTeacherApp.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-        private void OnEndCall(object sender, EventArgs e)
+        private async void OnEndCall(object sender, EventArgs e)
         {
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Only Student Can Cut Call",
+                                    confirmingText: "Ok");
+        }
+        public async Task EndOrBackBtn()
+        {           
             CrossVonage.Current.EndSession();
             CrossVonage.Current.MessageReceived -= OnMessageReceived;
-            Navigation.PopModalAsync();
+            StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID })
+ .ReceiveJson<Teacher>();
+            var existingPages = Navigation.NavigationStack.ToList();
+            foreach (var page in existingPages)
+            {
+                Navigation.RemovePage(page);
+            }
+            Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
         }
-
         private void OnMessage(object sender, EventArgs e)
             => CrossVonage.Current.TrySendMessage($"Path.GetRandomFileName: {Path.GetRandomFileName()}");
 
@@ -55,6 +69,11 @@ namespace ShikkhanobishTeacherApp.Views
                     OnEndCall(this, EventArgs.Empty);
                 }
             }
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            EndOrBackBtn();
+            return true;
         }
     }
 }
