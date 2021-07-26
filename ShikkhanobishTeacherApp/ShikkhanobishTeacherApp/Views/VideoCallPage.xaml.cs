@@ -19,28 +19,17 @@ namespace ShikkhanobishTeacherApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VideoCallPage : ContentPage
     {
+        double totalEarned = 0;
         private bool _isRendererSet;
         HubConnection _connection = null;
-        int safeTimePassed = 15;
         string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         public VideoCallPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-            {
-                safeTimePassed--;
-                if(safeTimePassed == 0)
-                {
-                    
-                    return false;
-                }
-                else
-                {
-                    timetxt.Text = "Safe Time";
-                    return true;
-                }
-            });
+            ConnectToRealTimeApiServer();
+            timetxt.Text = "Safe Time";
+            totalearnedtxt.Text = "0";
         }
         private async void OnEndCall(object sender, EventArgs e)
         {
@@ -116,12 +105,13 @@ namespace ShikkhanobishTeacherApp.Views
                     CutCall();
                 }
             });
-            _connection.On<int, int, bool,int>("SendTimeAndCostInfo", async (teacherID, studentID, time, earned) =>
+            _connection.On<int, int, int,double>("SendTimeAndCostInfo", async (teacherID, studentID, time, earned) =>
             {
                 if (teacherID == StaticPageForPassingData.thisTeacher.teacherID && studentID == StaticPageForPassingData.thisVideoCallStudentID)
                 {
+                    totalEarned = totalEarned + earned;
                     timetxt.Text = "Time: " + time + "Minuite";
-                    totalearnedtxt.Text = "Toal Earn: " + earned + " (processing cost excluded)";
+                    totalearnedtxt.Text = ""+ totalEarned;
                 }
             });
             _connection.On<int, int, bool>("LastMinAlert", async (teacherID, studentID, isLastMin) =>
@@ -135,7 +125,7 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task lasMinALter()
         {
-            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Student do not have enough balance to continue. Call will cut autometicly after 1 min",
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Student do not have enough balance to continue. Call will cut autometically after 1 min",
                                   confirmingText: "Ok");
         }
         protected override bool OnBackButtonPressed()
