@@ -25,12 +25,16 @@ namespace ShikkhanobishTeacherApp.Views
             var result = await MaterialDialog.Instance.ConfirmAsync(message: "Do you want to close app?",
                                   confirmingText: "Yes",
                                   dismissiveText: "No");
-            var existingPages = Navigation.NavigationStack.ToList();
-            foreach (var page in existingPages)
+            if(result == true)
             {
-                Navigation.RemovePage(page);
+                var existingPages = Navigation.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    Navigation.RemovePage(page);
+                }
+                Application.Current.Quit();
             }
-            Application.Current.Quit();
+            
         }
         protected override bool OnBackButtonPressed()
         {

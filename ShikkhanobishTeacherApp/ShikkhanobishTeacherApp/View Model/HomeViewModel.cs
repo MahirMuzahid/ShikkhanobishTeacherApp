@@ -44,11 +44,13 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 selectionSts = "Not Selected";
                 selectionStsColor = Color.FromHex("#DFC628");
+                takeTextBtnVisibility = true;
             }
             else
             {
                 selectionSts = "Selected";
                 selectionStsColor = Color.ForestGreen;
+                takeTextBtnVisibility = false;
             }
 
             if (ThisTeacher.monetizetionStatus == 0)
@@ -684,6 +686,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool foundInfoVisibility1;
 
         public bool foundInfoVisibility { get => foundInfoVisibility1; set => SetProperty(ref foundInfoVisibility1, value); }
+
+        private bool takeTextBtnVisibility1;
+
+        public bool takeTextBtnVisibility { get => takeTextBtnVisibility1; set => SetProperty(ref takeTextBtnVisibility1, value); }
 
 
 

@@ -94,7 +94,7 @@
                         <Image Source="teacher.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Selection Statues" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
-                        <material:MaterialButton Text="Take Test" ButtonType="Text" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000">
+                        <material:MaterialButton Text="Take Test" ButtonType="Text" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}">
                         </material:MaterialButton>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
