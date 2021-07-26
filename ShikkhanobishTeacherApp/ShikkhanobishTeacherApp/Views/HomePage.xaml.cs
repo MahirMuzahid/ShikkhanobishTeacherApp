@@ -26,12 +26,7 @@ namespace ShikkhanobishTeacherApp.Views
                                   confirmingText: "Yes",
                                   dismissiveText: "No");
             if(result == true)
-            {
-                var existingPages = Navigation.NavigationStack.ToList();
-                foreach (var page in existingPages)
-                {
-                    Navigation.RemovePage(page);
-                }
+            {              
                 Application.Current.Quit();
             }
             

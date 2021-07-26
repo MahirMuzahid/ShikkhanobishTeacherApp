@@ -327,6 +327,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             HttpClient client = new HttpClient();
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
+            StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
             Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
 
 

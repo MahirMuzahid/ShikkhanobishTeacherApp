@@ -37,12 +37,12 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Label Text="{Binding time}" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" TextColor="White"></Label>
+            <Label x:Name="timetxt" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" TextColor="White"></Label>
             <Label Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="White">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Earned: "/>
-                        <Span Text="{Binding toalEarned}" FontAttributes="Bold" FontSize="14"/>
+                        <Span x:Name="totalearnedtxt"  FontAttributes="Bold" FontSize="14"/>
                         <Span Text=" Taka (System cost included)"/>
                     </FormattedString>
                 </Label.FormattedText>

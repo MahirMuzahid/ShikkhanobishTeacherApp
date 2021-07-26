@@ -1,4 +1,5 @@
 ﻿using Flurl.Http;
+using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
@@ -19,28 +20,49 @@ namespace ShikkhanobishTeacherApp.Views
     public partial class VideoCallPage : ContentPage
     {
         private bool _isRendererSet;
+        HubConnection _connection = null;
+        int safeTimePassed = 15;
+        string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         public VideoCallPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                safeTimePassed--;
+                if(safeTimePassed == 0)
+                {
+                    
+                    return false;
+                }
+                else
+                {
+                    timetxt.Text = "Safe Time";
+                    return true;
+                }
+            });
         }
         private async void OnEndCall(object sender, EventArgs e)
         {
             var result = await MaterialDialog.Instance.ConfirmAsync(message: "Only Student Can Cut Call",
                                     confirmingText: "Ok");
         }
-        public async Task EndOrBackBtn()
-        {           
-            CrossVonage.Current.EndSession();
-            CrossVonage.Current.MessageReceived -= OnMessageReceived;
-            StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID })
- .ReceiveJson<Teacher>();
-            var existingPages = Navigation.NavigationStack.ToList();
-            foreach (var page in existingPages)
+        public async Task CutCall()
+        {
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Student Left Video Call. Closing Video Call..."))
             {
-                Navigation.RemovePage(page);
+                CrossVonage.Current.EndSession();
+                StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID })
+     .ReceiveJson<Teacher>();
+                var existingPages = Navigation.NavigationStack.ToList();
+                foreach (var page in existingPages)
+                {
+                    Navigation.RemovePage(page);
+                }
+                await Task.Delay(1000);
+                Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
             }
-            Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                
         }
         private void OnMessage(object sender, EventArgs e)
             => CrossVonage.Current.TrySendMessage($"Path.GetRandomFileName: {Path.GetRandomFileName()}");
@@ -70,10 +92,61 @@ namespace ShikkhanobishTeacherApp.Views
                 }
             }
         }
+        public async Task ConnectToRealTimeApiServer()
+        {
+            _connection = new HubConnectionBuilder()
+                 .WithUrl(url)
+                 .Build();
+            try { await _connection.StartAsync(); }
+            catch (Exception ex)
+            {
+                var ss = ex.InnerException;
+            }
+
+
+            _connection.Closed += async (s) =>
+            {
+                await _connection.StartAsync();
+            };
+
+            _connection.On<int, int, bool>("CutVideoCall", async (teacherID, studentID, isCut) =>
+            {
+                if(teacherID == StaticPageForPassingData.thisTeacher.teacherID && studentID == StaticPageForPassingData.thisVideoCallStudentID && isCut == true)
+                {
+                    CutCall();
+                }
+            });
+            _connection.On<int, int, bool,int>("SendTimeAndCostInfo", async (teacherID, studentID, time, earned) =>
+            {
+                if (teacherID == StaticPageForPassingData.thisTeacher.teacherID && studentID == StaticPageForPassingData.thisVideoCallStudentID)
+                {
+                    timetxt.Text = "Time: " + time + "Minuite";
+                    totalearnedtxt.Text = "Toal Earn: " + earned + " (processing cost excluded)";
+                }
+            });
+            _connection.On<int, int, bool>("LastMinAlert", async (teacherID, studentID, isLastMin) =>
+            {
+                if (teacherID == StaticPageForPassingData.thisTeacher.teacherID && studentID == StaticPageForPassingData.thisVideoCallStudentID && isLastMin)
+                {
+                    lasMinALter();
+                }
+            });
+
+        }
+        public async Task lasMinALter()
+        {
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Student do not have enough balance to continue. Call will cut autometicly after 1 min",
+                                  confirmingText: "Ok");
+        }
         protected override bool OnBackButtonPressed()
         {
-            EndOrBackBtn();
+            CanCloseAlter();
             return true;
+        }
+        public async Task CanCloseAlter()
+        {
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Only Student Can Cut Call",
+                                     confirmingText: "Ok");
         }
     }
 }
