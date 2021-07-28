@@ -83,7 +83,11 @@ namespace ShikkhanobishTeacherApp.Views
                     pn.HasError = true;
                     pn.ErrorText = "Wrong User Info";
                 }
-                
+                if(checkbox.IsSelected)
+                {
+                    await SecureStorage.SetAsync("phonenumber", pn.Text);
+                    await SecureStorage.SetAsync("password", pass.Text);
+                }
                 await dialog.DismissAsync();
             }
         }

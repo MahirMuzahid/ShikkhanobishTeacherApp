@@ -34,7 +34,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return registercmd;
             }
         }
-       
+
+        private bool isChecked1;
+
+        public bool isChecked { get => isChecked1; set => SetProperty(ref isChecked1, value); }
+
         #endregion
 
 

@@ -1,10 +1,12 @@
-﻿using Flurl.Http;
+﻿using Android.Content.Res;
+using Flurl.Http;
 using Microsoft.AspNetCore.SignalR.Client;
 using ShikkhanobishTeacherApp.Model;
 using ShikkhanobishTeacherApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +79,18 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         }
         #endregion
+        private void PerformlogOut()
+        {
+            SecureStorage.RemoveAll();
+            inActiveTeacher();
+            var existingPages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+            foreach (var page in existingPages)
+            {
+                Application.Current.MainPage.Navigation.RemovePage(page);
+            }
+            Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+
+        }
         public async Task GetAllInfo()
         {
             
@@ -760,6 +774,22 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool takeTextBtnVisibility { get => takeTextBtnVisibility1; set => SetProperty(ref takeTextBtnVisibility1, value); }
 
+        private Command logOut1;
+
+        public ICommand logOut
+        {
+            get
+            {
+                if (logOut1 == null)
+                {
+                    logOut1 = new Command(PerformlogOut);
+                }
+
+                return logOut1;
+            }
+        }
+
+        
 
 
         #endregion

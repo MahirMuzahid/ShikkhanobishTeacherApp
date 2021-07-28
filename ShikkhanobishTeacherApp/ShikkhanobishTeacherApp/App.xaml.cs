@@ -2,6 +2,9 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using ShikkhanobishTeacherApp.Model;
 
 namespace ShikkhanobishTeacherApp
 {
@@ -12,9 +15,9 @@ namespace ShikkhanobishTeacherApp
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new LoginPage();
+            MainPage = new WaitPage();
         }
-
+        
         protected override void OnStart()
         {
         }

@@ -8,16 +8,16 @@
         <viewmodel:HomeViewModel/>
     </ContentPage.BindingContext>
     <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
-        <ScrollView>
+       
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="400"/>
-                    <RowDefinition Height=".5"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height=".5"/>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height=".05*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height=".05*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".1*"/>
@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="blacklogo.png"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" Margin="0,10,0,0"/>
-                    <Label Text="" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0"  Margin="0,10,0,0"/>
+                    <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Text" TextColor="Red" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
 
                 </Grid>
 
@@ -286,11 +286,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -434,7 +430,7 @@
                 </Grid>
 
             </Grid>
-        </ScrollView>
+       
     </RefreshView>
   
     

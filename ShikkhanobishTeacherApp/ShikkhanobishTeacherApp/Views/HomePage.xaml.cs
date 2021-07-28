@@ -30,8 +30,8 @@ namespace ShikkhanobishTeacherApp.Views
                                   confirmingText: "Yes",
                                   dismissiveText: "No");
             if(result == true)
-            {              
-                Application.Current.Quit();
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
             
         }
