@@ -8,6 +8,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs.Configurations;
+using Xamarin.Essentials;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.Resources;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
@@ -21,6 +25,49 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             getAllInfo();
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
+
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         public void getAllInfo()
         {
             PopulateTuitionList();
@@ -95,18 +142,23 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public async Task PopulateTuitionList()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             StaticPageForPassingData.tuitionList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherTuitionHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherTuitionHistory>>();
             List<TeacherTuitionHistory> tuilist = StaticPageForPassingData.tuitionList;
 
-            for(int i = 0; i < tuilist.Count; i++)
-            {
-                tuilist[i].teacherCost = tuilist[i].cost * 0.85;
-            }
+
             tuiListItemSource = tuilist;
         }
 
         public async Task PopulateWithdrawList()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             var wdrawList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithdrawHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherWithdrawHistory>>();
             List<TeacherWithdrawHistory> withList = wdrawList;
 
@@ -114,7 +166,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 if (withList[i].status == 0)
                 {
-                    withList[i].statusText = "Pending";
+                    withList[i].statusText = "(Pending)";
                     withList[i].amountColor = "#90FFFFFF";
                 }
                 else
@@ -192,10 +244,15 @@ namespace ShikkhanobishTeacherApp.View_Model
         public ICommand changeCommand =>
               new Command(async () =>
               {
+                  if (!IsInternetConnectionAvailable())
+                  {
+                      return;
+                  }
                   popBtnEnabled = false;
                   popBtnTxt = "Wait..";
                   if (changeFlag == 1)
                   {
+
                       Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
                 .PostUrlEncodedAsync(new
                 {

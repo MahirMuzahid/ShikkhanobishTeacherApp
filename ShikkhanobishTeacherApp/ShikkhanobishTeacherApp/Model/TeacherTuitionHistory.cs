@@ -7,11 +7,10 @@ namespace ShikkhanobishTeacherApp.Model
     public  class TeacherTuitionHistory
     {
         public int studentID { get; set; }
-        public int tuitionID { get; set; }
+        public string tuitionID { get; set; }
         public string time { get; set; }
         public int teacherID { get; set; }
         public int cost { get; set; }
-        public double teacherCost { get; set; }
         public double ratting { get; set; }
         public string firstChoiceID { get; set; }
         public string secondChoiceID { get; set; }

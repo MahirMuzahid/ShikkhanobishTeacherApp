@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms.UI.Dialogs;
+using Xamarin.Essentials;
 
 namespace ShikkhanobishTeacherApp.Views
 {
@@ -24,9 +27,56 @@ namespace ShikkhanobishTeacherApp.Views
         {
             CompleteTeachERReg();
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
+
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         public async Task CompleteTeachERReg()
         {
-            using(var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Completing Teacher Registration..."))
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Completing Teacher Registration..."))
             {
                 var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/SetTeacher".PostUrlEncodedAsync(new {
                     teacherID = StaticPageForPassingData.ThisRegTeacher.teacherID,

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF.Material.Forms.Resources;
 using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 using static Android.InputMethodServices.KeyboardView;
 
 namespace ShikkhanobishTeacherApp.Views
@@ -19,6 +21,8 @@ namespace ShikkhanobishTeacherApp.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            var current = Connectivity.NetworkAccess;
+           
         }
         public async Task EndOrBackBtn()
         {
@@ -36,6 +40,8 @@ namespace ShikkhanobishTeacherApp.Views
             EndOrBackBtn();
             return true;
         }
+        
+
     }
   
 }

@@ -9,8 +9,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Vonage;
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
@@ -30,6 +34,49 @@ namespace ShikkhanobishTeacherApp.View_Model
             withdrawEnabled = false;
             GetAllInfo();
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
+
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         public async Task GetAllInfo()
         {
             
@@ -117,6 +164,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task ActiveTeacher()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
@@ -131,6 +182,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task inActiveTeacher()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
@@ -251,6 +306,10 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public async Task SetWithdrawRequest()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherWithdrawHistory".PostUrlEncodedAsync(new
             {
                 withdrawID = StaticPageForPassingData.GenarateNewID(),
@@ -264,6 +323,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             })
                   .ReceiveJson<Response>();
                    withdrawVisibility = false;
+            await MaterialDialog.Instance.AlertAsync(message: "An withdraw request has been successfully sent to our server. Minimum time to approve your request: 1 hour",
+                                           title: "Successful");
         }
 
         public async Task ConnectToRealTimeApiServer()
@@ -304,7 +365,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private async Task PerformDeclineHRCmd()
         {
-            
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + false + "&apikey="+ 0 + "&sessionID=" + 0 + "&token=" + 0;
             HttpClient client = new HttpClient();
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
@@ -314,6 +378,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private async Task PerformAcceptHRCmd()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
             CrossVonage.Current.ApiKey = info.apiKey + "";
             CrossVonage.Current.SessionId = info.SessionID;

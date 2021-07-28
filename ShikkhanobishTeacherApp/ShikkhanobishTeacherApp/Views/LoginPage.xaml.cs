@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF.Material.Forms.Resources;
 using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace ShikkhanobishTeacherApp.Views
 {
@@ -19,8 +21,55 @@ namespace ShikkhanobishTeacherApp.Views
         {
             InitializeComponent();
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
+
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         public async Task GetTeacher()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Info..."))
             {
 
@@ -44,6 +93,10 @@ namespace ShikkhanobishTeacherApp.Views
         }
         private async Task PerformRegistercmd()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Connecting..."))
             {
                 StaticPageForPassingData.allSubList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();

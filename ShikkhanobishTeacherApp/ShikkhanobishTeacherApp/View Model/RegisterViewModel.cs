@@ -6,7 +6,11 @@ using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace ShikkhanobishTeacherApp.View_Model
 {
@@ -37,7 +41,49 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             GetAllInfo();
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
 
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         public async Task GetAllInfo()
         {
             await GetAllSub();
@@ -123,6 +169,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task CheckEverything()
         {
+
             bool allOK = true;
             if (name != null && pnumber != null && password != null && conFirmPassword != null)
             {
@@ -205,6 +252,10 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 if (allOK)
                 {
+                    if (!IsInternetConnectionAvailable())
+                    {
+                        return;
+                    }
                     var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
   .ReceiveJson<Teacher>();
                     if (chkPn.teacherID != 0)
@@ -237,6 +288,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task checkPnumber()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             if (pnumber != null || pnumber != "")
             {
                 var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
@@ -888,6 +943,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task SendSms()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             Random rnd = new Random();
             int rn = rnd.Next(1000,9999);
             string MSG = "Your Shikkhanobish Teacher Registration OTP is: "+ rn;

@@ -8,11 +8,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 using Xamarin.Forms;
 using Xamarin.Forms.Vonage;
 using Xamarin.Forms.Xaml;
-using XF.Material.Forms.UI.Dialogs;
+using Xamarin.Essentials;
 
 namespace ShikkhanobishTeacherApp.Views
 {
@@ -31,6 +33,49 @@ namespace ShikkhanobishTeacherApp.Views
             timetxt.Text = "Safe Time";
             totalearnedtxt.Text = "0";
         }
+        #region Connectivity
+        public bool IsInternetConnectionAvailable()
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
+            {
+                return true;
+            }
+            else
+            {
+                ShowSnameBar();
+                return false;
+            }
+        }
+        public async Task ShowSnameBar()
+        {
+            var alertDialogConfiguration = new MaterialSnackbarConfiguration
+            {
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ERROR),
+                MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                CornerRadius = 8,
+
+                ScrimColor = Color.FromHex("#FFFFFF").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+
+            };
+
+            await MaterialDialog.Instance.SnackbarAsync(message: "No Network Connection Avaiable",
+                                        actionButtonText: "Got It",
+                                        configuration: alertDialogConfiguration,
+                                        msDuration: MaterialSnackbar.DurationIndefinite);
+        }
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+            if (current != NetworkAccess.Internet)
+            {
+
+                await ShowSnameBar();
+            }
+
+        }
+        #endregion
         private async void OnEndCall(object sender, EventArgs e)
         {
             var result = await MaterialDialog.Instance.ConfirmAsync(message: "Only Student Can Cut Call",
@@ -38,6 +83,10 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task CutCall()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Student Left Video Call. Closing Video Call..."))
             {
                 CrossVonage.Current.EndSession();
@@ -83,6 +132,10 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task ConnectToRealTimeApiServer()
         {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
             _connection = new HubConnectionBuilder()
                  .WithUrl(url)
                  .Build();

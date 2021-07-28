@@ -432,6 +432,7 @@
                         <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
                     </Grid>
                 </Grid>
+
             </Grid>
         </ScrollView>
     </RefreshView>
