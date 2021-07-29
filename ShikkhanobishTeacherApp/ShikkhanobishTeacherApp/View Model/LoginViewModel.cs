@@ -18,6 +18,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             Application.Current.MainPage.Navigation.PushModalAsync(new TeacherRegistration());
         }
+        private void PerformforgotPass()
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new ForgetPasswordView());
+        }
 
         #region Binding
         private Command registercmd;
@@ -39,6 +43,22 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool isChecked { get => isChecked1; set => SetProperty(ref isChecked1, value); }
 
+        private Command forgotPass1;
+
+        public ICommand forgotPass
+        {
+            get
+            {
+                if (forgotPass1 == null)
+                {
+                    forgotPass1 = new Command(PerformforgotPass);
+                }
+
+                return forgotPass1;
+            }
+        }
+
+       
         #endregion
 
 

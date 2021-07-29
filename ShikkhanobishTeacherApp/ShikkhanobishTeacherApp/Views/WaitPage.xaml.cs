@@ -31,7 +31,7 @@ namespace ShikkhanobishTeacherApp.Views
             }
             else
             {
-                Task.Delay(2000);
+                await Task.Delay(1000);
                 Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
             }
 

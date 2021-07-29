@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image Source="blacklogo.png" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="60"/>
@@ -35,7 +35,11 @@
 
             <material:MaterialCheckbox x:Name="checkbox" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center"  SelectedColor="#6137E7" UnselectedColor="Black"/>
             <Label Text="Remember Me" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="40,0,0,0"/>
-            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password or Token?" Grid.Row="3" HorizontalOptions="End" VerticalOptions="Center" FontSize="12"/>
+            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password or Token?" Grid.Row="3" HorizontalOptions="End" VerticalOptions="Center" FontSize="12">
+                <material:MaterialLabel.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding forgotPass}"/>
+                </material:MaterialLabel.GestureRecognizers>
+            </material:MaterialLabel>
 
             <material:MaterialButton Text="Login" Grid.Row="4" ButtonType="Elevated" Elevation="40" Clicked="MaterialButton_Clicked"/>
         </Grid>
