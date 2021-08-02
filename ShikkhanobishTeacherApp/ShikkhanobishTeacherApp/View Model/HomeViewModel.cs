@@ -127,11 +127,13 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             if (ThisTeacher.activeStatus == 0)
             {
+                activestatusImageSource = "off.png";
                 teacheractivity = "Inactive";
                 tracheractColor = Color.FromHex("#D4D4D4");
             }
             else
             {
+                activestatusImageSource = "on.png";
                 teacheractivity = "Active";
                 tracheractColor = Color.Black;
             }
@@ -140,6 +142,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             report = ThisTeacher.reportCount + "";
             if (ThisTeacher.reportCount == 0)
             {
+                ImageSource src;
+                
                 reportTextColor = Color.Black;
             }
             else
@@ -169,7 +173,15 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetFavTeacherList()
         {
-
+            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getFavTeacherByTeacherID".PostUrlEncodedAsync(new { teacherID = ThisTeacher.teacherID })
+                   .ReceiveJson<List<favouriteTeacher>>();
+            for(int i = 0; i < res.Count;i++)
+            {
+                var stname = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getStudentWithID".PostUrlEncodedAsync(new { studentID = res[i].studentID })
+                  .ReceiveJson<Student>();
+                res[i].studentName = stname.name;
+            }
+            favteacherList =  res;
         }
         private void PerformwithdrawCmd()
         {
@@ -183,7 +195,12 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformfavList()
         {
+            GetFavTeacherList();
             favouriteStudentListVisibility = true;
+        }
+        private void PerformpopOutfavteacherList()
+        {
+            favouriteStudentListVisibility = false;
         }
         public async Task ActiveTeacher()
         {
@@ -191,6 +208,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            activestatusImageSource = "on.png";
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
@@ -209,6 +227,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            activestatusImageSource = "off.png";
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0, teacherID = ThisTeacher.teacherID })
                    .ReceiveJson<Response>();
@@ -821,6 +840,26 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public List<favouriteTeacher> favteacherList { get => favteacherList1; set => SetProperty(ref favteacherList1, value); }
 
+        private string activestatusImageSource1;
+
+        public string activestatusImageSource { get => activestatusImageSource1; set => SetProperty(ref activestatusImageSource1, value); }
+
+        private Command popOutfavteacherList1;
+
+        public ICommand popOutfavteacherList
+        {
+            get
+            {
+                if (popOutfavteacherList1 == null)
+                {
+                    popOutfavteacherList1 = new Command(PerformpopOutfavteacherList);
+                }
+
+                return popOutfavteacherList1;
+            }
+        }
+
+       
 
 
 
