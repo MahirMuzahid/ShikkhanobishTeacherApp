@@ -27,6 +27,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<SubList> thisSubList { get; set; }
         List<SubList> thisCrsList { get; set; }
         HubConnection _connection = null;
+        List<favouriteTeacher> allfavTeacher = new List<favouriteTeacher>();
         int requestStudentID;
         string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         #region Methods
@@ -101,6 +102,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
             tuitionFoundVisibility = false;
             activeswitchEnabled = true;
+            activeswitchEnabled = false;
             amount = "" + ThisTeacher.amount;
             if (ThisTeacher.selectionStatus == 0)
             {
@@ -125,18 +127,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                 monetizationSts = "Monetized";
                 monistscolor = Color.ForestGreen;
             }
-            if (ThisTeacher.activeStatus == 0)
-            {
-                activestatusImageSource = "off.png";
-                teacheractivity = "Inactive";
-                tracheractColor = Color.FromHex("#D4D4D4");
-            }
-            else
-            {
-                activestatusImageSource = "on.png";
-                teacheractivity = "Active";
-                tracheractColor = Color.Black;
-            }
+            await inActiveTeacher();
+            activestatusImageSource = "off.png";
+            teacheractivity = "Inactive";
             totalMin = ThisTeacher.totalMinuite + "";
             favTeacher = ThisTeacher.favTeacherCount + "";
             report = ThisTeacher.reportCount + "";
@@ -169,6 +162,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             sub9 = thisSubList[8].name;
 
             isrefreshing = false;
+            await GetFavTeacherList();
             await ConnectToRealTimeApiServer();
         }
         public async Task GetFavTeacherList()
@@ -181,7 +175,19 @@ namespace ShikkhanobishTeacherApp.View_Model
                   .ReceiveJson<Student>();
                 res[i].studentName = stname.name;
             }
+            favTeacher = res.Count()+"";
+            if(res.Count == 0)
+            {
+                favTeacherSeeVisibility = false;
+            }
+            else
+            {
+                favTeacherSeeVisibility = true;
+            }
             favteacherList =  res;
+            allfavTeacher = res;
+
+
         }
         private void PerformwithdrawCmd()
         {
@@ -354,6 +360,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherWithdrawHistory".PostUrlEncodedAsync(new
             {
+                
                 withdrawID = StaticPageForPassingData.GenarateNewID(),
                 date = DateTime.Now.ToString("MM/dd/yyyy h:mm tt"),
                 trxID = "N/A",
@@ -390,6 +397,18 @@ namespace ShikkhanobishTeacherApp.View_Model
                 if(teacherID == ThisTeacher.teacherID && ThisTeacher.activeStatus == 1)
                 {
                     await inActiveTeacher();
+                    for (int i = 0; i < allfavTeacher.Count; i++)
+                    {
+                        if(allfavTeacher[i].studentID == studentID)
+                        {
+                            tuitionFoundColor = Color.FromHex("#EFE5FF");
+                            break;
+                        }
+                        if (i == allfavTeacher.Count - 1)
+                        {
+                            tuitionFoundColor = Color.White ;
+                        }
+                    }
                     tuitionFoundVisibility = true;
                     foundInfoVisibility = true;
                     connectingstudentVisibility = false;
@@ -859,7 +878,15 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-       
+        private Color tuitionFoundColor1;
+
+        public Color tuitionFoundColor { get => tuitionFoundColor1; set => SetProperty(ref tuitionFoundColor1, value); }
+
+        private bool favTeacherSeeVisibility1;
+
+        public bool favTeacherSeeVisibility { get => favTeacherSeeVisibility1; set => SetProperty(ref favTeacherSeeVisibility1, value); }
+
+
 
 
 
