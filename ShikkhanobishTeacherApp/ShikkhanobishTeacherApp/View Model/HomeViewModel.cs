@@ -34,6 +34,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             withdrawVisibility = false;
             withdrawEnabled = false;
+            favouriteStudentListVisibility = false;
             GetAllInfo();
         }
         #region Connectivity
@@ -139,7 +140,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             report = ThisTeacher.reportCount + "";
             if (ThisTeacher.reportCount == 0)
             {
-                reportTextColor = Color.Green;
+                reportTextColor = Color.Black;
             }
             else
             {
@@ -166,6 +167,10 @@ namespace ShikkhanobishTeacherApp.View_Model
             isrefreshing = false;
             await ConnectToRealTimeApiServer();
         }
+        public async Task GetFavTeacherList()
+        {
+
+        }
         private void PerformwithdrawCmd()
         {
             withdrawEnabled = false;
@@ -175,6 +180,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             isrefreshing = true;
             GetAllInfo();
+        }
+        private void PerformfavList()
+        {
+            favouriteStudentListVisibility = true;
         }
         public async Task ActiveTeacher()
         {
@@ -789,7 +798,31 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-        
+        private bool favouriteStudentListVisibility1;
+
+        public bool favouriteStudentListVisibility { get => favouriteStudentListVisibility1; set => SetProperty(ref favouriteStudentListVisibility1, value); }
+
+        private Command favList1;
+
+        public ICommand favList
+        {
+            get
+            {
+                if (favList1 == null)
+                {
+                    favList1 = new Command(PerformfavList);
+                }
+
+                return favList1;
+            }
+        }
+
+        private List<favouriteTeacher> favteacherList1;
+
+        public List<favouriteTeacher> favteacherList { get => favteacherList1; set => SetProperty(ref favteacherList1, value); }
+
+
+
 
 
         #endregion

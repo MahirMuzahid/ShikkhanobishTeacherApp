@@ -115,7 +115,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 .PostUrlEncodedAsync(new
                 {
                     info = pText1,
-                    index = 1,
+                    index = 2,
                     teacherID = thisTeacherID
                 })
                 .ReceiveJson<Response>();
