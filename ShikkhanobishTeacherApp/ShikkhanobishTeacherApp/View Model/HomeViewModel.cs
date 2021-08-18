@@ -214,6 +214,11 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/PassActiveStatus?&teacherID=" + ThisTeacher.teacherID + "&isActive=" +true;
+            HttpClient client = new HttpClient();
+            StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
+
             activestatusImageSource = "on.png";
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 1, teacherID = ThisTeacher.teacherID })
@@ -226,6 +231,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 activeToggle = true;
             }
             activeswitchEnabled = true;
+
         }
         public async Task inActiveTeacher()
         {
@@ -233,6 +239,11 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/PassActiveStatus?&teacherID=" + ThisTeacher.teacherID + "&isActive=" + false;
+            HttpClient client = new HttpClient();
+            StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
+
             activestatusImageSource = "off.png";
             activeswitchEnabled = false;
             var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/activeTeacher".PostUrlEncodedAsync(new { activeStatus = 0, teacherID = ThisTeacher.teacherID })
