@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape>
+			<gradient
+				android:angle="0"
+				android:startColor="#ffffff"
+				android:endColor="#ffffff"
+				android:type="linear"
+				/>
+		</shape>
+
+	</item>
+	<item android:bottom="600dp"
+        android:top="200dp"
+android:right="100dp"
+		  android:left="100dp"
+		>
+
+		<bitmap
+            android:src="@drawable/splashscreenlogo"
+            android:gravity="center"
+		
+	/>
+	</item>
+</layer-list>

@@ -15,11 +15,19 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1.3*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height=".2*"/>
         </Grid.RowDefinitions>
-        <Image Source="blacklogo.png" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="60"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="blacklogo.png" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" Aspect="AspectFit"/>
+            <Image Source="teacherregback.png" Grid.Row="1" Aspect="AspectFit"/>
+        </Grid>
+       
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -27,30 +35,28 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height=".7*"/>
-                <RowDefinition Height=".8*"/>
+                <RowDefinition Height=".6*"/>
                 <RowDefinition Height=".5*"/>
             </Grid.RowDefinitions>
-            <material:MaterialTextField x:Name="pn" InputType="Numeric" Grid.Row="1" Placeholder="Phone Number" BackgroundColor="#06000000" PlaceholderColor="Black"/>
-            <material:MaterialTextField x:Name="pass"  Grid.Row="2" Placeholder="Password" BackgroundColor="#06000000" PlaceholderColor="Black" VerticalOptions="Center"/>
-
-            <material:MaterialCheckbox x:Name="checkbox" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center"  SelectedColor="#6137E7" UnselectedColor="Black"/>
-            <Label Text="Remember Me" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="40,0,0,0"/>
-            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password or Token?" Grid.Row="3" HorizontalOptions="End" VerticalOptions="Center" FontSize="12">
-                <material:MaterialLabel.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding forgotPass}"/>
-                </material:MaterialLabel.GestureRecognizers>
-            </material:MaterialLabel>
-
-            <material:MaterialButton Text="Login" Grid.Row="4" ButtonType="Elevated" Elevation="40" Clicked="MaterialButton_Clicked"/>
-        </Grid>
-        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Text="Do not have an account?" Grid.Column="0" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,0,15"/>
-            <material:MaterialButton Text="Register Now" ButtonType="Text" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="End"  FontSize="12" Clicked="MaterialButton_Clicked_1" />
+            <material:MaterialTextField x:Name="pn" InputType="Numeric" Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Phone Number" BackgroundColor="#06000000" PlaceholderColor="Black"/>
+            <material:MaterialTextField x:Name="pass"  Grid.Row="2" Placeholder="Password" Grid.ColumnSpan="2" BackgroundColor="#06000000" PlaceholderColor="Black" VerticalOptions="Center"/>
+
+            <material:MaterialCheckbox x:Name="checkbox" Grid.Row="3" HorizontalOptions="Start" Grid.ColumnSpan="2" VerticalOptions="Center"  SelectedColor="#6137E7" UnselectedColor="Black"/>
+            <Label Text="Remember Me" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Grid.ColumnSpan="2" Margin="40,0,0,0"/>
+            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password?" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center" FontSize="12">
+                <material:MaterialLabel.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding forgotPass}"/>
+                </material:MaterialLabel.GestureRecognizers>
+            </material:MaterialLabel>
+            <Button  Text="Login" Grid.Row="4"  Grid.Column="0" VerticalOptions="Center" BackgroundColor="#F2F2F2" CornerRadius="10" TextColor="#1D64B4"   Clicked="MaterialButton_Clicked" />
+            <Button  Text="Register" Grid.Row="4"  Grid.Column="1" VerticalOptions="Center" BackgroundColor="#F2F2F2" CornerRadius="10" TextColor="#732BE3"   Clicked="MaterialButton_Clicked_1" />
+
         </Grid>
+        
         
     </Grid>
 </ContentPage>
