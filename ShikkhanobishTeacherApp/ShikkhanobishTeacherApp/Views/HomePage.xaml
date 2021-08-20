@@ -4,11 +4,10 @@
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model"
              x:Class="ShikkhanobishTeacherApp.Views.HomePage">
-    <ContentPage.BindingContext>
-        <viewmodel:HomeViewModel/>
-    </ContentPage.BindingContext>
+    <!--  x:DataType="viewmodel:TakeTuitionViewModel" !-->
     <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
-       
+
+        <Grid>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*"/>
@@ -60,7 +59,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <material:MaterialButton Text="Withdraw"  ButtonType="Text" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#3667E1"  BackgroundColor="White" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}"/>
+                    <material:MaterialButton Text="Withdraw"  ButtonType="Text" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#3667E1"  BackgroundColor="White" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Grid.Column="1">
@@ -185,7 +184,7 @@
                         <Label Text="Favourite Teacher" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding favTeacher}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
                         <material:MaterialButton Text="See All" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ButtonType="Text" FontSize="11" PressedBackgroundColor="#20000000" Command="{Binding favList}" IsVisible="{Binding favTeacherSeeVisibility}"/>
-                </Grid>
+                    </Grid>
                     <Grid Grid.Column="2" Grid.Row="1" RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".2*"/>
@@ -206,8 +205,8 @@
                         <Image Source="report.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
-                       
-                </Grid>
+
+                    </Grid>
 
                     <Grid Grid.Column="0" Grid.Row="2" RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -228,7 +227,7 @@
 
                         <Image Source="tuition.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Total Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                    <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
+                        <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
                     </Grid>
                     <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -272,7 +271,7 @@
                             <Label Text="{Binding star3}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding star2}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding star1}" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
-                         </Grid>
+                        </Grid>
 
                     </Grid>
 
@@ -288,14 +287,14 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
-                         <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
                     <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
                     <Label Text="To change your tags please contact at this number: 01833368125" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
@@ -319,10 +318,10 @@
                     <Label Text="{Binding sub6}" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
                     <Label Text="{Binding sub7}" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
-                <Label Text="{Binding sub8}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub8}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                    <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
-                    
+
                 </Grid>
 
                 <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
@@ -336,7 +335,7 @@
                         <ColumnDefinition Width="20*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
                     </Frame>
 
@@ -363,7 +362,7 @@
                         <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
                         <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
                     </Grid>
-                    
+
                 </Grid>
                 <!--Tuition Found-->
                 <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
@@ -377,7 +376,7 @@
                         <ColumnDefinition Width="20*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding foundInfoVisibility}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
@@ -431,9 +430,43 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popOutfavteacherList}"/>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".01*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+                        <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
+                        <Label Text="List of studnet who added you as a favourite teacher" Grid.Row="0" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Frame BackgroundColor="Black" Grid.Row="1" HasShadow="False"/>
+                        <ListView ItemsSource="{Binding favteacherList}" Grid.Row="2"  RowHeight="50" SeparatorColor="Black">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding studentName}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+            <Grid  IsVisible="{Binding regMsgVisiblity}" BackgroundColor="#50000000">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="10*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -441,29 +474,20 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popOutfavteacherList}"/>
                 <Grid Grid.Row="1" Grid.Column="1">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="346"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height=".01*"/>
-                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height=".4*"/>
                     </Grid.RowDefinitions>
                     <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
-                    <Label Text="List of studnet who added you as a favourite teacher" Grid.Row="0" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Frame BackgroundColor="Black" Grid.Row="1" HasShadow="False"/>
-                    <ListView ItemsSource="{Binding favteacherList}" Grid.Row="2"  RowHeight="50" SeparatorColor="Black">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Label Text="{Binding studentName}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFill"/>
+                    <Label Text="{Binding proMsgText}" Grid.Row="1" Margin="20"/>
+                    <material:MaterialButton Text="OK" ButtonType="Text" Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Margin="10" Command="{Binding popOutRegMsgVisiblility}"/>
                 </Grid>
             </Grid>
-
-            </Grid>
+        </Grid>
+            
        
     </RefreshView>
   

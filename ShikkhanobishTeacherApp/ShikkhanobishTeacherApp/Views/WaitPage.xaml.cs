@@ -24,6 +24,7 @@ namespace ShikkhanobishTeacherApp.Views
 
             var pn = await SecureStorage.GetAsync("phonenumber");
             var pass = await SecureStorage.GetAsync("password");
+            StaticPageForPassingData.freomReg = false;
             if (pn != null && pass != null)
             {
                 await StaticPageForPassingData.GetALlTeacherInfo(pass, pn);

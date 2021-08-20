@@ -994,6 +994,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else
             {
+                StaticPageForPassingData.freomReg = true;
                 otpWindow = false;
                 otpHasError = false;
                 otpErrorTxt = "";

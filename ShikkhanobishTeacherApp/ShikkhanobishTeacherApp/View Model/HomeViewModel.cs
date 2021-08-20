@@ -29,14 +29,16 @@ namespace ShikkhanobishTeacherApp.View_Model
         HubConnection _connection = null;
         List<favouriteTeacher> allfavTeacher = new List<favouriteTeacher>();
         int requestStudentID;
+        string isNewUpdate;
         string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
         #region Methods
-        public HomeViewModel()
+        public HomeViewModel(bool fromReg)
         {
+            isNewUpdate = "";
             withdrawVisibility = false;
             withdrawEnabled = false;
             favouriteStudentListVisibility = false;
-            GetAllInfo();
+            GetAllInfo(fromReg);
         }
         #region Connectivity
         public bool IsInternetConnectionAvailable()
@@ -81,6 +83,81 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         }
         #endregion
+        private void PerformpopOutRegMsgVisiblility()
+        {
+            if (isNewUpdate == "")
+            {
+                regMsgVisiblity = false;
+            }
+            else
+            {
+                url = isNewUpdate;
+                Browser.OpenAsync(url, BrowserLaunchMode.External);
+            }
+
+        }
+        private void PerformpopUPRegMsgVisiblility()
+        {
+            regMsgVisiblity = true;
+        }
+        public async Task GetProMsg(bool fromReg)
+        {
+            var promsg = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetPromotionalMassage".GetJsonAsync<List<PromotionalMassage>>();
+            bool isShow = false;
+            for (int i = 0; i < promsg.Count; i++)
+            {
+                if (promsg[i].userType == "teacher")
+                {
+                    if (promsg[i].msgType == 1 && fromReg)
+                    {
+                        isNewUpdate = "";
+                        PerformpopUPRegMsgVisiblility();
+                        promsgImgSrc = promsg[i].imageSrc;
+                        proMsgText = promsg[i].text;
+                        isShow = true;
+                        break;
+                    }                   
+                }               
+            }
+            if (!isShow)
+            {
+                for (int i = 0; i < promsg.Count; i++)
+                {
+                    if (promsg[i].userType == "teacher")
+                    {
+                        if (promsg[i].msgType == 3)
+                        {
+                            isNewUpdate = promsg[i].playstoreAppLink;
+                            PerformpopUPRegMsgVisiblility();
+                            promsgImgSrc = promsg[i].imageSrc;
+                            proMsgText = promsg[i].text;
+                            break;
+
+                        }
+                    }
+                }
+                if (!isShow)
+                {
+                    for (int i = 0; i < promsg.Count; i++)
+                    {
+                        if (promsg[i].userType == "teacher")
+                        {
+                            if (promsg[i].msgType == 2)
+                            {
+                                isNewUpdate = "";
+                                PerformpopUPRegMsgVisiblility();
+                                promsgImgSrc = promsg[i].imageSrc;
+                                proMsgText = promsg[i].text;
+                                isShow = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+        }
         private void PerformlogOut()
         {
             SecureStorage.RemoveAll();
@@ -93,7 +170,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
 
         }
-        public async Task GetAllInfo()
+        public async Task GetAllInfo(bool fromReg)
         {
             
             ThisTeacher = StaticPageForPassingData.thisTeacher;
@@ -161,9 +238,24 @@ namespace ShikkhanobishTeacherApp.View_Model
             sub8 = thisSubList[7].name;
             sub9 = thisSubList[8].name;
 
-            isrefreshing = false;
+           
             await GetFavTeacherList();
+            await GetProMsg(fromReg);
             await ConnectToRealTimeApiServer();
+            isrefreshing = false;
+        }
+        public async Task GetWithdrawList()
+        {
+            withdrawBtnEnabled = true;
+            var wdrawList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithdrawHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherWithdrawHistory>>();
+            for(int i =0; i < wdrawList.Count; i++)
+            {
+                if(wdrawList[i].status == 0)
+                {
+                    withdrawBtnEnabled = false;
+                    break;
+                }
+            }
         }
         public async Task GetFavTeacherList()
         {
@@ -197,7 +289,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         private void PerformrefreshNow()
         {
             isrefreshing = true;
-            GetAllInfo();
+            GetAllInfo(false);
         }
         private void PerformfavList()
         {
@@ -896,6 +988,38 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool favTeacherSeeVisibility1;
 
         public bool favTeacherSeeVisibility { get => favTeacherSeeVisibility1; set => SetProperty(ref favTeacherSeeVisibility1, value); }
+
+        private bool regMsgVisiblity1;
+
+        public bool regMsgVisiblity { get => regMsgVisiblity1; set => SetProperty(ref regMsgVisiblity1, value); }
+
+        private ImageSource promsgImgSrc1;
+
+        public ImageSource promsgImgSrc { get => promsgImgSrc1; set => SetProperty(ref promsgImgSrc1, value); }
+
+        private string proMsgText1;
+
+        public string proMsgText { get => proMsgText1; set => SetProperty(ref proMsgText1, value); }
+
+        private Command popOutRegMsgVisiblility1;
+
+        public ICommand popOutRegMsgVisiblility
+        {
+            get
+            {
+                if (popOutRegMsgVisiblility1 == null)
+                {
+                    popOutRegMsgVisiblility1 = new Command(PerformpopOutRegMsgVisiblility);
+                }
+
+                return popOutRegMsgVisiblility1;
+            }
+        }
+
+        private bool withdrawBtnEnabled1;
+
+        public bool withdrawBtnEnabled { get => withdrawBtnEnabled1; set => SetProperty(ref withdrawBtnEnabled1, value); }
+
 
 
 

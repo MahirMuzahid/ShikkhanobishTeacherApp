@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShikkhanobishTeacherApp.Model;
+using ShikkhanobishTeacherApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,7 @@ namespace ShikkhanobishTeacherApp.Views
         public HomePage()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel(StaticPageForPassingData.freomReg);
             NavigationPage.SetHasNavigationBar(this, false);
             var current = Connectivity.NetworkAccess;
            
