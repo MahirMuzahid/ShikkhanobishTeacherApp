@@ -8,6 +8,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Image Source="blacklogo.png" Grid.Row="0" Aspect="AspectFit" Margin="50,0,50,0"/>
+        <Image Source="blacklogo.png" Grid.Row="1" Aspect="AspectFit" Margin="50,0,50,0"/>
+        <Label Text="Connecting With Shikkhanobish Server. Please Wait..." Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center"/>
     </Grid>
 </ContentPage>

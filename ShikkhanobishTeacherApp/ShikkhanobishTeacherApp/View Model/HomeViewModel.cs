@@ -172,77 +172,79 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetAllInfo(bool fromReg)
         {
-            
-            ThisTeacher = StaticPageForPassingData.thisTeacher;
-            thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
-            thisSubList = StaticPageForPassingData.thisTeacherSubListName;
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
+            {
+                ThisTeacher = StaticPageForPassingData.thisTeacher;
+                thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
+                thisSubList = StaticPageForPassingData.thisTeacherSubListName;
 
-            tuitionFoundVisibility = false;
-            activeswitchEnabled = true;
-            activeswitchEnabled = false;
-            amount = "" + ThisTeacher.amount;
-            if (ThisTeacher.selectionStatus == 0)
-            {
-                selectionSts = "Not Selected";
-                selectionStsColor = Color.FromHex("#DFC628");
-                takeTextBtnVisibility = true;
-            }
-            else
-            {
-                selectionSts = "Selected";
-                selectionStsColor = Color.ForestGreen;
-                takeTextBtnVisibility = false;
-            }
+                tuitionFoundVisibility = false;
+                amount = "" + ThisTeacher.amount;
+                if (ThisTeacher.selectionStatus == 0)
+                {
+                    selectionSts = "Not Selected";
+                    selectionStsColor = Color.FromHex("#DFC628");
+                    takeTextBtnVisibility = true;
+                    activebtnVisbility = false;
+                }
+                else
+                {
+                    selectionSts = "Selected";
+                    selectionStsColor = Color.ForestGreen;
+                    takeTextBtnVisibility = false;
+                    activebtnVisbility = true;
+                }
 
-            if (ThisTeacher.monetizetionStatus == 0)
-            {
-                monetizationSts = "Not Monetized";
-                monistscolor = Color.FromHex("#DFC628");
-            }
-            else
-            {
-                monetizationSts = "Monetized";
-                monistscolor = Color.ForestGreen;
-            }
-            await inActiveTeacher();
-            activestatusImageSource = "off.png";
-            teacheractivity = "Inactive";
-            totalMin = ThisTeacher.totalMinuite + "";
-            favTeacher = ThisTeacher.favTeacherCount + "";
-            report = ThisTeacher.reportCount + "";
-            if (ThisTeacher.reportCount == 0)
-            {
-                ImageSource src;
-                
-                reportTextColor = Color.Black;
-            }
-            else
-            {
-                reportTextColor = Color.Red;
-            }
-            totalTuition = ThisTeacher.totalTuition + "";
-            star5 = ThisTeacher.fiveStar + "";
-            star4 = ThisTeacher.fourStar + "";
-            star3 = ThisTeacher.threeStar + "";
-            star2 = ThisTeacher.twoStar + "";
-            star1 = ThisTeacher.oneStar + "";
-           
+                if (ThisTeacher.monetizetionStatus == 0)
+                {
+                    monetizationSts = "Not Monetized";
+                    monistscolor = Color.FromHex("#DFC628");
+                }
+                else
+                {
+                    monetizationSts = "Monetized";
+                    monistscolor = Color.ForestGreen;
+                }
+                await inActiveTeacher();
+                activestatusImageSource = "off.png";
+                teacheractivity = "Inactive";
+                totalMin = ThisTeacher.totalMinuite + "";
+                favTeacher = ThisTeacher.favTeacherCount + "";
+                report = ThisTeacher.reportCount + "";
+                if (ThisTeacher.reportCount == 0)
+                {
+                    ImageSource src;
 
-            sub1 = thisSubList[0].name;
-            sub2 = thisSubList[1].name;
-            sub3 = thisSubList[2].name;
-            sub4 = thisSubList[3].name;
-            sub5 = thisSubList[4].name;
-            sub6 = thisSubList[5].name;
-            sub7 = thisSubList[6].name;
-            sub8 = thisSubList[7].name;
-            sub9 = thisSubList[8].name;
+                    reportTextColor = Color.Black;
+                }
+                else
+                {
+                    reportTextColor = Color.Red;
+                }
+                totalTuition = ThisTeacher.totalTuition + "";
+                star5 = ThisTeacher.fiveStar + "";
+                star4 = ThisTeacher.fourStar + "";
+                star3 = ThisTeacher.threeStar + "";
+                star2 = ThisTeacher.twoStar + "";
+                star1 = ThisTeacher.oneStar + "";
 
-           
-            await GetFavTeacherList();
-            await GetProMsg(fromReg);
-            await ConnectToRealTimeApiServer();
-            isrefreshing = false;
+
+                sub1 = thisSubList[0].name;
+                sub2 = thisSubList[1].name;
+                sub3 = thisSubList[2].name;
+                sub4 = thisSubList[3].name;
+                sub5 = thisSubList[4].name;
+                sub6 = thisSubList[5].name;
+                sub7 = thisSubList[6].name;
+                sub8 = thisSubList[7].name;
+                sub9 = thisSubList[8].name;
+
+                await GetFavTeacherList();
+                await GetProMsg(fromReg);
+                await ConnectToRealTimeApiServer();
+                await GetWithdrawList();
+                isrefreshing = false;
+            }
         }
         public async Task GetWithdrawList()
         {
@@ -255,6 +257,10 @@ namespace ShikkhanobishTeacherApp.View_Model
                     withdrawBtnEnabled = false;
                     break;
                 }
+            }
+            if(ThisTeacher.amount < 50)
+            {
+                withdrawBtnEnabled = false;
             }
         }
         public async Task GetFavTeacherList()
@@ -1019,6 +1025,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool withdrawBtnEnabled1;
 
         public bool withdrawBtnEnabled { get => withdrawBtnEnabled1; set => SetProperty(ref withdrawBtnEnabled1, value); }
+
+        private bool activebtnVisbility1;
+
+        public bool activebtnVisbility { get => activebtnVisbility1; set => SetProperty(ref activebtnVisbility1, value); }
 
 
 

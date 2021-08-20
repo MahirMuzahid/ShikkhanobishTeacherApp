@@ -985,7 +985,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             });
 
         }
-        private void PerformregTeacherCmd()
+        private async Task  PerformregTeacherCmd()
         {
             if(int.Parse(otpText) != OTPCode)
             {
@@ -998,8 +998,41 @@ namespace ShikkhanobishTeacherApp.View_Model
                 otpWindow = false;
                 otpHasError = false;
                 otpErrorTxt = "";
+                await CompleteTeachERReg();
             }
             
+        }
+        public async Task CompleteTeachERReg()
+        {
+            if (!IsInternetConnectionAvailable())
+            {
+                return;
+            }
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Completing Teacher Registration..."))
+            {
+                var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/SetTeacher".PostUrlEncodedAsync(new
+                {
+                    teacherID = StaticPageForPassingData.ThisRegTeacher.teacherID,
+                    name = StaticPageForPassingData.ThisRegTeacher.name,
+                    phonenumber = StaticPageForPassingData.ThisRegTeacher.phonenumber,
+                    password = StaticPageForPassingData.ThisRegTeacher.password,
+                    sub1 = StaticPageForPassingData.ThisRegTeacher.sub1,
+                    sub2 = StaticPageForPassingData.ThisRegTeacher.sub2,
+                    sub3 = StaticPageForPassingData.ThisRegTeacher.sub3,
+                    sub4 = StaticPageForPassingData.ThisRegTeacher.sub4,
+                    sub5 = StaticPageForPassingData.ThisRegTeacher.sub5,
+                    sub6 = StaticPageForPassingData.ThisRegTeacher.sub6,
+                    sub7 = StaticPageForPassingData.ThisRegTeacher.sub7,
+                    sub8 = StaticPageForPassingData.ThisRegTeacher.sub8,
+                    sub9 = StaticPageForPassingData.ThisRegTeacher.sub9
+                })
+      .ReceiveJson<Response>();
+                StaticPageForPassingData.GetALlTeacherInfo(StaticPageForPassingData.ThisRegTeacher.password, StaticPageForPassingData.ThisRegTeacher.phonenumber);
+                await SecureStorage.SetAsync("phonenumber", StaticPageForPassingData.ThisRegTeacher.phonenumber);
+                await SecureStorage.SetAsync("password", StaticPageForPassingData.ThisRegTeacher.password);
+                Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                await dialog.DismissAsync();
+            }
         }
         #endregion
         #endregion
@@ -1498,7 +1531,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 if (regTeacherCmd1 == null)
                 {
-                    regTeacherCmd1 = new Command(PerformregTeacherCmd);
+                    regTeacherCmd1 = new Command(async =>  PerformregTeacherCmd());
                 }
 
                 return regTeacherCmd1;

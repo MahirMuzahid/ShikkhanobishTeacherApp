@@ -4,7 +4,7 @@
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model"
              x:Class="ShikkhanobishTeacherApp.Views.HomePage">
-    <!--  x:DataType="viewmodel:TakeTuitionViewModel" !-->
+    <!--  x:DataType="viewmodel:HomeViewModel" !-->
     <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
 
         <Grid>
@@ -138,7 +138,7 @@
                         <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                         <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
-                        <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}"/>
+                        <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
 
                     </Grid>
 
