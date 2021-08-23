@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="ShikkhanobishTeacherApp.Views.QuestionPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <material:MaterialLabel Text="Teacher Test" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20"/>
+
+        <material:MaterialCard Grid.Row="1" Grid.Column="1" Elevation="10"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <material:MaterialCard BackgroundColor="#2B81E3" Grid.Row="0" Elevation="5"/>
+
+            <Frame BackgroundColor="Transparent" Grid.Row="1" HasShadow="False"/>
+            <Frame BackgroundColor="Transparent" Grid.Row="2" HasShadow="False"/>
+            <Frame BackgroundColor="Transparent" Grid.Row="3" HasShadow="False"/>
+            <Frame BackgroundColor="Transparent" Grid.Row="4" HasShadow="False"/>
+
+            <material:MaterialButton Text="Next" ButtonType="Text" Grid.Row="5" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" />
+
+            <ProgressBar Progress=".5" ProgressColor="#7431EA" Grid.Row="6"/>
+            <Label Text="1 of 15" Grid.Row="6" HorizontalOptions="Center" VerticalOptions="End"/>
+
+            <Label Text="Shiikhanobish kader niye kaj kore?" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"/>
+
+            <Label Text="Students" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Teacher" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Parents" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="None" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" />
+
+        </Grid>
+    </Grid>
+</ContentPage>
