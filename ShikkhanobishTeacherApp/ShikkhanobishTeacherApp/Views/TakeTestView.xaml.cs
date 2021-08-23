@@ -35,6 +35,7 @@ namespace ShikkhanobishTeacherApp.Views
 
         private void MaterialButton_Clicked_2(object sender, EventArgs e)
         {
+            popupGrid.IsVisible = false;
             Application.Current.MainPage.Navigation.PushModalAsync(new QuestionPage());
         }
     }

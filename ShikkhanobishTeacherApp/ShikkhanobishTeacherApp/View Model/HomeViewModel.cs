@@ -178,6 +178,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
             {
+                activebtnVisbility = false;
                 ThisTeacher = StaticPageForPassingData.thisTeacher;
                 thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
                 thisSubList = StaticPageForPassingData.thisTeacherSubListName;
@@ -196,7 +197,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     selectionSts = "Selected";
                     selectionStsColor = Color.ForestGreen;
                     takeTextBtnVisibility = false;
-                    activebtnVisbility = true;
+                    //activebtnVisbility = true;
                 }
 
                 if (ThisTeacher.monetizetionStatus == 0)
@@ -248,6 +249,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await ConnectToRealTimeApiServer();
                 await GetWithdrawList();
                 isrefreshing = false;
+                activebtnVisbility = false;//for pre update update
             }
         }
         public async Task GetWithdrawList()
