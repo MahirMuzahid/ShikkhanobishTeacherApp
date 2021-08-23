@@ -96,6 +96,10 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
 
         }
+        private void teakeTest()
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new TakeTestView() );
+        }
         private void PerformpopUPRegMsgVisiblility()
         {
             regMsgVisiblity = true;
@@ -1030,6 +1034,22 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool activebtnVisbility { get => activebtnVisbility1; set => SetProperty(ref activebtnVisbility1, value); }
 
+        private Command teakeTestCommand1;
+
+        public ICommand teakeTestCommand
+        {
+            get
+            {
+                if (teakeTestCommand1 == null)
+                {
+                    teakeTestCommand1 = new Command(teakeTest);
+                }
+
+                return teakeTestCommand1;
+            }
+        }
+
+        
 
 
 
