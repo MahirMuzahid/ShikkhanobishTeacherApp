@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace ShikkhanobishTeacherApp.Views
 {
@@ -16,8 +17,13 @@ namespace ShikkhanobishTeacherApp.Views
         {
             InitializeComponent();
             popupGrid.IsVisible = false;
-        }
 
+        }
+        public async Task ShowMSg()
+        {
+            await MaterialDialog.Instance.AlertAsync(message: "Please read below document before taking test",
+                                    title: "Before Taking Test");
+        }
         private void MaterialButton_Clicked(object sender, EventArgs e)
         {
             popupGrid.IsVisible = true;

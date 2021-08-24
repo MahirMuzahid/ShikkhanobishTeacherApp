@@ -28,6 +28,7 @@ namespace ShikkhanobishTeacherApp.Views
         public QuestionPage()
         {
             InitializeComponent();
+            congrid.IsVisible = false;
             SelectedColor = Color.FromHex("#E1CFFF");
             notSelectedColor = Color.Transparent;
             nextBtn.IsEnabled = false;
@@ -136,15 +137,8 @@ namespace ShikkhanobishTeacherApp.Views
             {
                 var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/selectTeacher".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Response>();
                 StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Teacher>();
-                var result = await MaterialDialog.Instance.ConfirmAsync("You have passed the test. Now you are our respected teacher. Our student app will release 5.09.2021. Till then, you cannot activate your teacher status. Thank you.", "Congratulation!", "Go To Dashboard");
-                if (result.HasValue)
-                {
-                    await Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
-                }
-                else 
-                {
-                    await Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
-                }
+                congrid.IsVisible = true;
+                
                
             }
             else
@@ -201,6 +195,20 @@ namespace ShikkhanobishTeacherApp.Views
             optxtt.Text = allQS[qsIndex[questionCount - 1]].opTwo;
             optxtth.Text = allQS[qsIndex[questionCount - 1]].opThree;
             optxtf.Text = allQS[qsIndex[questionCount - 1]].opFour;
+        }
+
+        private void MaterialButton_Clicked(object sender, EventArgs e)
+        {
+            GotoDashboard();
+        }
+
+        public async Task GotoDashboard()
+        {
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
+            {
+                await Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+            }
+           
         }
     }
 }

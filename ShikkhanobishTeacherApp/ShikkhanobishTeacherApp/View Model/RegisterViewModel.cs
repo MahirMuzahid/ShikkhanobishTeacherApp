@@ -1027,10 +1027,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                     sub9 = StaticPageForPassingData.ThisRegTeacher.sub9
                 })
       .ReceiveJson<Response>();
-                StaticPageForPassingData.GetALlTeacherInfo(StaticPageForPassingData.ThisRegTeacher.password, StaticPageForPassingData.ThisRegTeacher.phonenumber);
+                await StaticPageForPassingData.GetALlTeacherInfo(StaticPageForPassingData.ThisRegTeacher.password, StaticPageForPassingData.ThisRegTeacher.phonenumber);
                 await SecureStorage.SetAsync("phonenumber", StaticPageForPassingData.ThisRegTeacher.phonenumber);
                 await SecureStorage.SetAsync("password", StaticPageForPassingData.ThisRegTeacher.password);
-                Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                await Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                await Task.Delay(1000);
                 await dialog.DismissAsync();
             }
         }
