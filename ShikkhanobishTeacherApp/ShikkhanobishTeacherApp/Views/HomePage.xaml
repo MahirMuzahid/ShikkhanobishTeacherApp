@@ -49,13 +49,13 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <material:MaterialCard CornerRadius="20" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderColor="Black" BackgroundColor="White"/>
+                   
                     <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#B0B0B0" Margin="10,0,0,0" FontSize="11"/>
                     <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="#3B3B3B">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="{Binding amount}"/>
-                                <Span Text="Taka"/>
+                                <Span Text=" Taka"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

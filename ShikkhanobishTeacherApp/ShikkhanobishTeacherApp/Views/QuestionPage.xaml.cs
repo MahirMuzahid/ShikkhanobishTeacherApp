@@ -29,7 +29,7 @@ namespace ShikkhanobishTeacherApp.Views
         {
             InitializeComponent();
             congrid.IsVisible = false;
-            SelectedColor = Color.FromHex("#E1CFFF");
+            SelectedColor = Color.FromHex("#D1D1D1");
             notSelectedColor = Color.Transparent;
             nextBtn.IsEnabled = false;
             questionCount = 1;
@@ -39,8 +39,12 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task Getqs()
         {
-            await GetAllQuestion();
-            GetNextQuestion();
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
+            {
+                await GetAllQuestion();
+                GetNextQuestion();
+            }
+           
         }
         protected override bool OnBackButtonPressed()
         {
@@ -137,9 +141,7 @@ namespace ShikkhanobishTeacherApp.Views
             {
                 var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/selectTeacher".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Response>();
                 StaticPageForPassingData.thisTeacher = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Teacher>();
-                congrid.IsVisible = true;
-                
-               
+                congrid.IsVisible = true;                             
             }
             else
             {

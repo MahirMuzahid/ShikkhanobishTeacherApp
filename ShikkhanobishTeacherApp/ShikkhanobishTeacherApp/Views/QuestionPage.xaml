@@ -20,20 +20,20 @@
             <material:MaterialCard Grid.Row="1" Grid.Column="1" Elevation="10"/>
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2.5*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <material:MaterialCard BackgroundColor="#2B81E3" Grid.Row="0" Elevation="5"/>
 
-                <Frame x:Name="opone" BackgroundColor="Transparent" Grid.Row="1" HasShadow="False"/>
-                <Frame x:Name="optwo" BackgroundColor="Transparent" Grid.Row="2" HasShadow="False"/>
-                <Frame x:Name="opthree" BackgroundColor="Transparent" Grid.Row="3" HasShadow="False"/>
-                <Frame x:Name="opfour" BackgroundColor="Transparent" Grid.Row="4" HasShadow="False"/>
+                <material:MaterialCard x:Name="opone" BackgroundColor="Transparent" Grid.Row="1" HasShadow="False"/>
+                <material:MaterialCard x:Name="optwo" BackgroundColor="Transparent" Grid.Row="2" HasShadow="False"/>
+                <material:MaterialCard x:Name="opthree" BackgroundColor="Transparent" Grid.Row="3" HasShadow="False"/>
+                <material:MaterialCard x:Name="opfour" BackgroundColor="Transparent" Grid.Row="4" HasShadow="False"/>
 
 
                 <Label x:Name="qs"  Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10,0,10,0"/>
@@ -43,10 +43,10 @@
                 <Label x:Name="optxtth"  Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
                 <Label x:Name="optxtf"  Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
 
-                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="1" Clicked="Button_Clicked"/>
-                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="2" Clicked="Button_Clicked_1"/>
-                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="3" Clicked="Button_Clicked_2"/>
-                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="4" Clicked="Button_Clicked_3"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="1" ButtonType="Text" Clicked="Button_Clicked"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="2" ButtonType="Text" Clicked="Button_Clicked_1"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="3" ButtonType="Text" Clicked="Button_Clicked_2"/>
+                <material:MaterialButton BackgroundColor="Transparent" Grid.Row="4" ButtonType="Text" Clicked="Button_Clicked_3"/>
 
                 <material:MaterialButton x:Name="nextBtn" Text="Next" ButtonType="Text" Grid.Row="5" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold"  Clicked="nextBtn_Clicked"/>
 
@@ -58,7 +58,7 @@
         <Grid x:Name="congrid" BackgroundColor="#50000000">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -77,9 +77,9 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <material:MaterialCard Grid.ColumnSpan="3" Grid.RowSpan="3" BackgroundColor="White" Elevation="10"/>
-                <Image Source="" Grid.Row="0" Aspect="AspectFit"/>
-                <Label Text="Congratulation! You have passed the test. Now you are our respected teacher. Our student app will release 5.09.2021. Till then, you cannot activate your teacher status. Thank you." Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17"/>
+                <material:MaterialCard Grid.ColumnSpan="3" Grid.RowSpan="3" BackgroundColor="#F8F8F8" Elevation="10"/>
+                <Image Source="congts.gif" Grid.Row="0" Aspect="AspectFit" Grid.Column="1" IsAnimationPlaying="True"/>
+                <Label Text="Congratulation! You have passed the test. Now you are our respected teacher. Our student app will release 5.09.2021. You cannot activate your teacher status until the student app publish. Till then, please stay safe and stay connected with our Facebook group (Name: Shikkhanobish Teachers). Thank you." Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="13"/>
                 <material:MaterialButton Text="Go To Dashboard" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" FontSize="12" Clicked="MaterialButton_Clicked"/>
             </Grid>
         </Grid>
