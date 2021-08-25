@@ -91,7 +91,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                        <Label Text="Selection Statues" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                        <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
                         <material:MaterialButton Text="Take Test" ButtonType="Text" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
                         </material:MaterialButton>
@@ -160,7 +160,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="totalmin.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                        <Label Text="Total Minuite" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                        <Label Text="Total Minute" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                         <Label Text="{Binding totalMin}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1" RowSpacing="0">
@@ -260,11 +260,11 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="5 Start" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                            <Label Text="4 Start" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                            <Label Text="3 Start" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                            <Label Text="2 Start" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                            <Label Text="1 Start" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                            <Label Text="5 Star" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                            <Label Text="4 Star" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                            <Label Text="3 Star" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                            <Label Text="2 Star" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                            <Label Text="1 Star" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
 
                             <Label Text="{Binding star5}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding star4}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>

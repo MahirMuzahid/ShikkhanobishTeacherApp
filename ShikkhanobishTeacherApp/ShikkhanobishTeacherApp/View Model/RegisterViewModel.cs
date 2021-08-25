@@ -846,6 +846,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             OTPTimerContinue = true;
             otpHasError = false;
             otpErrorTxt = "";
+            showpn = pnumber;
             SendSms();
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -1034,6 +1035,10 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await Task.Delay(1000);
                 await dialog.DismissAsync();
             }
+        }
+        private void PerformgoBack()
+        {
+            Application.Current.MainPage.Navigation.PopModalAsync();
         }
         #endregion
         #endregion
@@ -1579,6 +1584,26 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool completingTeacherRegVisbility { get => completingTeacherRegVisbility1; set => SetProperty(ref completingTeacherRegVisbility1, value); }
 
+        private string showpn1;
+
+        public string showpn { get => showpn1; set => SetProperty(ref showpn1, value); }
+
+        private Command goBack1;
+
+        public ICommand goBack
+        {
+            get
+            {
+                if (goBack1 == null)
+                {
+                    goBack1 = new Command(PerformgoBack);
+                }
+
+                return goBack1;
+            }
+        }
+
+       
 
         #endregion
 

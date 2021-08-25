@@ -24,9 +24,14 @@
 
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width=".2*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
+                <Image Source="backbtn.png" Grid.Column="0" Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding goBack}"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="Register" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" FontAttributes="Bold"/>
             </Grid>
 
@@ -41,11 +46,12 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="2" Elevation="20"/>
+                <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
                 <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="2"/>
                 <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding name}" ErrorText="{Binding nameErrorTxt}" HasError="{Binding hasNameError}"/>
                 <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" InputType="Numeric" MaxLength="11" CardBackgroundColor="Transparent" Text="{Binding pnumber}" ErrorText="{Binding pnErrorTxt}" HasError="{Binding haspnError}"/>
-                <material:MaterialTextField Placeholder="Passwoard" Grid.Row="3" Grid.Column="0" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding password}" ErrorText="{Binding passErrorTxt}" HasError="{Binding hasPassError}"/>
+                <material:MaterialTextField Placeholder="Password" Grid.Row="3" Grid.Column="0" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding password}" ErrorText="{Binding passErrorTxt}" HasError="{Binding hasPassError}"/>
                 <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding conFirmPassword}" ErrorText="{Binding conPassErrorTxt}" HasError="{Binding hasConPassError}"/>
             </Grid>
 
@@ -248,7 +254,7 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="OTP has been sent to this mobile number: "/>
-                                <Span Text="{Binding pnumber}" FontAttributes="Bold"/>
+                                <Span Text="{Binding showpn}" FontAttributes="Bold"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

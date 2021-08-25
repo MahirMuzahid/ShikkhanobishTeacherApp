@@ -77,7 +77,7 @@
                         <CheckBox Grid.Column="2" Grid.Row="0" Color="White" IsChecked="{Binding paymentHistoryChaged}"/>
 
                         <Label Text="Tuition History" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
-                        <Label Text="Withdraw History" Grid.Column="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
+                        <Label Text="Withdrawal History" Grid.Column="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White"/>
 
                         <!--#region Tuition List-->
                         <ListView  ItemsSource="{Binding tuiListItemSource}" Grid.Row="1" Grid.ColumnSpan="5" RowHeight="100" SeparatorColor="#ffffff" IsVisible="{Binding hisVisibility}">
