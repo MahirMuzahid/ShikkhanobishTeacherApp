@@ -12,7 +12,7 @@ using System.Text;
 
 namespace ShikkhanobishTeacherApp.Droid
 {
-    [Activity(Label = "ShikkhanobishTeacherApp", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "ShikkhanobishTeacherApp", Icon = "@mipmap/shikcon", Theme = "@style/SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class SplashScreen : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
