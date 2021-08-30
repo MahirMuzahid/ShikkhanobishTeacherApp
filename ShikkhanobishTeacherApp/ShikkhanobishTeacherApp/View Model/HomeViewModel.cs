@@ -249,7 +249,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await ConnectToRealTimeApiServer();
                 await GetWithdrawList();
                 isrefreshing = false;
-                //activebtnVisbility = false;//for pre update update
+                activebtnVisbility = false;//for pre update update
             }
         }
         public async Task GetWithdrawList()

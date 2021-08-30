@@ -2,13 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShikkhanobishTeacherApp.Views.WaitPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Image Source="blacklogo.png" Grid.Row="1" Aspect="AspectFit" Margin="50,0,50,0"/>
-        <Label Text="Connecting With Shikkhanobish Server. Please Wait..." Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center"/>
-    </Grid>
+    <ScrollView>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="900"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Image Source="blacklogo.png" Grid.Row="1" Aspect="AspectFit" Margin="50,0,50,0"/>
+                <Label Text="Connecting With Shikkhanobish Server. Please Wait..." Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center"/>
+            </Grid>
+
+        </Grid>
+    </ScrollView>
+    
 </ContentPage>
