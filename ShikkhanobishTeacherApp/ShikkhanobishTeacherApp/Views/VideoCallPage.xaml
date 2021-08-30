@@ -47,7 +47,7 @@
                     <FormattedString>
                         <Span Text="Earned: "/>
                         <Span x:Name="totalearnedtxt"  FontAttributes="Bold" FontSize="14"/>
-                        <Span Text=" Taka (System cost included)"/>
+                        <Span Text=" Taka (Without System Cost)"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
