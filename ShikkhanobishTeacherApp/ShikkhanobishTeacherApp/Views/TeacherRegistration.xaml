@@ -249,13 +249,13 @@
                     <Frame BackgroundColor="White" Grid.Row="1" Grid.ColumnSpan="3" HasShadow="False"/>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height=".8*"/>
+                            <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="2.5*"/>
                             <RowDefinition Height="1.5*"/>
                             <RowDefinition Height=".1*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
+                        <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="OTP has been sent to this mobile number: "/>

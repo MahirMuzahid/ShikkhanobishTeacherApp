@@ -40,7 +40,7 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="blacklogo.png"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" Margin="0,10,0,0"/>
-                            <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Text" TextColor="Red" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
+                            <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Flat" TextColor="Red" BackgroundColor="#50FFB5B5" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
 
                         </Grid>
 
@@ -64,7 +64,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <material:MaterialButton Text="Withdraw"  ButtonType="Text" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#3667E1"  BackgroundColor="White" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
+                            <material:MaterialButton Text="Withdraw"  ButtonType="Flat" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#05A422"  BackgroundColor="#B0FFBE" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
                         </Grid>
 
                         <Grid Grid.Row="2" Grid.Column="1">
@@ -97,8 +97,8 @@
 
                                 <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                                 <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
-                                <material:MaterialButton Text="Take Test" ButtonType="Text" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
+                                <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
+                                <material:MaterialButton Text="Take Test" ButtonType="Flat" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" BackgroundColor="#50B0B9FF" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
                                 </material:MaterialButton>
                             </Grid>
                             <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
@@ -120,7 +120,7 @@
 
                                 <Image Source="monetization.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                                 <Label Text="Monetization Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
+                                <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
 
                             </Grid>
                             <Grid Grid.Column="2" Grid.Row="0" RowSpacing="0">
@@ -142,7 +142,7 @@
 
                                 <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                                 <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
+                                <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
                                 <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
 
                             </Grid>
@@ -372,9 +372,9 @@
                         <!--Tuition Found-->
                         <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="225"/>
+                                <RowDefinition Height="450"/>
+                                <RowDefinition Height="225"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -434,6 +434,8 @@
                                 <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
                             </Grid>
                         </Grid>
+                        <!--Tuition Found-->
+                        
                         <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
