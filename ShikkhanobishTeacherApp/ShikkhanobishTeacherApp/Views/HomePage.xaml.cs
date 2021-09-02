@@ -43,8 +43,11 @@ namespace ShikkhanobishTeacherApp.Views
             EndOrBackBtn();
             return true;
         }
-        
 
+        private void MaterialButton_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new FeedbackPage());
+        }
     }
   
 }

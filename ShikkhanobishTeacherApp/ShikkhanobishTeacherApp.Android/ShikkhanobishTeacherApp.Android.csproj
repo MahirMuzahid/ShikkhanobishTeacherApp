@@ -204,5 +204,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\shikcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\feedbackback.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

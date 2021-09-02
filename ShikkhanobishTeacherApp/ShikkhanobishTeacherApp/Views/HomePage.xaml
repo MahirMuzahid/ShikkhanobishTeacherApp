@@ -10,7 +10,7 @@
         <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="900"/>
+                    <RowDefinition Height="1000"/>
                 </Grid.RowDefinitions>
                 <Grid>
                     <Grid>
@@ -22,6 +22,7 @@
                             <RowDefinition Height="10*"/>
                             <RowDefinition Height=".05*"/>
                             <RowDefinition Height="20*"/>
+                            <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".1*"/>
@@ -329,7 +330,7 @@
 
                         </Grid>
 
-                        <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
+                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="2*"/>
@@ -370,7 +371,7 @@
 
                         </Grid>
                         <!--Tuition Found-->
-                        <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
+                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="225"/>
                                 <RowDefinition Height="450"/>
@@ -436,7 +437,7 @@
                         </Grid>
                         <!--Tuition Found-->
                         
-                        <Grid Grid.RowSpan="7" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
+                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="2*"/>
@@ -468,6 +469,16 @@
                                 </ListView>
                             </Grid>
                         </Grid>
+
+                        <Grid Grid.Row="7" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame BackgroundColor="#90C0FFCB" Grid.ColumnSpan="2" CornerRadius="10" HasShadow="False"/>
+                            <Label Text="Let us know any bug or suggestion" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
+                            <material:MaterialButton Text="Feedback" ButtonType="Text" Grid.Column="1" FontSize="11" TextColor="#00911A" Clicked="MaterialButton_Clicked"/>
+                        </Grid> 
 
                     </Grid>
                     <Grid  IsVisible="{Binding regMsgVisiblity}" BackgroundColor="#50000000">
