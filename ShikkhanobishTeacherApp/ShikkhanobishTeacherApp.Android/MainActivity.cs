@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Vonage.Android;
+using Android.Support.V7.App;
 
 namespace ShikkhanobishTeacherApp.Droid
 {
@@ -18,6 +19,7 @@ namespace ShikkhanobishTeacherApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             XF.Material.Droid.Material.Init(this, savedInstanceState);
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
             LoadApplication(new App());
             Window.SetStatusBarColor(Android.Graphics.Color.Rgb(103, 65, 221));
         }
