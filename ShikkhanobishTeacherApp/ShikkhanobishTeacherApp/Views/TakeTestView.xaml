@@ -3,53 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="ShikkhanobishTeacherApp.Views.TakeTestView">
-    <ScrollView>
-        <Grid >
+    <Grid>
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="900"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Grid>
-                <Grid BackgroundColor="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="10*"/>
-                    </Grid.RowDefinitions>
-                    <material:MaterialButton Text="Take Test Now" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Clicked="MaterialButton_Clicked"/>
-                    <WebView Source="https://shikkhanobish.com/TeacherTutorial.html" Grid.Row="1"/>
-                </Grid>
-                <Grid x:Name="popupGrid" BackgroundColor="#50000000">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height=".8*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button BackgroundColor="Transparent" Grid.ColumnSpan="3" Grid.RowSpan="3" Clicked="Button_Clicked"/>
-                    <Grid Grid.Row="1" Grid.Column="1" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height=".5*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <material:MaterialCard Grid.ColumnSpan="3" Grid.RowSpan="3" BackgroundColor="White" Elevation="10"/>
-                        <Label Text="Before taking test you have to read the documents. Did you read all the documents?" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17"/>
-                        <material:MaterialButton Text="Yes" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" FontSize="12" Clicked="MaterialButton_Clicked_2"/>
-                        <material:MaterialButton Text="No" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" FontSize="12" BackgroundColor="#80000000" Clicked="MaterialButton_Clicked_1"/>
-                    </Grid>
-                </Grid>
+            <material:MaterialButton Text="Take Test Now" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Clicked="MaterialButton_Clicked"/>
+            <WebView Source="https://shikkhanobish.com/TeacherTutorial.html" Grid.Row="1"/>
+        </Grid>
+        <Grid x:Name="popupGrid" BackgroundColor="#50000000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".8*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button BackgroundColor="Transparent" Grid.ColumnSpan="3" Grid.RowSpan="3" Clicked="Button_Clicked"/>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <material:MaterialCard Grid.ColumnSpan="3" Grid.RowSpan="3" BackgroundColor="White" Elevation="10"/>
+                <Label Text="Before taking test you have to read the documents. Did you read all the documents?" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17"/>
+                <material:MaterialButton Text="Yes" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" FontSize="12" Clicked="MaterialButton_Clicked_2"/>
+                <material:MaterialButton Text="No" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" FontSize="12" BackgroundColor="#80000000" Clicked="MaterialButton_Clicked_1"/>
             </Grid>
         </Grid>
-    </ScrollView>
-    
-   
+    </Grid>
+
+
 </ContentPage>

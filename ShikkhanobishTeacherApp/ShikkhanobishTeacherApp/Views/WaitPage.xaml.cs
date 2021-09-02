@@ -79,18 +79,21 @@ namespace ShikkhanobishTeacherApp.Views
         #endregion
         public async Task Getinfo()
         {
-            
+            prgs.Progress = .2;
             var pn = await SecureStorage.GetAsync("phonenumber");
             var pass = await SecureStorage.GetAsync("password");
             StaticPageForPassingData.freomReg = false;
+            prgs.Progress = .6;
             if (pn != null && pass != null)
             {
                 await StaticPageForPassingData.GetALlTeacherInfo(pass, pn);
+                prgs.Progress = .9;
                 Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
             }
             else
             {
                 await Task.Delay(1000);
+                prgs.Progress = .9;
                 Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
             }
 
