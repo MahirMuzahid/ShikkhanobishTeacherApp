@@ -488,7 +488,7 @@
                                 <RowDefinition Height=".4*"/>
                             </Grid.RowDefinitions>
                             <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
-                            <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFill"/>
+                            <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFit"/>
                             <Label Text="{Binding proMsgText}" Grid.Row="1" Margin="20"/>
                             <material:MaterialButton Text="OK" ButtonType="Text" Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Margin="10" Command="{Binding popOutRegMsgVisiblility}"/>
                         </Grid>

@@ -94,6 +94,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 url = isNewUpdate;
                 Browser.OpenAsync(url, BrowserLaunchMode.External);
             }
+            
 
         }
         private void teakeTest()
@@ -106,19 +107,32 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task GetProMsg(bool fromReg)
         {
+            var reg = await SecureStorage.GetAsync("isRegpopupseen");
+            var pro = await SecureStorage.GetAsync("isPropopupseen");
+            int regno = 0, prono = 0;
+            if(reg != null)
+            {
+                regno = int.Parse(reg);
+            }
+            if(pro != null)
+            {
+                prono = int.Parse(pro);
+            }
             var promsg = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetPromotionalMassage".GetJsonAsync<List<PromotionalMassage>>();
             bool isShow = false;
             for (int i = 0; i < promsg.Count; i++)
             {
                 if (promsg[i].userType == "teacher")
                 {
-                    if (promsg[i].msgType == 1 && fromReg)
+                    if (promsg[i].msgType == 1 && fromReg && regno != promsg[i].promotionImageID)
                     {
+                        SecureStorage.SetAsync("isRegpopupseen", promsg[i].promotionImageID.ToString());
                         isNewUpdate = "";
                         PerformpopUPRegMsgVisiblility();
                         promsgImgSrc = promsg[i].imageSrc;
                         proMsgText = promsg[i].text;
                         isShow = true;
+                        
                         break;
                     }                   
                 }               
@@ -131,6 +145,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         if (promsg[i].msgType == 3)
                         {
+                            
                             isNewUpdate = promsg[i].playstoreAppLink;
                             PerformpopUPRegMsgVisiblility();
                             promsgImgSrc = promsg[i].imageSrc;
@@ -146,8 +161,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         if (promsg[i].userType == "teacher")
                         {
-                            if (promsg[i].msgType == 2)
+                            if (promsg[i].msgType == 2 && prono != promsg[i].promotionImageID)
                             {
+                                SecureStorage.SetAsync("isPropopupseen", promsg[i].promotionImageID.ToString());
                                 isNewUpdate = "";
                                 PerformpopUPRegMsgVisiblility();
                                 promsgImgSrc = promsg[i].imageSrc;

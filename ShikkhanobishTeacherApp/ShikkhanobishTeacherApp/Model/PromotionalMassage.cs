@@ -12,5 +12,6 @@ namespace ShikkhanobishTeacherApp.Model
         public string userType { get; set; }
         public string playstoreAppLink { get; set; }
         public string Response { get; set; }
+        public int promotionImageID { get; set; }
     }
 }
