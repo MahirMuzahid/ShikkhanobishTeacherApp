@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <material:MaterialCard Grid.ColumnSpan="3" Grid.RowSpan="3" BackgroundColor="White" Elevation="10"/>
-                <Label Text="Before taking test you have to read the documents. Did you read all the documents?" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17"/>
+                <Label Text="Before taking test you have to read all the documents bellow. Did you read all the documents?" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15"/>
                 <material:MaterialButton Text="Yes" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" FontSize="12" Clicked="MaterialButton_Clicked_2"/>
                 <material:MaterialButton Text="No" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" FontSize="12" BackgroundColor="#80000000" Clicked="MaterialButton_Clicked_1"/>
             </Grid>

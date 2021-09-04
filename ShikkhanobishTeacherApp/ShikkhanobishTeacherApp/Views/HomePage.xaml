@@ -370,6 +370,7 @@
                             </Grid>
 
                         </Grid>
+                        
                         <!--Tuition Found-->
                         <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
                             <Grid.RowDefinitions>
@@ -437,6 +438,7 @@
                         </Grid>
                         <!--Tuition Found-->
                         
+                        <!--Favourite Student-->
                         <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
@@ -469,7 +471,8 @@
                                 </ListView>
                             </Grid>
                         </Grid>
-
+                        <!--Favourite Student-->
+                        
                         <Grid Grid.Row="7" Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
@@ -489,7 +492,7 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="346"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Row="1" Grid.Column="1">
@@ -506,6 +509,7 @@
                     </Grid>
                 </Grid>
             </Grid>
+            
         </ScrollView>
        
        
