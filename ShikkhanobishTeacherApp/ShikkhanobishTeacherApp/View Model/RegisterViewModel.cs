@@ -393,10 +393,26 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             schholPopUpVisibility = false;
             noSubScMsgVsi = false;
-
+            for(int i  = 0; i > scSelectCount.Count; i++)
+            {
+                if(i == 0)
+                {
+                    sub1 = scsubName[scSelectCount[i]];
+                }
+                if (i == 1)
+                {
+                    sub2 = scsubName[scSelectCount[i]];
+                }
+                if (i == 2)
+                {
+                    sub3 = scsubName[scSelectCount[i]];
+                }
+            }
+            /*
             sub1 = scsubName[scSelectCount[0]];
             sub2 = scsubName[scSelectCount[1]];
             sub3 = scsubName[scSelectCount[2]];
+            */
 
             if(selectedscIndex == 1)
             {
@@ -531,7 +547,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }               
             }
 
-            if (scSelectCount.Count == 3)
+            if (scSelectCount.Count == 1)
             { 
                 scEnabled = true;
             }
@@ -677,21 +693,79 @@ namespace ShikkhanobishTeacherApp.View_Model
             noSubMsgVsi = false;
             if(clgSelectSubCountMax == 6)
             {
+                for(int i = 0; i > clgSelectCount.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        sub4 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 1)
+                    {
+                        sub5 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 2)
+                    {
+                        sub6 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 3)
+                    {
+                        sub7 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 4)
+                    {
+                        sub8 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 5)
+                    {
+                        sub9 = clgsubName[scSelectCount[i]];
+                    }
+                }
+                /*
                 sub4 = clgsubName[clgSelectCount[0]];
                 sub5 = clgsubName[clgSelectCount[1]];
                 sub6 = clgsubName[clgSelectCount[2]];
                 sub7 = clgsubName[clgSelectCount[3]];
                 sub8 = clgsubName[clgSelectCount[4]];
                 sub9 = clgsubName[clgSelectCount[5]];
+                */
             }
             else
             {
+                for (int i = 0; i > clgSelectCount.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        sub4 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 1)
+                    {
+                        sub5 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 2)
+                    {
+                        sub6 = clgsubName[scSelectCount[i]];
+                    }
+                    if (i == 3)
+                    {
+                        sub7 = "n/a";
+                    }
+                    if (i == 4)
+                    {
+                        sub8 = "n/a";
+                    }
+                    if (i == 5)
+                    {
+                        sub9 = "n/a";
+                    }
+                }
+                /*
                 sub4 = clgsubName[clgSelectCount[0]];
                 sub5 = clgsubName[clgSelectCount[1]];
                 sub6 = clgsubName[clgSelectCount[2]];
                 sub7 = "n/a";
                 sub8 = "n/a";
                 sub9 = "n/a";
+                */
             }
             CheckEverything();
         }
@@ -822,7 +896,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     }
                 }
 
-                if ((clgSelectCount.Count == 3 && clgSelectSubCountMax == 3) || (clgSelectCount.Count == 6 && clgSelectSubCountMax == 6))
+                if ((clgSelectCount.Count == 1 && clgSelectSubCountMax == 1) || (clgSelectCount.Count == 1 && clgSelectSubCountMax == 1))
                 {
                     ClgSavedEnabled = true;
                 }
