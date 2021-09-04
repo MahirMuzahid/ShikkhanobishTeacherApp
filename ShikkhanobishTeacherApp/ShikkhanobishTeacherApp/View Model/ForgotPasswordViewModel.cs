@@ -156,11 +156,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         p1HasError = true;
                         p1Error = "Phone Number doesn't exist";
                     }
-                    else
-                    {
-                        p1HasError = false;
-                        p1Error = "";
-                    }
+                    
                 }
                 else
                 {
@@ -168,6 +164,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                     thisTeacherID = chkPn.teacherID;
                     p1HasError = false;
                     p1Error = "";                                     
+                }
+                if(pText1.Length > 11 || pText1.Length < 11)
+                {
+                    p1HasError = true;
+                    p1Error = "Phone Number doesn't exist";
                 }
             }
         }
