@@ -74,11 +74,11 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             if(clickCounter == 0)
             {
-                checkPnumber();
+                
                 if (!p1HasError)
                 {
                     SendSms();
-                    msgText = "";
+                    msgText = "Enter OTP";
                     pText1 = "";
                     placeHolder1 = "OTP";
                     btnText = "Check OTP";
@@ -150,15 +150,24 @@ namespace ShikkhanobishTeacherApp.View_Model
   .ReceiveJson<Teacher>();
                 if (chkPn.teacherID == 0)
                 {
-                    
-                    p1HasError = true;
-                    p1Error = "Phone Number doesn't exist";
+                    btnEnabled = false;
+                    if (pText1.Length == 11)
+                    {
+                        p1HasError = true;
+                        p1Error = "Phone Number doesn't exist";
+                    }
+                    else
+                    {
+                        p1HasError = false;
+                        p1Error = "";
+                    }
                 }
                 else
                 {
+                    btnEnabled = true;
                     thisTeacherID = chkPn.teacherID;
                     p1HasError = false;
-                    p1Error = "";
+                    p1Error = "";                                     
                 }
             }
         }
@@ -194,7 +203,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string pText11;
 
-        public string pText1 { get => pText11; set => SetProperty(ref pText11, value); }
+        public string pText1 { get { return pText11; } set { value = pText11; checkPnumber(); SetProperty(ref pText11, value); } }
 
         private string pText21;
 
@@ -255,6 +264,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool p2HAsError1;
 
         public bool p2HAsError { get => p2HAsError1; set => SetProperty(ref p2HAsError1, value); }
+
+        private bool btnEnabled1;
+
+        public bool btnEnabled { get => btnEnabled1; set => SetProperty(ref btnEnabled1, value); }
 
 
         #endregion

@@ -109,6 +109,22 @@ namespace ShikkhanobishTeacherApp.Views
             }
             
         }
+        public async Task EndOrBackBtn()
+        {
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Do you want to close app?",
+                                  confirmingText: "Yes",
+                                  dismissiveText: "No");
+            if (result == true)
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            EndOrBackBtn();
+            return true;
+        }
 
 
         private void MaterialButton_Clicked_1(object sender, EventArgs e)
