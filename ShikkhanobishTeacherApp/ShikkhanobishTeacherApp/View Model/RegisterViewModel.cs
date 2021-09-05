@@ -87,6 +87,9 @@ namespace ShikkhanobishTeacherApp.View_Model
         public async Task GetAllInfo()
         {
             await GetAllSub();
+            isclgAllRight = false;
+            isScAllRight = false;
+            isInfoAllRight = false;
             otpEnabled = false;
             otpWindow = false;
             sendotpEnabled = false;
@@ -256,10 +259,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         return;
                     }
+                    isInfoAllRight = true;
                     var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
   .ReceiveJson<Teacher>();
                     if (chkPn.teacherID != 0)
                     {
+                        
                         haspnError = true;
                         pnErrorTxt = "Phone Number already exist";
                     }
@@ -275,6 +280,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 else
                 {
+                    isInfoAllRight = false;
                     sendotpEnabled = false;
                 }
 
@@ -282,6 +288,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else
             {
+                isInfoAllRight = false;
                 sendotpEnabled = false;
             }
 
@@ -311,6 +318,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region school popup
         private void PerformpopupSchool(string index)
         {
+            scEnabled = false;
             GetAllSub();
             if (selectedscIndex != int.Parse(index))
             {
@@ -321,6 +329,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             scsubName3 = "";
             scsubName4 = "";
             scsubName5 = "";
+
             SubEnabled = false;
             SubEnabled1 = false;
             SubEnabled2 = false;
@@ -548,11 +557,13 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
 
             if (scSelectCount.Count >= 1 && scSelectCount.Count <= 3)
-            { 
+            {
+                isScAllRight = true;
                 scEnabled = true;
             }
             else
             {
+                isScAllRight = false;
                 scEnabled = false;
             }
             
@@ -563,6 +574,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region College Pop
         private void PerformpopupCollege(string index)
         {
+            ClgSavedEnabled = false;
             selectedClgIndex = int.Parse(index);
             selectedClgIndex = int.Parse(index);
             CollegePopupVisibility = true;
@@ -896,12 +908,14 @@ namespace ShikkhanobishTeacherApp.View_Model
                     }
                 }
 
-                if ((clgSelectCount.Count >= 1 && clgSelectCount.Count <= 6 && clgSelectSubCountMax == 6) || (clgSelectCount.Count == 1 && clgSelectCount.Count <= 3 && clgSelectSubCountMax == 3))
+                if ((clgSelectCount.Count >= 1 && clgSelectCount.Count <= 6 && clgSelectSubCountMax == 6) || (clgSelectCount.Count >= 1 && clgSelectCount.Count <= 3 && clgSelectSubCountMax == 3))
                 {
+                    isclgAllRight = true;
                     ClgSavedEnabled = true;
                 }
                 else
                 {
+                    isclgAllRight = false;
                     ClgSavedEnabled = false;
                 }
             }
@@ -1677,7 +1691,19 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-       
+        private bool isInfoAllRight1;
+
+        public bool isInfoAllRight { get => isInfoAllRight1; set => SetProperty(ref isInfoAllRight1, value); }
+
+        private bool isScAllRight1;
+
+        public bool isScAllRight { get => isScAllRight1; set => SetProperty(ref isScAllRight1, value); }
+
+        private bool isclgAllRight1;
+
+        public bool isclgAllRight { get => isclgAllRight1; set => SetProperty(ref isclgAllRight1, value); }
+
+
 
         #endregion
 
