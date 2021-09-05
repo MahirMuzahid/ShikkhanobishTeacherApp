@@ -547,7 +547,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }               
             }
 
-            if (scSelectCount.Count == 1)
+            if (scSelectCount.Count >= 1 && scSelectCount.Count <= 3)
             { 
                 scEnabled = true;
             }
@@ -896,7 +896,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     }
                 }
 
-                if ((clgSelectCount.Count == 1 && clgSelectSubCountMax == 1) || (clgSelectCount.Count == 1 && clgSelectSubCountMax == 1))
+                if ((clgSelectCount.Count >= 1 && clgSelectCount.Count <= 6 && clgSelectSubCountMax == 6) || (clgSelectCount.Count == 1 && clgSelectCount.Count <= 3 && clgSelectSubCountMax == 3))
                 {
                     ClgSavedEnabled = true;
                 }

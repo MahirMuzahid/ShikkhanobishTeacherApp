@@ -146,30 +146,32 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             if (pText1 != null || pText1 != "")
             {
-                var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pText1 })
-  .ReceiveJson<Teacher>();
-                if (chkPn.teacherID == 0)
+                
+                if(pText1.Length == 11)
                 {
-                    btnEnabled = false;
-                    if (pText1.Length == 11)
+                    var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pText1 })
+  .ReceiveJson<Teacher>();
+                    if (chkPn.teacherID == 0)
                     {
+                        btnEnabled = false;
                         p1HasError = true;
                         p1Error = "Phone Number doesn't exist";
+
                     }
-                    
+                    else
+                    {
+                        btnEnabled = true;
+                        thisTeacherID = chkPn.teacherID;
+                        p1HasError = false;
+                        p1Error = "";
+                    }
                 }
                 else
                 {
-                    btnEnabled = true;
-                    thisTeacherID = chkPn.teacherID;
                     p1HasError = false;
-                    p1Error = "";                                     
+                    p1Error = "";
                 }
-                if(pText1.Length > 11 || pText1.Length < 11)
-                {
-                    p1HasError = true;
-                    p1Error = "Phone Number doesn't exist";
-                }
+                
             }
         }
         public async Task SendSms()
