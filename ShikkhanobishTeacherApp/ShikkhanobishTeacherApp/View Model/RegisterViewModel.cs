@@ -241,6 +241,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     }
                     else
                     {
+                        isInfoAllRight = true;
                         hasConPassError = false;
                         conPassErrorTxt = "";
                     }
@@ -259,7 +260,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         return;
                     }
-                    isInfoAllRight = true;
+                    
                     var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pnumber })
   .ReceiveJson<Teacher>();
                     if (chkPn.teacherID != 0)
@@ -280,15 +281,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 else
                 {
-                    isInfoAllRight = false;
                     sendotpEnabled = false;
                 }
-
-
             }
             else
             {
-                isInfoAllRight = false;
                 sendotpEnabled = false;
             }
 
@@ -318,12 +315,13 @@ namespace ShikkhanobishTeacherApp.View_Model
         #region school popup
         private void PerformpopupSchool(string index)
         {
+            if (scSelectCount.Count != 0)
+            {
+                scSelectCount.Clear();
+            }
             scEnabled = false;
             GetAllSub();
-            if (selectedscIndex != int.Parse(index))
-            {
-                scEnabled = false;
-            }            
+                     
             scsubName1 = "";
             scsubName2 = "";
             scsubName3 = "";
@@ -400,22 +398,35 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformschSaved()
         {
+            sub1 = "";
+            sub2 = "";
+            sub3 = "";
             schholPopUpVisibility = false;
             noSubScMsgVsi = false;
-            for(int i  = 0; i > scSelectCount.Count; i++)
+            for(int i  = 0; i < scSelectCount.Count; i++)
             {
                 if(i == 0)
                 {
-                    sub1 = scsubName[scSelectCount[i]];
+                    sub1 = scsubName[scSelectCount[i]];                   
                 }
                 if (i == 1)
                 {
                     sub2 = scsubName[scSelectCount[i]];
+                    
                 }
                 if (i == 2)
                 {
                     sub3 = scsubName[scSelectCount[i]];
                 }
+            }
+            if(scSelectCount.Count == 1)
+            {
+                sub2 = "n/a";
+                sub3 = "n/a";
+            }
+            else if (scSelectCount.Count == 2)
+            {
+                sub3 = "n/a";
             }
             /*
             sub1 = scsubName[scSelectCount[0]];
@@ -470,6 +481,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         private void PerformschSubSelect(string subIndex)
         {
             bool go = true;
+           
             if(scSelectCount != null)
             {
                 for (int i = 0; i < scSelectCount.Count; i++)
@@ -683,7 +695,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformclgSaved()
         {
-            if(selectedClgIndex == 1)
+            sub4 = "";
+            if (selectedClgIndex == 1)
             {
                 clgScColor = Color.FromHex("#42ED88");
                 clgChColor = Color.FromHex("#10000000");
@@ -705,33 +718,66 @@ namespace ShikkhanobishTeacherApp.View_Model
             noSubMsgVsi = false;
             if(clgSelectSubCountMax == 6)
             {
-                for(int i = 0; i > clgSelectCount.Count; i++)
+                for(int i = 0; i < clgSelectCount.Count; i++)
                 {
                     if (i == 0)
                     {
-                        sub4 = clgsubName[scSelectCount[i]];
+                        sub4 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 1)
                     {
-                        sub5 = clgsubName[scSelectCount[i]];
+                        sub5 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 2)
                     {
-                        sub6 = clgsubName[scSelectCount[i]];
+                        sub6 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 3)
                     {
-                        sub7 = clgsubName[scSelectCount[i]];
+                        sub7 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 4)
                     {
-                        sub8 = clgsubName[scSelectCount[i]];
+                        sub8 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 5)
                     {
-                        sub9 = clgsubName[scSelectCount[i]];
+                        sub9 = clgsubName[clgSelectCount[i]];
                     }
                 }
+                if(clgSelectCount.Count == 1)
+                {
+                    sub5 = "n/a";
+                    sub6 = "n/a";
+                    sub7 = "n/a";
+                    sub8 = "n/a";
+                    sub9 = "n/a";
+                }
+                if (clgSelectCount.Count == 2)
+                {
+                    sub6 = "n/a";
+                    sub7 = "n/a";
+                    sub8 = "n/a";
+                    sub9 = "n/a";
+                }
+                if (clgSelectCount.Count == 3)
+                {
+                    sub7 = "n/a";
+                    sub8 = "n/a";
+                    sub9 = "n/a";
+                }
+                if (clgSelectCount.Count == 4)
+                {
+
+                    sub8 = "n/a";
+                    sub9 = "n/a";
+                }
+                if (clgSelectCount.Count == 5)
+                {
+
+                    sub9 = "n/a";
+                }
+  
                 /*
                 sub4 = clgsubName[clgSelectCount[0]];
                 sub5 = clgsubName[clgSelectCount[1]];
@@ -747,15 +793,15 @@ namespace ShikkhanobishTeacherApp.View_Model
                 {
                     if (i == 0)
                     {
-                        sub4 = clgsubName[scSelectCount[i]];
+                        sub4 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 1)
                     {
-                        sub5 = clgsubName[scSelectCount[i]];
+                        sub5 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 2)
                     {
-                        sub6 = clgsubName[scSelectCount[i]];
+                        sub6 = clgsubName[clgSelectCount[i]];
                     }
                     if (i == 3)
                     {
@@ -769,6 +815,15 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         sub9 = "n/a";
                     }
+                }
+                if (clgSelectCount.Count == 1)
+                {
+                    sub5 = "n/a";
+                    sub6 = "n/a";
+                }
+                else if (clgSelectCount.Count == 2)
+                {
+                    sub6 = "n/a";
                 }
                 /*
                 sub4 = clgsubName[clgSelectCount[0]];

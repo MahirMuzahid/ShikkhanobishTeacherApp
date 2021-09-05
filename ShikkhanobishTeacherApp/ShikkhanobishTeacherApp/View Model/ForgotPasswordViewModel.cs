@@ -144,9 +144,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            if (pText1 != null || pText1 != "")
-            {
-                
+            if (pText1 != null && pText1 != "")
+            {              
                 if(pText1.Length == 11)
                 {
                     var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pText1 })
@@ -168,6 +167,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 else
                 {
+                    btnEnabled = false;
                     p1HasError = false;
                     p1Error = "";
                 }
@@ -206,7 +206,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         private string pText11;
 
-        public string pText1 { get { return pText11; } set { value = pText11; checkPnumber(); SetProperty(ref pText11, value); } }
+        public string pText1 { get { return pText11; } set { pText11 = value; checkPnumber(); SetProperty(ref pText11, value); } }
 
         private string pText21;
 
