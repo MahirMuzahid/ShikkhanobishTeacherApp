@@ -42,8 +42,11 @@ namespace ShikkhanobishTeacherApp.Views
             questionCount = 1;
             questionCountTxt.Text = questionCount + " OF 15";
             prgsbar.Progress = 0f;
-            //await GetAllQuestion();
-            //GetNextQuestion();
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Preparing Questions For You..."))
+            {
+                await GetAllQuestion();
+                GetNextQuestion();
+            }
         }
         
         protected override bool OnBackButtonPressed()
@@ -160,7 +163,11 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task GetAllQuestion()
         {
-            allQS = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetTeacherTest".GetJsonAsync<List<TeacherTest>>();                   
+            while (allQS.Count == 0)
+            {
+                allQS = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetTeacherTest".GetJsonAsync<List<TeacherTest>>();
+            }
+                         
            
             for (int i = 0; i < 15; i++)
             {

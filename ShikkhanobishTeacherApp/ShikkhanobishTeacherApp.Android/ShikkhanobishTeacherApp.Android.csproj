@@ -217,5 +217,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\forgotback.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\conimage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="conimage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
