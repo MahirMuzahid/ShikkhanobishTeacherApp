@@ -28,6 +28,13 @@ namespace ShikkhanobishTeacherApp.Views
         public QuestionPage()
         {
             InitializeComponent();
+            GetAllInfo();
+
+
+        }
+        
+        public async Task GetAllInfo()
+        {
             congrid.IsVisible = false;
             SelectedColor = Color.FromHex("#D1D1D1");
             notSelectedColor = Color.Transparent;
@@ -35,17 +42,10 @@ namespace ShikkhanobishTeacherApp.Views
             questionCount = 1;
             questionCountTxt.Text = questionCount + " OF 15";
             prgsbar.Progress = 0f;
-            Getqs();
+            //await GetAllQuestion();
+            //GetNextQuestion();
         }
-        public async Task Getqs()
-        {
-            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
-            {
-                await GetAllQuestion();
-                GetNextQuestion();
-            }
-           
-        }
+        
         protected override bool OnBackButtonPressed()
         {
             CanCloseAlter();
@@ -160,12 +160,8 @@ namespace ShikkhanobishTeacherApp.Views
         }
         public async Task GetAllQuestion()
         {
-            while(allQS.Count == 0)
-            {
-                allQS = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetTeacherTest".GetJsonAsync<List<TeacherTest>>();
-            }
-            
-
+            allQS = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/GetTeacherTest".GetJsonAsync<List<TeacherTest>>();                   
+           
             for (int i = 0; i < 15; i++)
             {
                 Random rd = new Random();
@@ -217,5 +213,6 @@ namespace ShikkhanobishTeacherApp.Views
             }
            
         }
+        
     }
 }
