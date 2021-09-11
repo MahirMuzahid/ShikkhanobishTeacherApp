@@ -310,9 +310,9 @@
                             <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
                             <Label Text="Science" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
 
-                            <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                            <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-                            <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+                            <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                            <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                            <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
 
                             <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="5" CornerRadius="10"/>
 

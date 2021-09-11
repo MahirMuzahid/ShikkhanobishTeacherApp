@@ -19,13 +19,21 @@ namespace ShikkhanobishTeacherApp.View_Model
         int clickCounter;
         int OTPCode;
         int thisTeacherID;
+        bool hasmsgSend;
+        string thispn;
+        
         public ForgotPasswordViewModel()
         {
+            hasmsgSend = false;
+            pnEntryVisible = true;
+            otpEntryVisibility = false;
+            newpasvisibility = false;
             msgText = "Enter your account phone number";
             btnText = "Send OTP";
             clickCounter = 0;
             pVsibility2 = false;
             placeHolder1 = "Phone Number";
+            txtMaxLength = 11;
         }
         #region Connectivity
         public bool IsInternetConnectionAvailable()
@@ -72,32 +80,40 @@ namespace ShikkhanobishTeacherApp.View_Model
         #endregion
         private async Task btn()
         {
-            if(clickCounter == 0)
-            {
-                
+             
+            if (clickCounter == 0)
+            {               
                 if (!p1HasError)
                 {
-                    SendSms();
-                    msgText = "Enter OTP";
+                    pnEntryVisible = false;
+                    otpEntryVisibility = true;
+                    otpplaceholder = "OTP";
+                    await SendSms();
                     pText1 = "";
+                    msgText = "Enter OTP";                   
                     placeHolder1 = "OTP";
                     btnText = "Check OTP";
+                    txtMaxLength = 4;
                     clickCounter++;
                 }
                 
             }
             else if(clickCounter == 1)
             {
-                if(int.Parse(pText1) == OTPCode)
+                if(int.Parse(otpText) == OTPCode)
                 {
-                    pText1 = "";
+                    newpasvisibility = true;
+                    otpplaceholder = "New Password";
+                    otpText = "";
                     pVsibility2 = true;
+                    msgText = "Enter New Password";
                     placeHolder1 = "Enter New Password";
                     placeHolder2 = "Confirm Password";
                     btnText = "Change Password";
                     p1HasError = false;
                     p1Error = "";
                     clickCounter++;
+                    txtMaxLength = 100;
                 }
                 else
                 {
@@ -107,18 +123,20 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else if(clickCounter == 2)
             {
-                if(pText1 == pText2)
+                if(otpText == pText2)
                 {
-                    using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Updating Password"))
+                    using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Updating Password..."))
                     {
+
                         Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
-                .PostUrlEncodedAsync(new
-                {
-                    info = pText1,
-                    index = 2,
-                    teacherID = thisTeacherID
-                })
-                .ReceiveJson<Response>();
+                    .   PostUrlEncodedAsync(new
+                         {
+                            info = pText1,
+                            index = 2,
+                            teacherID = thisTeacherID
+                        })
+                        .ReceiveJson<Response>();
+
                         p2Error = "";
                         p2HAsError = false;
                         dialog.MessageText = "Passwaord is updated successfully!";
@@ -137,6 +155,8 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                
             }
+         
+
         }
         public async Task checkPnumber()
         {
@@ -148,8 +168,13 @@ namespace ShikkhanobishTeacherApp.View_Model
             {              
                 if(pText1.Length == 11)
                 {
-                    var chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pText1 })
+                    Teacher chkPn = new Teacher();
+                    using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Phone Number..."))
+                    {
+                        chkPn = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/checkRegphonenumber".PostUrlEncodedAsync(new { phonenumber = pText1 })
   .ReceiveJson<Teacher>();
+                    }
+                        
                     if (chkPn.teacherID == 0)
                     {
                         btnEnabled = false;
@@ -180,12 +205,17 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            Random rnd = new Random();
-            int rn = rnd.Next(1000, 9999);
-            string MSG = "Your Shikkhanobish Reset Password OTP is: " + rn;
-            string pn = pText1;
-            OTPCode = rn;
-            var res = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/SendSmsAsync".PostUrlEncodedAsync(new { msg = MSG, number = pn }).ReceiveJson<SendSms>();
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Sending OTP To Your Number"))
+            {
+                hasmsgSend = true;
+                Random rnd = new Random();
+                int rn = rnd.Next(1000, 9999);
+                string MSG = "Your Shikkhanobish Reset Password OTP is: " + rn;
+                string pn = "+88" + pText1;
+                OTPCode = rn;
+                var res = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/SendSmsAsync".PostUrlEncodedAsync(new { msg = MSG, number = pn }).ReceiveJson<SendSms>();
+            }
+            
         }
         private void PerformbackBtn()
         {
@@ -204,9 +234,9 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public string placeHolder2 { get => placeHolder21; set => SetProperty(ref placeHolder21, value); }
 
-        private string pText11;
 
-        public string pText1 { get { return pText11; } set { pText11 = value; checkPnumber(); SetProperty(ref pText11, value); } }
+
+        
 
         private string pText21;
 
@@ -271,6 +301,56 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool btnEnabled1;
 
         public bool btnEnabled { get => btnEnabled1; set => SetProperty(ref btnEnabled1, value); }
+
+        private int txtMaxLength1;
+
+        public int txtMaxLength { get => txtMaxLength1; set => SetProperty(ref txtMaxLength1, value); }
+
+        private string pText11;
+
+        public string pText1
+        {
+            get { return pText11; }
+            set
+            {
+                pText11 = value;
+                if (!hasmsgSend)
+                {
+                    checkPnumber();
+                   
+                }
+
+                OnPropertyChanged(nameof(pText11));
+            }
+        }
+
+        private bool pnEntryVisible1;
+
+        public bool pnEntryVisible { get => pnEntryVisible1; set => SetProperty(ref pnEntryVisible1, value); }
+
+        private string otpText1;
+
+        public string otpText { get => otpText1; set => SetProperty(ref otpText1, value); }
+
+        private bool otpEntryVisibility1;
+
+        public bool otpEntryVisibility { get => otpEntryVisibility1; set => SetProperty(ref otpEntryVisibility1, value); }
+
+        private bool pnVisible1;
+
+        public bool pnVisible { get => pnVisible1; set => SetProperty(ref pnVisible1, value); }
+
+        private bool otpVisisbile1;
+
+        public bool otpVisisbile { get => otpVisisbile1; set => SetProperty(ref otpVisisbile1, value); }
+
+        private bool newpasvisibility1;
+
+        public bool newpasvisibility { get => newpasvisibility1; set => SetProperty(ref newpasvisibility1, value); }
+
+        private string otpplaceholder1;
+
+        public string otpplaceholder { get => otpplaceholder1; set => SetProperty(ref otpplaceholder1, value); }
 
 
         #endregion
