@@ -117,9 +117,9 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
                 else
                 {
-                    p1HasError = true;
-                    p1Error = "Otp Doesn't Match";
-                }      
+                    await MaterialDialog.Instance.AlertAsync(message: "Wrong OTP!");
+
+                }
             }
             else if(clickCounter == 2)
             {
@@ -131,7 +131,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         Response regRes = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/changeTeacherInf0"
                     .   PostUrlEncodedAsync(new
                          {
-                            info = pText1,
+                            info = otpText,
                             index = 2,
                             teacherID = thisTeacherID
                         })
