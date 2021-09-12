@@ -46,8 +46,8 @@
             <material:MaterialTextField x:Name="pass"  Grid.Row="2" Placeholder="Password" InputType="Password" Grid.ColumnSpan="2" BackgroundColor="#06000000" PlaceholderColor="Black" VerticalOptions="Center"/>
 
             <material:MaterialCheckbox x:Name="checkbox" Grid.Row="3" HorizontalOptions="Start" Grid.ColumnSpan="2" VerticalOptions="Center"  SelectedColor="#6137E7" UnselectedColor="Black"/>
-            <Label Text="Remember Me" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Grid.ColumnSpan="2" Margin="40,0,0,0"/>
-            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password?" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center" FontSize="12">
+            <Label Text="Remember Me" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="Center" Grid.ColumnSpan="2" Margin="40,0,0,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+            <material:MaterialLabel TextDecorations="Underline" Text="Forgot Password?" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="End" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}">
                 <material:MaterialLabel.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding forgotPass}"/>
                 </material:MaterialLabel.GestureRecognizers>

@@ -12,11 +12,11 @@
         <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="900"/>
+                    <RowDefinition Height="1090"/>
                 </Grid.RowDefinitions>
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="250"/>
                         <RowDefinition Height="260"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="180"/>
@@ -30,16 +30,21 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".2*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="backbtn.png" Grid.Column="0" Aspect="AspectFit">
+                        <Image Source="regback.png" Grid.Row="1" Aspect="AspectFit" Grid.ColumnSpan="2"/>
+                        <Image Source="backbtn.png" Grid.Column="0" Grid.Row="0" Aspect="AspectFit">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding goBack}"/>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Register" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" FontAttributes="Bold"/>
+                        <Label Text="Register" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" FontAttributes="Bold" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
                     </Grid>
 
                     <Grid Grid.Row="1" Grid.Column="1" RowSpacing="5">
@@ -54,7 +59,7 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="2" Elevation="2"/>
-                        <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+                        <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                         <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="2"/>
                         <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding name}" ErrorText="{Binding nameErrorTxt}" HasError="{Binding hasNameError}"/>
                         <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" InputType="Numeric" MaxLength="11" CardBackgroundColor="Transparent" Text="{Binding pnumber}" ErrorText="{Binding pnErrorTxt}" HasError="{Binding haspnError}"/>
@@ -77,7 +82,7 @@
                         </Grid.ColumnDefinitions>
                         <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="2"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="8" IsVisible="{Binding isScAllRight}"/>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0">
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Choose Group From Class " />
@@ -102,11 +107,11 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubScMsgVsi}"/>
-                            <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
-                            <Label Text="{Binding sub1}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub2}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub3}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                            <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubScMsgVsi}" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
+                            <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
+                            <Label Text="{Binding sub1}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub2}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub3}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                         </Grid>
 
                     </Grid>
@@ -125,7 +130,7 @@
                         </Grid.ColumnDefinitions>
                         <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="2"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="8" IsVisible="{Binding isclgAllRight}"/>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0">
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Choose Group From Class " />
@@ -154,13 +159,13 @@
                             </Grid.ColumnDefinitions>
                             <Label Text="Subject" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12"/>
                             <Label Text="No Selected Subject Yet" Grid.ColumnSpan="3"  Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding noSubMsgVsi}"/>
-                            <Label Text="{Binding sub4}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub5}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub6}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                            <Label Text="{Binding sub4}" Grid.Column="1"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub5}" Grid.Column="2"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub6}" Grid.Column="3"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
 
-                            <Label Text="{Binding sub7}" Grid.Column="1"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub8}" Grid.Column="2"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
-                            <Label Text="{Binding sub9}" Grid.Column="3"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="Black"/>
+                            <Label Text="{Binding sub7}" Grid.Column="1"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub8}" Grid.Column="2"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                            <Label Text="{Binding sub9}" Grid.Column="3"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                             <material:MaterialButton Text="Send OTP" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" IsVisible="{Binding sendotpEnabled}" Command="{Binding comandotp}"/>
                         </Grid>
                     </Grid>
@@ -194,7 +199,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Choose Any Three Subject From Class 9-10" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Text="Choose Any Three Subject From Class 9-10" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
                     <material:MaterialButton Text="{Binding scsubName1}" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding scPhyColor}" PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="0" IsEnabled="{Binding SubEnabled}"/>
                     <material:MaterialButton Text="{Binding scsubName2}" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding scCheColor}"  PressedBackgroundColor="#30000000" Command="{Binding schSubSelect}" CommandParameter="1" IsEnabled="{Binding SubEnabled1}"/>
@@ -232,7 +237,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding clgpopUpTitle}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Text="{Binding clgpopUpTitle}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                     <Frame BackgroundColor="Black" Grid.Row="1"/>
                     <material:MaterialButton Text="{Binding clgSubName1}" Grid.Row="2" ButtonType="Flat" TextColor="Black" BackgroundColor="{Binding clgPhy1st}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="0"  IsEnabled="{Binding clgenabled1}"/>
                     <material:MaterialButton Text="{Binding clgSubName2}" Grid.Row="3" ButtonType="Flat" TextColor="Black"  BackgroundColor="{Binding clgPhy2nd}" PressedBackgroundColor="#30000000"  Command="{Binding schClgSelect}" CommandParameter="1"  IsEnabled="{Binding clgSubEnabled2}"/>
@@ -266,7 +271,7 @@
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height=".1*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11">
+                <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11" TextColor="{AppThemeBinding Light=Black, Dark=Black}">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="OTP has been sent to this mobile number: "/>

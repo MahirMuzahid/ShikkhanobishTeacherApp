@@ -222,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="conimage.jpg" />
+    <AndroidResource Include="Resources\drawable\regback.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
