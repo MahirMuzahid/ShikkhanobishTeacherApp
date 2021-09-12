@@ -12,12 +12,14 @@
         <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1090"/>
+                    <RowDefinition Height="1210"/>
                 </Grid.RowDefinitions>
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="250"/>
                         <RowDefinition Height="260"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="120"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="180"/>
                         <RowDefinition Height="20"/>
@@ -67,8 +69,38 @@
                         <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding conFirmPassword}" ErrorText="{Binding conPassErrorTxt}" HasError="{Binding hasConPassError}"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Margin="15" Aspect="AspectFit"  IsVisible="{Binding isInfoAllRight}"/>
                     </Grid>
-
+                    
                     <Grid Grid.Row="3" Grid.Column="1" RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height=".01*"/>
+                            <RowDefinition Height=".8*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <material:MaterialCard Grid.RowSpan="3" Grid.ColumnSpan="3" Elevation="2"/>
+                       
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Do you want to teache student from class " />
+                                    <Span Text="8" FontAttributes="Bold"/>
+                                    <Span Text="?" FontAttributes="Bold"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="3"/>
+                        <material:MaterialCheckbox Text="Yes" Grid.Row="2" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" IsSelected="{Binding clseightchked}"/>
+
+                    </Grid>
+
+                    
+                    
+
+                    <Grid Grid.Row="5" Grid.Column="1" RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*"/>
                             <RowDefinition Height=".01*"/>
@@ -116,7 +148,7 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="5" Grid.Column="1" RowSpacing="5">
+                    <Grid Grid.Row="7" Grid.Column="1" RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height=".5*"/>
                             <RowDefinition Height=".01*"/>

@@ -1152,6 +1152,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            bool willteachCLassEight = clseightchked;
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Completing Teacher Registration..."))
             {
                 var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/SetTeacher".PostUrlEncodedAsync(new
@@ -1168,7 +1169,8 @@ namespace ShikkhanobishTeacherApp.View_Model
                     sub6 = StaticPageForPassingData.ThisRegTeacher.sub6,
                     sub7 = StaticPageForPassingData.ThisRegTeacher.sub7,
                     sub8 = StaticPageForPassingData.ThisRegTeacher.sub8,
-                    sub9 = StaticPageForPassingData.ThisRegTeacher.sub9
+                    sub9 = StaticPageForPassingData.ThisRegTeacher.sub9,
+                    sub10 = willteachCLassEight
                 })
       .ReceiveJson<Response>();
                 await StaticPageForPassingData.GetALlTeacherInfo(StaticPageForPassingData.ThisRegTeacher.password, StaticPageForPassingData.ThisRegTeacher.phonenumber);
@@ -1757,6 +1759,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private bool isclgAllRight1;
 
         public bool isclgAllRight { get => isclgAllRight1; set => SetProperty(ref isclgAllRight1, value); }
+
+        private bool clseightchked1;
+
+        public bool clseightchked { get => clseightchked1; set => SetProperty(ref clseightchked1, value); }
 
 
 
