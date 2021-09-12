@@ -1152,7 +1152,11 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            bool willteachCLassEight = clseightchked;
+            int willteachCLassEight = 0;
+            if (clseightchked)
+            {
+                willteachCLassEight = 1;
+            }
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Completing Teacher Registration..."))
             {
                 var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/SetTeacher".PostUrlEncodedAsync(new

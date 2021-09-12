@@ -12,7 +12,7 @@
         <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1210"/>
+                    <RowDefinition Height="1260"/>
                 </Grid.RowDefinitions>
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
