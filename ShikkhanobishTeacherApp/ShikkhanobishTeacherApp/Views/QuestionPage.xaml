@@ -4,7 +4,7 @@
               xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="ShikkhanobishTeacherApp.Views.QuestionPage">
     <Grid>
-        <Grid>
+        <Grid BackgroundColor="{AppThemeBinding Light=White, Dark=White}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="7*"/>
@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <material:MaterialLabel Text="Teacher Test" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
+            <material:MaterialLabel Text="Teacher Test" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
 
             <material:MaterialCard Grid.Row="1" Grid.Column="1" Elevation="10"/>
             <Grid Grid.Row="1" Grid.Column="1">
@@ -36,12 +36,12 @@
                 <material:MaterialCard x:Name="opfour" BackgroundColor="Transparent" Grid.Row="4" HasShadow="False"/>
 
 
-                <Label x:Name="qs"  Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" Margin="10,0,10,0"/>
+                <Label x:Name="qs"  Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=White, Dark=White}"/>
 
-                <Label x:Name="optxto"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
-                <Label x:Name="optxtt"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
-                <Label x:Name="optxtth"  Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
-                <Label x:Name="optxtf"  Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0"/>
+                <Label x:Name="optxto"  Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtt"  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtth"  Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Label x:Name="optxtf"  Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center" Margin="10,0,10,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
 
                 <material:MaterialButton BackgroundColor="Transparent" Grid.Row="1" ButtonType="Text" Clicked="Button_Clicked"/>
                 <material:MaterialButton BackgroundColor="Transparent" Grid.Row="2" ButtonType="Text" Clicked="Button_Clicked_1"/>
@@ -51,7 +51,7 @@
                 <material:MaterialButton x:Name="nextBtn" Text="Next" ButtonType="Text" Grid.Row="5" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold"  Clicked="nextBtn_Clicked"/>
 
                 <ProgressBar x:Name="prgsbar" Progress=".5" ProgressColor="#7431EA" Grid.Row="6"/>
-                <Label x:Name="questionCountTxt"  Grid.Row="6" HorizontalOptions="Center" VerticalOptions="End"/>
+                <Label x:Name="questionCountTxt"  Grid.Row="6" HorizontalOptions="Center" VerticalOptions="End" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}"/>
 
             </Grid>
         </Grid>

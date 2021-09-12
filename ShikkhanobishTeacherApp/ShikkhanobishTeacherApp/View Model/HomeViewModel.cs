@@ -267,6 +267,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                 isrefreshing = false;
                 activebtnVisbility = false;//for pre update update
             }
+            if(Application.Current.RequestedTheme == OSAppTheme.Dark)
+            {
+                await MaterialDialog.Instance.AlertAsync(message: "If you are using dark mode in your phone. Please, trun of dark mode. You can not use this app with dark mode on.",
+                                   title: "Please Turn Of Dark Mode");
+            }
+           
         }
         public async Task GetWithdrawList()
         {
