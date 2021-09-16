@@ -789,7 +789,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             else
             {
-                for (int i = 0; i > clgSelectCount.Count; i++)
+                for (int i = 0; i < clgSelectCount.Count; i++)
                 {
                     if (i == 0)
                     {
