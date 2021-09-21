@@ -10,7 +10,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image Source="blacklogo.png" Grid.Row="1" VerticalOptions="Start" Aspect="AspectFit" Margin="50,0,50,0"/>
-        <Label Text="Connecting With Shikkhanobish Server. Please Wait..." Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Label x:Name="showTxt"  Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Margin="10,0,10,0"/>
         <ProgressBar x:Name="prgs" Grid.Row="1" VerticalOptions="End" Margin="20,0,20,0"/>
         <material:MaterialButton x:Name="nonetbtn" Text="No Internet. Try Agian" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" ButtonType="Text" TextColor="Red" Clicked="MaterialButton_Clicked"/>
 

@@ -30,7 +30,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         List<favouriteTeacher> allfavTeacher = new List<favouriteTeacher>();
         int requestStudentID;
         string isNewUpdate;
-        string url = "https://shikkhanobishrealtimeapi.shikkhanobish.com/ShikkhanobishHub";
+        string url = "https://shikkhanobishRealTimeAPi.shikkhanobish.com/ShikkhanobishHub";
         #region Methods
         public HomeViewModel(bool fromReg)
         {
@@ -249,16 +249,47 @@ namespace ShikkhanobishTeacherApp.View_Model
                 star2 = ThisTeacher.twoStar + "";
                 star1 = ThisTeacher.oneStar + "";
 
-
-                sub1 = thisSubList[0].name;
-                sub2 = thisSubList[1].name;
-                sub3 = thisSubList[2].name;
-                sub4 = thisSubList[3].name;
-                sub5 = thisSubList[4].name;
-                sub6 = thisSubList[5].name;
-                sub7 = thisSubList[6].name;
-                sub8 = thisSubList[7].name;
-                sub9 = thisSubList[8].name;
+                for(int i = 0; i < thisSubList.Count; i++)
+                {
+                    if(i == 0)
+                    {
+                        sub1 = thisSubList[i].name;
+                    }
+                    if (i == 1)
+                    {
+                        sub2 = thisSubList[i].name;
+                    }
+                    if (i == 2)
+                    {
+                        sub3 = thisSubList[i].name;
+                    }
+                    if (i == 3)
+                    {
+                        sub4 = thisSubList[i].name;
+                    }
+                    if (i == 4)
+                    {
+                        sub5 = thisSubList[i].name;
+                    }
+                    if (i == 5)
+                    {
+                        sub6 = thisSubList[i].name;
+                    }
+                    if (i == 6)
+                    {
+                        sub7 = thisSubList[i].name;
+                    }
+                    if (i == 7)
+                    {
+                        sub8 = thisSubList[i].name;
+                    }
+                    if (i == 8)
+                    {
+                        sub9 = thisSubList[i].name;
+                    }
+                }
+              
+                
 
                 await GetFavTeacherList();
                 await GetProMsg(fromReg);

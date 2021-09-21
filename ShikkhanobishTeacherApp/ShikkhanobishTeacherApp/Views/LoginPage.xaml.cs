@@ -70,7 +70,7 @@ namespace ShikkhanobishTeacherApp.Views
             {
                 return;
             }
-            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Checking Info..."))
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Loging In..."))
             {
 
                 await  StaticPageForPassingData.GetALlTeacherInfo(pass.Text, pn.Text);

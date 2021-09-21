@@ -1,4 +1,5 @@
-﻿using ShikkhanobishTeacherApp.Model;
+﻿using Flurl.Http;
+using ShikkhanobishTeacherApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace ShikkhanobishTeacherApp.Views
         {
            
             InitializeComponent();
+            showTxt.Text = "Connecting With Shikkhanobish Server. Please Wait...";
             nonetbtn.IsVisible = false;
             if (IsInternetConnectionAvailable())
             {
@@ -77,25 +79,46 @@ namespace ShikkhanobishTeacherApp.Views
 
         }
         #endregion
+
+        
         public async Task Getinfo()
         {
             prgs.Progress = .2;
-            var pn = await SecureStorage.GetAsync("phonenumber");
-            var pass = await SecureStorage.GetAsync("password");
-            StaticPageForPassingData.freomReg = false;
-            prgs.Progress = .6;
-            if (pn != null && pass != null)
+            var currentAppVersion = VersionTracking.CurrentBuild;
+            currentAppVersion = "10";
+            var currentRealVersion = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getAppVersion".GetJsonAsync<AppVersion>();
+
+            if (int.Parse(currentAppVersion) < currentRealVersion.teacherAtVersion)
             {
-                await StaticPageForPassingData.GetALlTeacherInfo(pass, pn);
-                prgs.Progress = .9;
-                Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                using (await MaterialDialog.Instance.LoadingDialogAsync(message: "New Version Is Available! Please download latest version to use Shikkhanobish Teacher App..."))
+                {
+                    await Task.Delay(3000);
+                    await Browser.OpenAsync("https://play.google.com/store/apps/details?id=com.shikkhanobishteacher.shikkhanobishteacher");
+                    showTxt.Text = "New Version Available! Please download latest version to use Shikkhanobish Teacher App...";
+                    prgs.IsVisible = false;
+
+                }
             }
             else
             {
-                await Task.Delay(1000);
-                prgs.Progress = .9;
-                Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+                prgs.Progress = .6;
+                var pn = await SecureStorage.GetAsync("phonenumber");
+                var pass = await SecureStorage.GetAsync("password");
+                StaticPageForPassingData.freomReg = false;                
+                if (pn != null && pass != null)
+                {
+                    await StaticPageForPassingData.GetALlTeacherInfo(pass, pn);
+                    prgs.Progress = .9;
+                    Application.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+                }
+                else
+                {
+                    await Task.Delay(1000);
+                    prgs.Progress = .9;
+                    Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+                }
             }
+            
 
         }
 

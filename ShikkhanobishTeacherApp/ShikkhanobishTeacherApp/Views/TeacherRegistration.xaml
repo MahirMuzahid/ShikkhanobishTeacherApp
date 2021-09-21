@@ -12,11 +12,11 @@
         <ScrollView>
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1260"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="300"/>
                         <RowDefinition Height="260"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="120"/>
@@ -34,7 +34,7 @@
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".2*"/>
@@ -60,7 +60,7 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="2" Elevation="2"/>
+                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="2" Elevation="1"/>
                         <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                         <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="2"/>
                         <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding name}" ErrorText="{Binding nameErrorTxt}" HasError="{Binding hasNameError}"/>
@@ -81,8 +81,8 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <material:MaterialCard Grid.RowSpan="3" Grid.ColumnSpan="3" Elevation="2"/>
-                       
+                        <material:MaterialCard Grid.RowSpan="3" Grid.ColumnSpan="3" Elevation="1"/>
+                        <Image Source="okicon.png"  Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="10" IsVisible="{Binding isClsEightRight}"/>
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -93,7 +93,8 @@
                             </Label.FormattedText>
                         </Label>
                         <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="3"/>
-                        <material:MaterialCheckbox Text="Yes" Grid.Row="2" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" IsSelected="{Binding clseightchked}"/>
+                        <material:MaterialCheckbox Text="Yes" Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" IsSelected="{Binding clseightchked}" IsEnabled="{Binding clsEightYesEnaled}"/>
+                        <material:MaterialCheckbox Text="NO" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" IsSelected="{Binding clseightNotchked}" IsEnabled="{Binding clsEightNoEnabled}"/>
 
                     </Grid>
 
@@ -112,7 +113,7 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="2"/>
+                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="1"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="8" IsVisible="{Binding isScAllRight}"/>
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
                             <Label.FormattedText>
@@ -160,7 +161,7 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="2"/>
+                        <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="3" Elevation="1"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Start" Aspect="AspectFit" Margin="8" IsVisible="{Binding isclgAllRight}"/>
                         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,0,0" TextColor="{AppThemeBinding Light=Gray, Dark=Gray}">
                             <Label.FormattedText>
