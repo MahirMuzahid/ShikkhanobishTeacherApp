@@ -7,510 +7,515 @@
     <!--  x:DataType="viewmodel:HomeViewModel" !-->
     <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
 
-        <ScrollView>
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1000"/>
-                </Grid.RowDefinitions>
-                <Grid>
+        <Grid>
+            <ScrollView>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1000"/>
+                    </Grid.RowDefinitions>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="7*"/>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height="40*"/>
-                            <RowDefinition Height=".05*"/>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height=".05*"/>
-                            <RowDefinition Height="20*"/>
-                            <RowDefinition Height="5*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".1*"/>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width=".1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height=".01*"/>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="40*"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="20*"/>
+                                <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".7*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width=".7*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width=".1*"/>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="blacklogo.png"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" Margin="0,10,0,0"/>
-                            <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Flat" TextColor="Red" BackgroundColor="#50FFB5B5" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
-
-                        </Grid>
-
-                        <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height=".6*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#B0B0B0" Margin="10,0,0,0" FontSize="11"/>
-                            <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="#3B3B3B">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding amount}"/>
-                                        <Span Text=" Taka"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <material:MaterialButton Text="Withdraw"  ButtonType="Flat" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#05A422"  BackgroundColor="#B0FFBE" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
-                        </Grid>
-
-                        <Grid Grid.Row="2" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Column="0" Grid.Row="0" RowSpacing="0">
+                            <Grid Grid.Row="0" Grid.Column="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
+                                    <RowDefinition Height=".01*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width=".7*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width=".7*"/>
+                                    <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
-
-                                <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
-                                <material:MaterialButton Text="Take Test" ButtonType="Flat" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" BackgroundColor="#50B0B9FF" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
-                                </material:MaterialButton>
-                            </Grid>
-                            <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="monetization.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Monetization Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
-
-                            </Grid>
-                            <Grid Grid.Column="2" Grid.Row="0" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
-                                <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
+                                <Image Source="blacklogo.png"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" Margin="0,10,0,0"/>
+                                <material:MaterialButton Text="Logout" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" ButtonType="Flat" TextColor="Red" BackgroundColor="#50FFB5B5" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Grid.Row="0" Command="{Binding logOut}"/>
 
                             </Grid>
 
-                            <Grid Grid.Column="0" Grid.Row="1" RowSpacing="0">
+                            <Grid Grid.Row="1" Grid.Column="1" RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
+                                    <RowDefinition Height=".6*"/>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
                                 </Grid.RowDefinitions>
+
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="totalmin.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Total Minute" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding totalMin}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
-                            </Grid>
-                            <Grid Grid.Column="1" Grid.Row="1" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="favourite.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Favourite Teacher" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding favTeacher}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
-                                <material:MaterialButton Text="See All" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ButtonType="Text" FontSize="11" PressedBackgroundColor="#20000000" Command="{Binding favList}" IsVisible="{Binding favTeacherSeeVisibility}"/>
-                            </Grid>
-                            <Grid Grid.Column="2" Grid.Row="1" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="report.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
-
+                                <Label Text="Total Available Amount" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="End" TextColor="#B0B0B0" Margin="10,0,0,0" FontSize="11"/>
+                                <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" FontSize="25" FontAttributes="Bold" Margin="10,0,0,0" TextColor="#3B3B3B">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding amount}"/>
+                                            <Span Text=" Taka"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <material:MaterialButton Text="Withdraw"  ButtonType="Flat" VerticalOptions="Center"  HorizontalOptions="End" Grid.RowSpan="2" Grid.Column="1" TextColor="#05A422"  BackgroundColor="#B0FFBE" FontSize="12" PressedBackgroundColor="#20000000" Command="{Binding withdrawCmd}" IsEnabled="{Binding withdrawBtnEnabled}"/>
                             </Grid>
 
-                            <Grid Grid.Column="0" Grid.Row="2" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
-                                </Grid.RowDefinitions>
+                            <Grid Grid.Row="2" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-
-                                <Image Source="tuition.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Total Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
-                            </Grid>
-                            <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".2*"/>
-                                    <RowDefinition Height=".4*"/>
-                                    <RowDefinition Height=".7*"/>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".1*"/>
-
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="rating.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
-                                <Label Text="Total Starts" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
-                                <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="1">
+                                <Grid Grid.Column="0" Grid.Row="0" RowSpacing="0">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
                                         <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="5 Star" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                                    <Label Text="4 Star" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                                    <Label Text="3 Star" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                                    <Label Text="2 Star" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
-                                    <Label Text="1 Star" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
 
-                                    <Label Text="{Binding star5}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
-                                    <Label Text="{Binding star4}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
-                                    <Label Text="{Binding star3}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
-                                    <Label Text="{Binding star2}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
-                                    <Label Text="{Binding star1}" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                    <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
+                                    <material:MaterialButton Text="Take Test" ButtonType="Flat" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" BackgroundColor="#50B0B9FF" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
+                                    </material:MaterialButton>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="0" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="monetization.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Monetization Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
+
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="0" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
+                                    <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
+
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="totalmin.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Total Minute" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding totalMin}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="favourite.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Favourite Teacher" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding favTeacher}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
+                                    <material:MaterialButton Text="See All" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ButtonType="Text" FontSize="11" PressedBackgroundColor="#20000000" Command="{Binding favList}" IsVisible="{Binding favTeacherSeeVisibility}"/>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="1" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="report.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
+
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="2" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="tuition.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Total Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".2*"/>
+                                        <RowDefinition Height=".4*"/>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".1*"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="rating.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Label Text="Total Starts" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="5 Star" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="4 Star" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="3 Star" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="2 Star" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+                                        <Label Text="1 Star" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="11"/>
+
+                                        <Label Text="{Binding star5}" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star4}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star3}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star2}" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding star1}" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" VerticalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                                    </Grid>
+
                                 </Grid>
 
                             </Grid>
 
-                        </Grid>
+                            <Frame BackgroundColor="#80000000" Grid.Row="3" Grid.Column="1" HasShadow="False"/>
 
-                        <Frame BackgroundColor="#80000000" Grid.Row="3" Grid.Column="1" HasShadow="False"/>
-
-                        <Grid Grid.Row="4" Grid.RowSpan="3" Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                            <Label Text="To change your tags please contact at this number: 01833368125" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
-
-                            <Frame BackgroundColor="#10000000" Grid.Row="1" Grid.ColumnSpan="5" CornerRadius="10"/>
-
-                            <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
-                            <Label Text="Science" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-
-                            <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-
-                            <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="5" CornerRadius="10"/>
-
-                            <Label Text="College" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
-                            <Label Text="Science" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
-
-                            <Label Text="{Binding sub4}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub5}" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub6}" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub7}" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-
-                            <Label Text="{Binding sub8}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-                            <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
-
-
-                        </Grid>
-
-                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="20*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
-                            </Frame>
-
-                            <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                            <Grid Grid.Row="4" Grid.RowSpan="3" Grid.Column="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".001*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".7*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="To change your tags please contact at this number: 01833368125" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
+
+                                <Frame BackgroundColor="#10000000" Grid.Row="1" Grid.ColumnSpan="5" CornerRadius="10"/>
+
+                                <Label Text="School" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold" Margin="5,0,0,0"/>
+                                <Label Text="Science" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+                                <Label Text="{Binding sub1}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub2}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub3}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+                                <Frame BackgroundColor="#10000000" Grid.Row="3" Grid.ColumnSpan="5" CornerRadius="10"/>
+
+                                <Label Text="College" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" FontAttributes="Bold"  Margin="5,0,0,0"/>
+                                <Label Text="Science" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="12" />
+
+                                <Label Text="{Binding sub4}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub5}" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub6}" Grid.Row="4" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub7}" Grid.Row="4" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+                                <Label Text="{Binding sub8}" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+                                <Label Text="{Binding sub9}" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" FontSize="10" />
+
+
+                            </Grid>
+
+                            <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
-                                <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
-                                <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                                <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
-                                <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
-                                <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
-                                <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
-                                <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
+
+                                <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
+                                </Frame>
+
+                                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".7*"/>
+                                        <RowDefinition Height=".001*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height=".7*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".1*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width=".1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+                                    <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
+                                    <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                                    <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
+                                    <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
+                                    <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
+                                    <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
+                                    <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
+                                </Grid>
+
+                            </Grid>
+
+                            <!--Tuition Found-->
+
+                            <!--Tuition Found-->
+
+                            <!--Favourite Student-->
+                            
+                            <!--Favourite Student-->
+
+                            <Grid Grid.Row="7" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame BackgroundColor="#90C0FFCB" Grid.ColumnSpan="2" CornerRadius="10" HasShadow="False"/>
+                                <Label Text="Let us know any bug or suggestion" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
+                                <material:MaterialButton Text="Feedback" ButtonType="Text" Grid.Column="1" FontSize="11" TextColor="#00911A" Clicked="MaterialButton_Clicked"/>
                             </Grid>
 
                         </Grid>
-                        
-                        <!--Tuition Found-->
-                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="225"/>
-                                <RowDefinition Height="450"/>
-                                <RowDefinition Height="225"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="20*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding foundInfoVisibility}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".7*"/>
-                                    <RowDefinition Height=".5*"/>
-                                    <RowDefinition Height="2.5*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <material:MaterialCard Grid.RowSpan="7" BackgroundColor="{Binding tuitionFoundColor}" Elevation="30" CornerRadius="20"/>
-                                <Label Text="{Binding HRTimer}" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0"/>
-                                <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
-                                <Label Text="{Binding HRStudentName}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
-                                <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Class: "/>
-                                            <Span Text="{Binding HRClass}" FontAttributes="Bold"/>
-                                            <Span Text=" | "/>
-                                            <Span Text="Subject: "/>
-                                            <Span Text="{Binding HRSubject}" FontAttributes="Bold"/>
-                                            <Span Text=" | "/>
-                                            <Span Text="Chapter: "/>
-                                            <Span Text="{Binding HRChapter}" FontAttributes="Bold"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Text="{Binding HRDescription}" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Start" FontSize="12"/>
-                                <Label Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Payment: " FontSize="12"/>
-                                            <Span Text="{Binding HRCost}" FontAttributes="Bold"/>
-                                            <Span Text="(Include 15% system cost)" FontSize="11"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
-                                <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White" Command="{Binding AcceptHRCmd}"/>
-                                <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7" Command="{Binding DeclineHRCmd}"/>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding connectingstudentVisibility}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <material:MaterialCard Grid.Row="1" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
-                                <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
-                            </Grid>
-                        </Grid>
-                        <!--Tuition Found-->
-                        
-                        <!--Favourite Student-->
-                        <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
+                        <Grid  IsVisible="{Binding regMsgVisiblity}" BackgroundColor="#50000000">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
-                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="10*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="346"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popOutfavteacherList}"/>
                             <Grid Grid.Row="1" Grid.Column="1">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="346"/>
                                     <RowDefinition Height="1*"/>
-                                    <RowDefinition Height=".01*"/>
-                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height=".4*"/>
                                 </Grid.RowDefinitions>
                                 <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
-                                <Label Text="List of studnet who added you as a favourite teacher" Grid.Row="0" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Frame BackgroundColor="Black" Grid.Row="1" HasShadow="False"/>
-                                <ListView ItemsSource="{Binding favteacherList}" Grid.Row="2"  RowHeight="50" SeparatorColor="Black">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <Label Text="{Binding studentName}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFit"/>
+                                <Label Text="{Binding proMsgText}" Grid.Row="1" Margin="20"/>
+                                <material:MaterialButton Text="OK" ButtonType="Text" Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Margin="10" Command="{Binding popOutRegMsgVisiblility}"/>
                             </Grid>
-                        </Grid>
-                        <!--Favourite Student-->
-                        
-                        <Grid Grid.Row="7" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Frame BackgroundColor="#90C0FFCB" Grid.ColumnSpan="2" CornerRadius="10" HasShadow="False"/>
-                            <Label Text="Let us know any bug or suggestion" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="12" />
-                            <material:MaterialButton Text="Feedback" ButtonType="Text" Grid.Column="1" FontSize="11" TextColor="#00911A" Clicked="MaterialButton_Clicked"/>
-                        </Grid> 
-
-                    </Grid>
-                    <Grid  IsVisible="{Binding regMsgVisiblity}" BackgroundColor="#50000000">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="346"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Row="1" Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="346"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height=".4*"/>
-                            </Grid.RowDefinitions>
-                            <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
-                            <Image Source="{Binding promsgImgSrc}" Grid.Row="0" Aspect="AspectFit"/>
-                            <Label Text="{Binding proMsgText}" Grid.Row="1" Margin="20"/>
-                            <material:MaterialButton Text="OK" ButtonType="Text" Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Margin="10" Command="{Binding popOutRegMsgVisiblility}"/>
                         </Grid>
                     </Grid>
                 </Grid>
+
+            </ScrollView>
+            <Grid BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding foundInfoVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".7*"/>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.RowSpan="7" BackgroundColor="{Binding tuitionFoundColor}" Elevation="30" CornerRadius="20"/>
+                    <Label Text="{Binding HRTimer}" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0"/>
+                    <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label Text="{Binding HRStudentName}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
+                    <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Class: "/>
+                                <Span Text="{Binding HRClass}" FontAttributes="Bold"/>
+                                <Span Text=" | "/>
+                                <Span Text="Subject: "/>
+                                <Span Text="{Binding HRSubject}" FontAttributes="Bold"/>
+                                <Span Text=" | "/>
+                                <Span Text="Chapter: "/>
+                                <Span Text="{Binding HRChapter}" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{Binding HRDescription}" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Start" FontSize="12"/>
+                    <Label Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Payment: " FontSize="12"/>
+                                <Span Text="{Binding HRCost}" FontAttributes="Bold"/>
+                                <Span Text="(Include 15% system cost)" FontSize="11"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame Grid.Row="5"  BackgroundColor="#2ADA77" HasShadow="False"/>
+                    <material:MaterialButton Text="Accept" Grid.Row="5" ButtonType="Text"  TextColor="White" Command="{Binding AcceptHRCmd}"/>
+                    <material:MaterialButton Text="Decline" Grid.Row="6" ButtonType="Text" TextColor="#A7A7A7" Command="{Binding DeclineHRCmd}"/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" IsVisible="{Binding connectingstudentVisibility}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.Row="1" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                    <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
+                </Grid>
             </Grid>
-            
-        </ScrollView>
+            <Grid  BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button BackgroundColor="Transparent" Grid.RowSpan="3" Grid.ColumnSpan="3" Command="{Binding popOutfavteacherList}"/>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".01*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <material:MaterialCard Grid.RowSpan="3" Elevation="20" BackgroundColor="White"/>
+                    <Label Text="List of studnet who added you as a favourite teacher" Grid.Row="0" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Frame BackgroundColor="Black" Grid.Row="1" HasShadow="False"/>
+                    <ListView ItemsSource="{Binding favteacherList}" Grid.Row="2"  RowHeight="50" SeparatorColor="Black">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding studentName}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+        
        
        
             

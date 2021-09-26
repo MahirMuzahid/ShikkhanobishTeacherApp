@@ -85,7 +85,7 @@ namespace ShikkhanobishTeacherApp.Views
         {
             prgs.Progress = .2;
             var currentAppVersion = VersionTracking.CurrentBuild;
-            currentAppVersion = "10";
+            //currentAppVersion = "10";
             var currentRealVersion = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getAppVersion".GetJsonAsync<AppVersion>();
 
             if (int.Parse(currentAppVersion) < currentRealVersion.teacherAtVersion)

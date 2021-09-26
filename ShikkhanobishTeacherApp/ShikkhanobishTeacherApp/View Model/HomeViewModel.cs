@@ -296,7 +296,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await ConnectToRealTimeApiServer();
                 await GetWithdrawList();
                 isrefreshing = false;
-                activebtnVisbility = false;//for pre update update
+                //activebtnVisbility = false;//for pre update update
             }
             if(Application.Current.RequestedTheme == OSAppTheme.Dark)
             {
@@ -611,21 +611,26 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
-            CrossVonage.Current.ApiKey = info.apiKey + "";
-            CrossVonage.Current.SessionId = info.SessionID;
-            CrossVonage.Current.UserToken = info.token;
-
-            if (!CrossVonage.Current.TryStartSession())
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Connecting Video Call..."))
             {
-                return;
+                await Task.Delay(5000); // Represents a task that is running.
+                VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
+                CrossVonage.Current.ApiKey = info.apiKey + "";
+                CrossVonage.Current.SessionId = info.SessionID;
+                CrossVonage.Current.UserToken = info.token;
+
+                if (!CrossVonage.Current.TryStartSession())
+                {
+                    return;
+                }
+                string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + true + "&apikey=" + info.apiKey + "&sessionID=" + info.SessionID + "&token=" + info.token;
+                HttpClient client = new HttpClient();
+                StringContent content = new StringContent("", Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
+                StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
+                Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
             }
-            string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/SelectedTeacherResponse?&teacherID=" + ThisTeacher.teacherID + "&studentID=" + requestStudentID + "&response=" + true+ "&apikey=" + info.apiKey + "&sessionID=" + info.SessionID + "&token=" + info.token; 
-            HttpClient client = new HttpClient();
-            StringContent content = new StringContent("", Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
-            StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
-            Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
+            
 
 
         }
