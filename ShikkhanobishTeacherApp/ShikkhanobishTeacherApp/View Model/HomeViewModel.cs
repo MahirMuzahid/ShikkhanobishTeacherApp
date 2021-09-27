@@ -198,7 +198,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 ThisTeacher = StaticPageForPassingData.thisTeacher;
                 thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
                 thisSubList = StaticPageForPassingData.thisTeacherSubListName;
-
+                var groupName =await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
                 tuitionFoundVisibility = false;
                 amount = "" + ThisTeacher.amount;
                 if (ThisTeacher.selectionStatus == 0)
@@ -290,7 +290,20 @@ namespace ShikkhanobishTeacherApp.View_Model
                 }
               
                 
-
+                for(int i = 0; i < groupName.Count; i++)
+                {
+                    if (sub1 == groupName[i].name)
+                    {
+                        groupNameSch = groupName[i].groupName;
+                    }
+                }
+                for (int i = 0; i < groupName.Count; i++)
+                {
+                    if (sub4 == groupName[i].name)
+                    {
+                        groupNameClg = groupName[i].groupName;
+                    }
+                }
                 await GetFavTeacherList();
                 await GetProMsg(fromReg);
                 await ConnectToRealTimeApiServer();
@@ -1109,7 +1122,15 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-        
+        private string groupNameSch1;
+
+        public string groupNameSch { get => groupNameSch1; set => SetProperty(ref groupNameSch1, value); }
+
+        private string groupNameClg1;
+
+        public string groupNameClg { get => groupNameClg1; set => SetProperty(ref groupNameClg1, value); }
+
+
 
 
 
