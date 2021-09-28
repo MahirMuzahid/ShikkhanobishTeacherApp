@@ -107,7 +107,14 @@
                                                         </FormattedString>
                                                     </Label.FormattedText>
                                                 </Label>
-                                                <Label Text="10 Min" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="10"/>
+                                                <Label Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="10">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding time}"/>
+                                                            <Span Text=" minutes"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
                                             </Grid>
                                             <Grid Grid.Row="0" Grid.Column="1">
                                                 <Grid.RowDefinitions>
@@ -123,7 +130,7 @@
                                                     <RowDefinition Height="1*"/>
                                                 </Grid.RowDefinitions>
                                                 <Label Text="Earned" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="10"/>
-                                                <Label Text="{Binding teacherCost}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="14" FontAttributes="Bold"/>
+                                                <Label Text="{Binding teacherEarn}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="14" FontAttributes="Bold"/>
                                             </Grid>
                                             <Grid Grid.Row="1" Grid.Column="0">
                                                 <Grid.ColumnDefinitions>

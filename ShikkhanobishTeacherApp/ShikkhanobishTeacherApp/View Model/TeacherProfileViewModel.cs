@@ -147,6 +147,10 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return;
             }
             StaticPageForPassingData.tuitionList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getTeacherTuitionHistoryWithID".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<List<TeacherTuitionHistory>>();
+            List<TeacherTuitionHistory> SortedList = new List<TeacherTuitionHistory>();
+            SortedList = StaticPageForPassingData.tuitionList.OrderBy(x => x.date).ToList();
+            SortedList.Reverse();
+            StaticPageForPassingData.tuitionList = SortedList;
             List<TeacherTuitionHistory> tuilist = StaticPageForPassingData.tuitionList;
 
 

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model"
+             xmlns:viewmodel="clr-namespace:ShikkhanobishTeacherApp.View_Model" 
              x:Class="ShikkhanobishTeacherApp.Views.HomePage">
     <!--  x:DataType="viewmodel:HomeViewModel" !-->
     <RefreshView Command="{Binding refreshNow}" IsRefreshing="{Binding isrefreshing}">
@@ -255,6 +255,8 @@
 
                                     <Image Source="rating.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                                     <Label Text="Total Starts" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Label Text="{Binding avgRattingShow}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="15" HorizontalOptions="End" VerticalOptions="Center" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="Avg. Ratting" Grid.Column="1" Grid.Row="3" FontSize="11" HorizontalOptions="End" VerticalOptions="Center"/>
                                     <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="1">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1*"/>
@@ -372,13 +374,9 @@
 
                             </Grid>
 
-                            <!--Tuition Found-->
+                           
 
-                            <!--Tuition Found-->
-
-                            <!--Favourite Student-->
                             
-                            <!--Favourite Student-->
 
                             <Grid Grid.Row="7" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
@@ -418,6 +416,7 @@
                 </Grid>
 
             </ScrollView>
+            <!--Tuition Found-->          
             <Grid BackgroundColor="#30000000" IsVisible="{Binding tuitionFoundVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -440,9 +439,11 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <material:MaterialCard Grid.RowSpan="7" BackgroundColor="{Binding tuitionFoundColor}" Elevation="30" CornerRadius="20"/>
-                    <Label Text="{Binding HRTimer}" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="10" Margin="0,0,10,0"/>
+                    <material:MaterialCard Grid.RowSpan="7" BackgroundColor="White" Elevation="30" CornerRadius="20"/>
+                    <Label Text="0:30" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="14" Margin="0,0,10,0"/>
+                    <Image Source="favourite.png" Grid.Row="0" Grid.RowSpan="7" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" Opacity=".1" IsVisible="{Binding isfavTeacher}"/>
                     <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
+                    <Label Text="This student added you as a favourite teacher!" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End" FontSize="12" IsVisible="{Binding isfavTeacher}"/>
                     <Label Text="{Binding HRStudentName}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
                     <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
                         <Label.FormattedText>
@@ -464,7 +465,7 @@
                             <FormattedString>
                                 <Span Text="Payment: " FontSize="12"/>
                                 <Span Text="{Binding HRCost}" FontAttributes="Bold"/>
-                                <Span Text="(Include 15% system cost)" FontSize="11"/>
+                                <Span Text=" (Include 20% system cost)" FontSize="11"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -482,6 +483,9 @@
                     <Label Text="Connecting with student..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"/>
                 </Grid>
             </Grid>
+            <!--Tuition Found-->
+
+            <!--Favourite Student-->          
             <Grid  BackgroundColor="#30000000" IsVisible="{Binding favouriteStudentListVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -514,6 +518,8 @@
                     </ListView>
                 </Grid>
             </Grid>
+            <!--Favourite Student-->
+
         </Grid>
         
        

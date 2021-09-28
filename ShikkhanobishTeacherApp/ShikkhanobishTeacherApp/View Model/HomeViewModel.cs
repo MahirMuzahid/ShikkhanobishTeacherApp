@@ -190,6 +190,16 @@ namespace ShikkhanobishTeacherApp.View_Model
             Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
 
         }
+        public float CalculateRatting(float fs, float fos, float th, float to, float on)
+        {
+            float toalRating = 0;
+
+            float totalSum = fs * 5 + fos * 4 + th * 3 + to * 2 + on;
+
+            toalRating = totalSum / (fs + fos + th + to + on);
+
+            return toalRating;
+        }
         public async Task GetAllInfo(bool fromReg)
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
@@ -248,6 +258,8 @@ namespace ShikkhanobishTeacherApp.View_Model
                 star3 = ThisTeacher.threeStar + "";
                 star2 = ThisTeacher.twoStar + "";
                 star1 = ThisTeacher.oneStar + "";
+                avgRattingShow = Math.Round(CalculateRatting((float)ThisTeacher.fiveStar, (float)ThisTeacher.fourStar, (float)ThisTeacher.threeStar, (float)ThisTeacher.twoStar, (float)ThisTeacher.oneStar),2).ToString();
+
 
                 for(int i = 0; i < thisSubList.Count; i++)
                 {
@@ -582,12 +594,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                     {
                         if(allfavTeacher[i].studentID == studentID)
                         {
-                            tuitionFoundColor = Color.FromHex("#EFE5FF");
+                            isfavTeacher = true;
                             break;
                         }
                         if (i == allfavTeacher.Count - 1)
                         {
-                            tuitionFoundColor = Color.White ;
+                            isfavTeacher = false;
                         }
                     }
                     tuitionFoundVisibility = true;
@@ -603,7 +615,24 @@ namespace ShikkhanobishTeacherApp.View_Model
 
                 }
             });
-            
+            _connection.On<int, int, bool>("studentTuitionResponse", async (teacherID, studentID, studentTuitionResponse) =>
+            {
+                if (teacherID == ThisTeacher.teacherID && requestStudentID == studentID)
+                {
+                    if (studentTuitionResponse)
+                    {                                           
+                        Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
+                                             
+                    }
+                    else
+                    {
+                        CrossVonage.Current.EndSession();
+                    }
+
+                }
+                tuitionFoundVisibility = false;
+            });
+
         }
         private async Task PerformDeclineHRCmd()
         {
@@ -624,9 +653,8 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Connecting Video Call..."))
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Waiting for student response..."))
             {
-                await Task.Delay(5000); // Represents a task that is running.
                 VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
                 CrossVonage.Current.ApiKey = info.apiKey + "";
                 CrossVonage.Current.SessionId = info.SessionID;
@@ -641,7 +669,10 @@ namespace ShikkhanobishTeacherApp.View_Model
                 StringContent content = new StringContent("", Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
                 StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
-                Application.Current.MainPage.Navigation.PushModalAsync(new VideoCallPage());
+                while (tuitionFoundVisibility)
+                {
+                    await Task.Delay(1000);
+                }
             }
             
 
@@ -1129,6 +1160,14 @@ namespace ShikkhanobishTeacherApp.View_Model
         private string groupNameClg1;
 
         public string groupNameClg { get => groupNameClg1; set => SetProperty(ref groupNameClg1, value); }
+
+        private string avgRattingShow1;
+
+        public string avgRattingShow { get => avgRattingShow1; set => SetProperty(ref avgRattingShow1, value); }
+
+        private bool isfavTeacher1;
+
+        public bool isfavTeacher { get => isfavTeacher1; set => SetProperty(ref isfavTeacher1, value); }
 
 
 
