@@ -612,6 +612,20 @@ namespace ShikkhanobishTeacherApp.View_Model
                     HRStudentName = name;
                     HRDescription = des;
                     requestStudentID = studentID;
+                    int sec = 30;
+                    Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                    {
+                        if(sec == 0)
+                        {
+                            PerformDeclineHRCmd();
+
+                            tuitionFoundVisibility = false;
+                            return tuitionFoundVisibility;
+                        }
+                        HRTimer = "0 : " + sec;
+                        sec -= 1;
+                        return tuitionFoundVisibility;
+                    });
 
                 }
             });
@@ -644,7 +658,6 @@ namespace ShikkhanobishTeacherApp.View_Model
             HttpClient client = new HttpClient();
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
-            await ActiveTeacher();
             tuitionFoundVisibility = false;
         }
         private async Task PerformAcceptHRCmd()
@@ -653,6 +666,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            tuitionFoundVisibility = false;
             using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Waiting for student response..."))
             {
                 VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
@@ -669,10 +683,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 StringContent content = new StringContent("", Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
                 StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
-                while (tuitionFoundVisibility)
-                {
-                    await Task.Delay(1000);
-                }
+                await Task.Delay(30000);
             }
             
 
