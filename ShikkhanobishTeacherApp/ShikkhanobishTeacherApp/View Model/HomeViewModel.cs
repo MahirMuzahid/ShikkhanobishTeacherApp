@@ -1,6 +1,7 @@
 ﻿using Android.Content.Res;
 using Flurl.Http;
 using Microsoft.AspNetCore.SignalR.Client;
+using Plugin.LocalNotification;
 using ShikkhanobishTeacherApp.Model;
 using ShikkhanobishTeacherApp.Views;
 using System;
@@ -204,12 +205,69 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
             {
-                //activebtnVisbility = false;
+                sub1 = "";
+                sub2 = "";
+                sub3 = "";
+                sub4 = "";
+                sub5 = "";
+                sub6 = "";
+                sub7 = "";
+                sub8 = "";
+                sub9 = "";
                 ThisTeacher = StaticPageForPassingData.thisTeacher;
                 thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
-                thisSubList = StaticPageForPassingData.thisTeacherSubListName;
+                if (StaticPageForPassingData.isTuitionFound == true)
+                {
+                    await inActiveTeacher();
+                    for (int i = 0; i < allfavTeacher.Count; i++)
+                    {
+                        if (allfavTeacher[i].studentID == StaticPageForPassingData.tuitionFoundClass.studentID)
+                        {
+                            isfavTeacher = true;
+                            break;
+                        }
+                        if (i == allfavTeacher.Count - 1)
+                        {
+                            isfavTeacher = false;
+                        }
+                    }
+                    tuitionFoundVisibility = true;
+                    foundInfoVisibility = true;
+                    connectingstudentVisibility = false;
+                    HRChapter = StaticPageForPassingData.tuitionFoundClass.chapter;
+                    HRClass = StaticPageForPassingData.tuitionFoundClass.cls;
+                    HRCost = StaticPageForPassingData.tuitionFoundClass.cost + " Taka/Min";
+                    HRSubject = StaticPageForPassingData.tuitionFoundClass.sub;
+                    HRStudentName = StaticPageForPassingData.tuitionFoundClass.name;
+                    HRDescription = StaticPageForPassingData.tuitionFoundClass.des;
+                    requestStudentID = StaticPageForPassingData.tuitionFoundClass.studentID;
+                    StaticPageForPassingData.isTuitionFound = true;
+                    int sec = StaticPageForPassingData.tuitionFoundClass.remainingSec;
+                    Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                    {
+                        if (sec == 0)
+                        {
+                            PerformDeclineHRCmd();
+
+                            tuitionFoundVisibility = false;
+                            StaticPageForPassingData.isTuitionFound = false;
+                            return tuitionFoundVisibility;
+                        }
+                        HRTimer = "0 : " + sec;
+                        sec -= 1;
+                        return tuitionFoundVisibility;
+                    });
+                }
+                else
+                {
+                    tuitionFoundVisibility = false;
+                    foundInfoVisibility = false;
+                }
+
+
+                
                 var groupName =await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getSubject".GetJsonAsync<List<Subject>>();
-                tuitionFoundVisibility = false;
+                StaticPageForPassingData.allSubList = groupName;
                 amount = "" + ThisTeacher.amount;
                 if (ThisTeacher.selectionStatus == 0)
                 {
@@ -260,46 +318,91 @@ namespace ShikkhanobishTeacherApp.View_Model
                 star1 = ThisTeacher.oneStar + "";
                 avgRattingShow = Math.Round(CalculateRatting((float)ThisTeacher.fiveStar, (float)ThisTeacher.fourStar, (float)ThisTeacher.threeStar, (float)ThisTeacher.twoStar, (float)ThisTeacher.oneStar),2).ToString();
 
-
+                thisSubList = StaticPageForPassingData.thisTeacherSubListName;
                 for(int i = 0; i < thisSubList.Count; i++)
                 {
-                    if(i == 0)
+                    for(int j = 0; j < groupName.Count; j++)
                     {
-                        sub1 = thisSubList[i].name;
-                    }
-                    if (i == 1)
-                    {
-                        sub2 = thisSubList[i].name;
-                    }
-                    if (i == 2)
-                    {
-                        sub3 = thisSubList[i].name;
-                    }
-                    if (i == 3)
-                    {
-                        sub4 = thisSubList[i].name;
-                    }
-                    if (i == 4)
-                    {
-                        sub5 = thisSubList[i].name;
-                    }
-                    if (i == 5)
-                    {
-                        sub6 = thisSubList[i].name;
-                    }
-                    if (i == 6)
-                    {
-                        sub7 = thisSubList[i].name;
-                    }
-                    if (i == 7)
-                    {
-                        sub8 = thisSubList[i].name;
-                    }
-                    if (i == 8)
-                    {
-                        sub9 = thisSubList[i].name;
+                        if(thisSubList[i].name == groupName[j].name)
+                        {
+                            if (StaticPageForPassingData.thisTeacherCourseList.sub1 == groupName[j].subjectID)
+                            {
+                                sub1 = thisSubList[i].name;                              
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub2 == groupName[j].subjectID)
+                            {
+                                sub2 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub3 == groupName[j].subjectID)
+                            {
+                                sub3 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub4 == groupName[j].subjectID)
+                            {
+                                sub4 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub5 == groupName[j].subjectID)
+                            {
+                                sub5 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub6 == groupName[j].subjectID)
+                            {
+                                sub6 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub7 == groupName[j].subjectID)
+                            {
+                                sub7 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub8 == groupName[j].subjectID)
+                            {
+                                sub8 = thisSubList[i].name;
+                            }
+                            else if (StaticPageForPassingData.thisTeacherCourseList.sub9 == groupName[j].subjectID)
+                            {
+                                sub9 = thisSubList[i].name;
+                            }
+                        }
                     }
                 }
+                //for (int i = 0; i < thisSubList.Count; i++)
+                //{
+                //    if(i == 0)
+                //    {
+                //        sub1 = thisSubList[i].name;
+                //    }
+                //    if (i == 1)
+                //    {
+                //        sub2 = thisSubList[i].name;
+                //    }
+                //    if (i == 2)
+                //    {
+                //        sub3 = thisSubList[i].name;
+                //    }
+                //    if (i == 3)
+                //    {
+                //        sub4 = thisSubList[i].name;
+                //    }
+                //    if (i == 4)
+                //    {
+                //        sub5 = thisSubList[i].name;
+                //    }
+                //    if (i == 5)
+                //    {
+                //        sub6 = thisSubList[i].name;
+                //    }
+                //    if (i == 6)
+                //    {
+                //        sub7 = thisSubList[i].name;
+                //    }
+                //    if (i == 7)
+                //    {
+                //        sub8 = thisSubList[i].name;
+                //    }
+                //    if (i == 8)
+                //    {
+                //        sub9 = thisSubList[i].name;
+                //    }
+                //}
               
                 
                 for(int i = 0; i < groupName.Count; i++)
@@ -321,7 +424,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await ConnectToRealTimeApiServer();
                 await GetWithdrawList();
                 isrefreshing = false;
-                //activebtnVisbility = false;//for pre update update
+             
             }
             if(Application.Current.RequestedTheme == OSAppTheme.Dark)
             {
@@ -330,6 +433,9 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
            
         }
+
+
+
         public async Task GetWithdrawList()
         {
             withdrawBtnEnabled = true;
@@ -392,6 +498,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         public async Task ActiveTeacher()
         {
+            Image im = new Image();
             if (!IsInternetConnectionAvailable())
             {
                 return;
@@ -612,6 +719,16 @@ namespace ShikkhanobishTeacherApp.View_Model
                     HRStudentName = name;
                     HRDescription = des;
                     requestStudentID = studentID;
+                    StaticPageForPassingData.tuitionFoundClass = new TuitionFoundClass();
+                    StaticPageForPassingData.tuitionFoundClass.studentID = studentID;
+                    StaticPageForPassingData.tuitionFoundClass.chapter = chapter;
+                    StaticPageForPassingData.tuitionFoundClass.cls = cls;
+                    StaticPageForPassingData.tuitionFoundClass.cost = cost;
+                    StaticPageForPassingData.tuitionFoundClass.sub = sub;
+                    StaticPageForPassingData.tuitionFoundClass.name = name;
+                    StaticPageForPassingData.tuitionFoundClass.des = des;
+                    StaticPageForPassingData.isTuitionFound = true;
+                    StaticPageForPassingData.tuitionFoundClass.remainingSec = 30;
                     int sec = 30;
                     Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                     {
@@ -620,12 +737,32 @@ namespace ShikkhanobishTeacherApp.View_Model
                             PerformDeclineHRCmd();
 
                             tuitionFoundVisibility = false;
+                            StaticPageForPassingData.isTuitionFound = false;
                             return tuitionFoundVisibility;
                         }
                         HRTimer = "0 : " + sec;
                         sec -= 1;
+                        StaticPageForPassingData.tuitionFoundClass.remainingSec = sec;
                         return tuitionFoundVisibility;
                     });
+                    if (StaticPageForPassingData.isTeacherOnBackground)
+                    {
+                        await NotificationCenter.Current.Show((notification) => notification
+                                             .WithScheduleOptions((schedule) => schedule
+                                             .NotifyAt(DateTime.Now.AddSeconds(0))
+                                             .Build())
+                                             .WithAndroidOptions((android) => android
+                                                  .WithAutoCancel(true)
+                                                  .WithChannelId("General")
+                                                  .WithPriority(NotificationPriority.Max)
+                                                  .Build())
+                                             .WithReturningData("Dummy Data")
+                                             .WithTitle("Shikkhanobish")
+                                             .WithDescription(name + " requested a tuition from you")
+                                             .WithNotificationId(100)
+                                             .Create());
+                    }
+                    
 
                 }
             });
@@ -659,6 +796,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
             tuitionFoundVisibility = false;
+            StaticPageForPassingData.isTuitionFound = false;
         }
         private async Task PerformAcceptHRCmd()
         {
@@ -667,7 +805,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 return;
             }
             tuitionFoundVisibility = false;
-            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Waiting for student response..."))
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Waiting for student response..."))
             {
                 VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
                 CrossVonage.Current.ApiKey = info.apiKey + "";
@@ -683,12 +821,31 @@ namespace ShikkhanobishTeacherApp.View_Model
                 StringContent content = new StringContent("", Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(uri, content).ConfigureAwait(true);
                 StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
-                await Task.Delay(30000);
+                StaticPageForPassingData.isTuitionFound = false;
+                int waitSec = 30;
+                while (waitSec != 0)
+                {
+                    waitSec--;
+                    if (waitSec == 1)
+                    {
+                        dialog.MessageText = "Student didn't accept your call! Try Again...";
+                    }
+                    await Task.Delay(1000);
+                }
             }
             
 
 
         }
+        private async Task PerformgoEditTags()
+        {
+            using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Connecting..."))
+            {                
+                Application.Current.MainPage.Navigation.PushModalAsync(new EditTagsView());
+                await dialog.DismissAsync();
+            }
+        }
+
         #endregion
 
         #region Bindings
@@ -1180,7 +1337,22 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public bool isfavTeacher { get => isfavTeacher1; set => SetProperty(ref isfavTeacher1, value); }
 
+        private Command goEditTags1;
 
+        public ICommand goEditTags
+        {
+            get
+            {
+                if (goEditTags1 == null)
+                {
+                    goEditTags1 = new Command( async =>  PerformgoEditTags());
+                }
+
+                return goEditTags1;
+            }
+        }
+
+        
 
 
 

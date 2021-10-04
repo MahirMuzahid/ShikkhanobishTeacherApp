@@ -2699,6 +2699,178 @@ namespace ShikkhanobishTeacherApp.Droid
 			global::Lottie.Forms.Resource.Styleable.View_paddingStart = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.View_paddingStart;
 			global::Lottie.Forms.Resource.Styleable.View_theme = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.View_theme;
 			global::NGraphics.Android.Custom.Resource.String.library_name = global::ShikkhanobishTeacherApp.Droid.Resource.String.library_name;
+			global::Plugin.LocalNotification.Resource.Attribute.alpha = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.alpha;
+			global::Plugin.LocalNotification.Resource.Attribute.font = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.font;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderAuthority = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderCerts = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderCerts;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderFetchStrategy = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderFetchTimeout = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderPackage = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderPackage;
+			global::Plugin.LocalNotification.Resource.Attribute.fontProviderQuery = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontProviderQuery;
+			global::Plugin.LocalNotification.Resource.Attribute.fontStyle = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontStyle;
+			global::Plugin.LocalNotification.Resource.Attribute.fontVariationSettings = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Attribute.fontWeight = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.fontWeight;
+			global::Plugin.LocalNotification.Resource.Attribute.ttcIndex = global::ShikkhanobishTeacherApp.Droid.Resource.Attribute.ttcIndex;
+			global::Plugin.LocalNotification.Resource.Color.androidx_core_ripple_material_light = global::ShikkhanobishTeacherApp.Droid.Resource.Color.androidx_core_ripple_material_light;
+			global::Plugin.LocalNotification.Resource.Color.androidx_core_secondary_text_default_material_light = global::ShikkhanobishTeacherApp.Droid.Resource.Color.androidx_core_secondary_text_default_material_light;
+			global::Plugin.LocalNotification.Resource.Color.notification_action_color_filter = global::ShikkhanobishTeacherApp.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.LocalNotification.Resource.Color.notification_icon_bg_color = global::ShikkhanobishTeacherApp.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_inset_horizontal_material = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_inset_vertical_material = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_padding_horizontal_material = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_button_padding_vertical_material = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_control_corner_material = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_notification_large_icon_max_height = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Plugin.LocalNotification.Resource.Dimension.compat_notification_large_icon_max_width = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_action_icon_size = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_action_text_size = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_big_circle_margin = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_content_margin_start = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_large_icon_height = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_large_icon_width = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_main_column_padding_top = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_media_narrow_margin = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_right_icon_size = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_right_side_padding_top = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_small_icon_background_padding = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_small_icon_size_as_large = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_subtext_size = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_top_pad = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.LocalNotification.Resource.Dimension.notification_top_pad_large_text = global::ShikkhanobishTeacherApp.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_action_background = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low_normal = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_low_pressed = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_normal = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_bg_normal_pressed = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_icon_background = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_template_icon_bg = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_template_icon_low_bg = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notification_tile_bg = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.LocalNotification.Resource.Drawable.notify_panel_notification_icon_bg = global::ShikkhanobishTeacherApp.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_action_clickable_span = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_action_clickable_span;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_0 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_0;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_1 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_1;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_10 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_10;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_11 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_11;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_12 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_12;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_13 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_13;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_14 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_14;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_15 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_15;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_16 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_16;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_17 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_17;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_18 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_18;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_19 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_19;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_2 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_2;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_20 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_20;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_21 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_21;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_22 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_22;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_23 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_23;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_24 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_24;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_25 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_25;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_26 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_26;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_27 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_27;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_28 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_28;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_29 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_29;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_3 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_3;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_30 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_30;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_31 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_31;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_4 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_4;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_5 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_5;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_6 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_6;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_7 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_7;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_8 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_8;
+			global::Plugin.LocalNotification.Resource.Id.accessibility_custom_action_9 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.accessibility_custom_action_9;
+			global::Plugin.LocalNotification.Resource.Id.actions = global::ShikkhanobishTeacherApp.Droid.Resource.Id.actions;
+			global::Plugin.LocalNotification.Resource.Id.action_container = global::ShikkhanobishTeacherApp.Droid.Resource.Id.action_container;
+			global::Plugin.LocalNotification.Resource.Id.action_divider = global::ShikkhanobishTeacherApp.Droid.Resource.Id.action_divider;
+			global::Plugin.LocalNotification.Resource.Id.action_image = global::ShikkhanobishTeacherApp.Droid.Resource.Id.action_image;
+			global::Plugin.LocalNotification.Resource.Id.action_text = global::ShikkhanobishTeacherApp.Droid.Resource.Id.action_text;
+			global::Plugin.LocalNotification.Resource.Id.async = global::ShikkhanobishTeacherApp.Droid.Resource.Id.async;
+			global::Plugin.LocalNotification.Resource.Id.blocking = global::ShikkhanobishTeacherApp.Droid.Resource.Id.blocking;
+			global::Plugin.LocalNotification.Resource.Id.chronometer = global::ShikkhanobishTeacherApp.Droid.Resource.Id.chronometer;
+			global::Plugin.LocalNotification.Resource.Id.dialog_button = global::ShikkhanobishTeacherApp.Droid.Resource.Id.dialog_button;
+			global::Plugin.LocalNotification.Resource.Id.forever = global::ShikkhanobishTeacherApp.Droid.Resource.Id.forever;
+			global::Plugin.LocalNotification.Resource.Id.icon = global::ShikkhanobishTeacherApp.Droid.Resource.Id.icon;
+			global::Plugin.LocalNotification.Resource.Id.icon_group = global::ShikkhanobishTeacherApp.Droid.Resource.Id.icon_group;
+			global::Plugin.LocalNotification.Resource.Id.info = global::ShikkhanobishTeacherApp.Droid.Resource.Id.info;
+			global::Plugin.LocalNotification.Resource.Id.italic = global::ShikkhanobishTeacherApp.Droid.Resource.Id.italic;
+			global::Plugin.LocalNotification.Resource.Id.line1 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.line1;
+			global::Plugin.LocalNotification.Resource.Id.line3 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.line3;
+			global::Plugin.LocalNotification.Resource.Id.normal = global::ShikkhanobishTeacherApp.Droid.Resource.Id.normal;
+			global::Plugin.LocalNotification.Resource.Id.notification_background = global::ShikkhanobishTeacherApp.Droid.Resource.Id.notification_background;
+			global::Plugin.LocalNotification.Resource.Id.notification_main_column = global::ShikkhanobishTeacherApp.Droid.Resource.Id.notification_main_column;
+			global::Plugin.LocalNotification.Resource.Id.notification_main_column_container = global::ShikkhanobishTeacherApp.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.LocalNotification.Resource.Id.right_icon = global::ShikkhanobishTeacherApp.Droid.Resource.Id.right_icon;
+			global::Plugin.LocalNotification.Resource.Id.right_side = global::ShikkhanobishTeacherApp.Droid.Resource.Id.right_side;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_actions = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_accessibility_actions;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_clickable_spans = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_accessibility_clickable_spans;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_heading = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_accessibility_heading;
+			global::Plugin.LocalNotification.Resource.Id.tag_accessibility_pane_title = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_accessibility_pane_title;
+			global::Plugin.LocalNotification.Resource.Id.tag_screen_reader_focusable = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_screen_reader_focusable;
+			global::Plugin.LocalNotification.Resource.Id.tag_transition_group = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_transition_group;
+			global::Plugin.LocalNotification.Resource.Id.tag_unhandled_key_event_manager = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Plugin.LocalNotification.Resource.Id.tag_unhandled_key_listeners = global::ShikkhanobishTeacherApp.Droid.Resource.Id.tag_unhandled_key_listeners;
+			global::Plugin.LocalNotification.Resource.Id.text = global::ShikkhanobishTeacherApp.Droid.Resource.Id.text;
+			global::Plugin.LocalNotification.Resource.Id.text2 = global::ShikkhanobishTeacherApp.Droid.Resource.Id.text2;
+			global::Plugin.LocalNotification.Resource.Id.time = global::ShikkhanobishTeacherApp.Droid.Resource.Id.time;
+			global::Plugin.LocalNotification.Resource.Id.title = global::ShikkhanobishTeacherApp.Droid.Resource.Id.title;
+			global::Plugin.LocalNotification.Resource.Id.view_tree_lifecycle_owner = global::ShikkhanobishTeacherApp.Droid.Resource.Id.view_tree_lifecycle_owner;
+			global::Plugin.LocalNotification.Resource.Integer.status_bar_notification_info_maxnum = global::ShikkhanobishTeacherApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.LocalNotification.Resource.Layout.custom_dialog = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.custom_dialog;
+			global::Plugin.LocalNotification.Resource.Layout.notification_action = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_action;
+			global::Plugin.LocalNotification.Resource.Layout.notification_action_tombstone = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_custom_big = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_icon_group = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_part_chronometer = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.LocalNotification.Resource.Layout.notification_template_part_time = global::ShikkhanobishTeacherApp.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.LocalNotification.Resource.String.status_bar_notification_info_overflow = global::ShikkhanobishTeacherApp.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification = global::ShikkhanobishTeacherApp.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Info = global::ShikkhanobishTeacherApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::ShikkhanobishTeacherApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Time = global::ShikkhanobishTeacherApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Plugin.LocalNotification.Resource.Style.TextAppearance_Compat_Notification_Title = global::ShikkhanobishTeacherApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Plugin.LocalNotification.Resource.Style.Widget_Compat_NotificationActionContainer = global::ShikkhanobishTeacherApp.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Plugin.LocalNotification.Resource.Style.Widget_Compat_NotificationActionText = global::ShikkhanobishTeacherApp.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_alpha = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_android_alpha = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.LocalNotification.Resource.Styleable.ColorStateListItem_android_color = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_font = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontStyle = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_fontWeight = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_font = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontStyle = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_fontWeight = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamilyFont_ttcIndex = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderAuthority = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderCerts = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderPackage = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Plugin.LocalNotification.Resource.Styleable.FontFamily_fontProviderQuery = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColorItem;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem_android_color = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColorItem_android_offset = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColorItem_android_offset;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerColor = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerX = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_centerY = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endColor = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endX = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_endY = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_gradientRadius = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startColor = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startX = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_startY = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_tileMode = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Plugin.LocalNotification.Resource.Styleable.GradientColor_android_type = global::ShikkhanobishTeacherApp.Droid.Resource.Styleable.GradientColor_android_type;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_in = global::ShikkhanobishTeacherApp.Droid.Resource.Animation.abc_fade_in;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_out = global::ShikkhanobishTeacherApp.Droid.Resource.Animation.abc_fade_out;
 			global::Rg.Plugins.Popup.Resource.Animation.abc_grow_fade_in_from_bottom = global::ShikkhanobishTeacherApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -23460,217 +23632,220 @@ namespace ShikkhanobishTeacherApp.Droid
 			public const int drawable_shape_with_icon = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int favourite = 2131165307;
+			public const int editagsback = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int feedbackback = 2131165308;
+			public const int favourite = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int forgotback = 2131165309;
-			
-			// aapt resource value: 0x7F070082
-			public const int icon_about = 2131165314;
-			
-			// aapt resource value: 0x7F070083
-			public const int icon_feed = 2131165315;
+			public const int feedbackback = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int ic_mtrl_checked_circle = 2131165310;
+			public const int forgotback = 2131165310;
 			
-			// aapt resource value: 0x7F07007F
-			public const int ic_mtrl_chip_checked_black = 2131165311;
-			
-			// aapt resource value: 0x7F070080
-			public const int ic_mtrl_chip_checked_circle = 2131165312;
-			
-			// aapt resource value: 0x7F070081
-			public const int ic_mtrl_chip_close_circle = 2131165313;
+			// aapt resource value: 0x7F070083
+			public const int icon_about = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int material_ic_calendar_black_24dp = 2131165316;
+			public const int icon_feed = 2131165316;
+			
+			// aapt resource value: 0x7F07007F
+			public const int ic_mtrl_checked_circle = 2131165311;
+			
+			// aapt resource value: 0x7F070080
+			public const int ic_mtrl_chip_checked_black = 2131165312;
+			
+			// aapt resource value: 0x7F070081
+			public const int ic_mtrl_chip_checked_circle = 2131165313;
+			
+			// aapt resource value: 0x7F070082
+			public const int ic_mtrl_chip_close_circle = 2131165314;
 			
 			// aapt resource value: 0x7F070085
-			public const int material_ic_clear_black_24dp = 2131165317;
+			public const int material_ic_calendar_black_24dp = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int material_ic_edit_black_24dp = 2131165318;
+			public const int material_ic_clear_black_24dp = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165319;
+			public const int material_ic_edit_black_24dp = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165320;
+			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int material_ic_menu_arrow_down_black_24dp = 2131165321;
+			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int material_ic_menu_arrow_up_black_24dp = 2131165322;
+			public const int material_ic_menu_arrow_down_black_24dp = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int monetization = 2131165323;
+			public const int material_ic_menu_arrow_up_black_24dp = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int mtrl_dialog_background = 2131165324;
+			public const int monetization = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int mtrl_dropdown_arrow = 2131165325;
+			public const int mtrl_dialog_background = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int mtrl_ic_arrow_drop_down = 2131165326;
+			public const int mtrl_dropdown_arrow = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int mtrl_ic_arrow_drop_up = 2131165327;
+			public const int mtrl_ic_arrow_drop_down = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int mtrl_ic_cancel = 2131165328;
+			public const int mtrl_ic_arrow_drop_up = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int mtrl_ic_error = 2131165329;
+			public const int mtrl_ic_cancel = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int mtrl_popupmenu_background = 2131165330;
+			public const int mtrl_ic_error = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int mtrl_popupmenu_background_dark = 2131165331;
+			public const int mtrl_popupmenu_background = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int mtrl_tabs_default_indicator = 2131165332;
+			public const int mtrl_popupmenu_background_dark = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int navigation_empty_icon = 2131165333;
+			public const int mtrl_tabs_default_indicator = 2131165333;
 			
 			// aapt resource value: 0x7F070096
-			public const int nointernetconnection = 2131165334;
+			public const int navigation_empty_icon = 2131165334;
 			
 			// aapt resource value: 0x7F070097
-			public const int notification_action_background = 2131165335;
+			public const int nointernetconnection = 2131165335;
 			
 			// aapt resource value: 0x7F070098
-			public const int notification_bg = 2131165336;
+			public const int notification_action_background = 2131165336;
 			
 			// aapt resource value: 0x7F070099
-			public const int notification_bg_low = 2131165337;
+			public const int notification_bg = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int notification_bg_low_normal = 2131165338;
+			public const int notification_bg_low = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int notification_bg_low_pressed = 2131165339;
+			public const int notification_bg_low_normal = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int notification_bg_normal = 2131165340;
+			public const int notification_bg_low_pressed = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int notification_bg_normal_pressed = 2131165341;
+			public const int notification_bg_normal = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int notification_icon_background = 2131165342;
+			public const int notification_bg_normal_pressed = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int notification_template_icon_bg = 2131165343;
+			public const int notification_icon_background = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int notification_template_icon_low_bg = 2131165344;
+			public const int notification_template_icon_bg = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int notification_tile_bg = 2131165345;
+			public const int notification_template_icon_low_bg = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int notify_panel_notification_icon_bg = 2131165346;
+			public const int notification_tile_bg = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int off = 2131165347;
+			public const int notify_panel_notification_icon_bg = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int okicon = 2131165348;
+			public const int off = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int on = 2131165349;
+			public const int okicon = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int onlylogo = 2131165350;
+			public const int on = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int profilebac = 2131165351;
+			public const int onlylogo = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int rating = 2131165352;
+			public const int profilebac = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int regback = 2131165353;
+			public const int rating = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int report = 2131165354;
+			public const int regback = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int selectionstatus = 2131165355;
+			public const int report = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int shikcon = 2131165356;
+			public const int selectionstatus = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int splash = 2131165357;
+			public const int shikcon = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int splashscreenlogo = 2131165358;
+			public const int splash = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int subject = 2131165359;
+			public const int splashscreenlogo = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int teacher = 2131165360;
+			public const int subject = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int teacherregback = 2131165361;
+			public const int teacher = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int test_custom_background = 2131165362;
+			public const int teacherregback = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int tooltip_frame_dark = 2131165363;
+			public const int test_custom_background = 2131165363;
 			
 			// aapt resource value: 0x7F0700B4
-			public const int tooltip_frame_light = 2131165364;
+			public const int tooltip_frame_dark = 2131165364;
 			
 			// aapt resource value: 0x7F0700B5
-			public const int totalmin = 2131165365;
+			public const int tooltip_frame_light = 2131165365;
 			
 			// aapt resource value: 0x7F0700B6
-			public const int tuition = 2131165366;
+			public const int totalmin = 2131165366;
 			
 			// aapt resource value: 0x7F0700B7
-			public const int withdraw = 2131165367;
+			public const int tuition = 2131165367;
 			
 			// aapt resource value: 0x7F0700B8
-			public const int xamarin_logo = 2131165368;
+			public const int withdraw = 2131165368;
 			
 			// aapt resource value: 0x7F0700B9
-			public const int xf_arrow_dropdown = 2131165369;
+			public const int xamarin_logo = 2131165369;
 			
 			// aapt resource value: 0x7F0700BA
-			public const int xf_arrow_right = 2131165370;
+			public const int xf_arrow_dropdown = 2131165370;
 			
 			// aapt resource value: 0x7F0700BB
-			public const int xf_check = 2131165371;
+			public const int xf_arrow_right = 2131165371;
 			
 			// aapt resource value: 0x7F0700BC
-			public const int xf_checkbox_selected = 2131165372;
+			public const int xf_check = 2131165372;
 			
 			// aapt resource value: 0x7F0700BD
-			public const int xf_checkbox_unselected = 2131165373;
+			public const int xf_checkbox_selected = 2131165373;
 			
 			// aapt resource value: 0x7F0700BE
-			public const int xf_clear = 2131165374;
+			public const int xf_checkbox_unselected = 2131165374;
 			
 			// aapt resource value: 0x7F0700BF
-			public const int xf_error = 2131165375;
+			public const int xf_clear = 2131165375;
 			
 			// aapt resource value: 0x7F0700C0
-			public const int xf_radio_button_selected = 2131165376;
+			public const int xf_error = 2131165376;
 			
 			// aapt resource value: 0x7F0700C1
-			public const int xf_radio_button_unselected = 2131165377;
+			public const int xf_radio_button_selected = 2131165377;
+			
+			// aapt resource value: 0x7F0700C2
+			public const int xf_radio_button_unselected = 2131165378;
 			
 			static Drawable()
 			{
@@ -24637,25 +24812,28 @@ namespace ShikkhanobishTeacherApp.Droid
 			public const int view_offset_helper = 2131231036;
 			
 			// aapt resource value: 0x7F08013D
-			public const int view_tree_saved_state_registry_owner = 2131231037;
+			public const int view_tree_lifecycle_owner = 2131231037;
 			
 			// aapt resource value: 0x7F08013E
-			public const int visible = 2131231038;
+			public const int view_tree_saved_state_registry_owner = 2131231038;
 			
 			// aapt resource value: 0x7F08013F
-			public const int visible_removing_fragment_view_tag = 2131231039;
-			
-			// aapt resource value: 0x7F080141
-			public const int withinBounds = 2131231041;
+			public const int visible = 2131231039;
 			
 			// aapt resource value: 0x7F080140
-			public const int withText = 2131231040;
+			public const int visible_removing_fragment_view_tag = 2131231040;
 			
 			// aapt resource value: 0x7F080142
-			public const int wrap_content = 2131231042;
+			public const int withinBounds = 2131231042;
+			
+			// aapt resource value: 0x7F080141
+			public const int withText = 2131231041;
 			
 			// aapt resource value: 0x7F080143
-			public const int zero_corner_chip = 2131231043;
+			public const int wrap_content = 2131231043;
+			
+			// aapt resource value: 0x7F080144
+			public const int zero_corner_chip = 2131231044;
 			
 			static Id()
 			{

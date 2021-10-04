@@ -306,7 +306,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Label Text="Tags" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                                <Label Text="To change your tags please contact at this number: 01833368125" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
+                                <material:MaterialButton ButtonType="Text" Text="Edit Tags" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="Center" FontSize="11" Command="{Binding goEditTags}"/>
 
                                 <Frame BackgroundColor="#10000000" Grid.Row="1" Grid.ColumnSpan="5" CornerRadius="10"/>
 
@@ -433,8 +433,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height=".7*"/>
-                        <RowDefinition Height=".5*"/>
-                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
@@ -445,7 +445,7 @@
                     <Label Text="Tuition Request" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
                     <Label Text="This student added you as a favourite teacher!" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End" FontSize="12" IsVisible="{Binding isfavTeacher}"/>
                     <Label Text="{Binding HRStudentName}" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" FontSize="17" FontAttributes="Bold"/>
-                    <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12">
+                    <Label  Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" Margin="15,0,15,0">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Class: "/>
