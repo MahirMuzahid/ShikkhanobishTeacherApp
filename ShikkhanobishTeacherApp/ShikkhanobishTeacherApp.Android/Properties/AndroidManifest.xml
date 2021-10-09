@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.17" package="com.shikkhanobishteacher.shikkhanobishteacher" android:installLocation="preferExternal" android:versionCode="17">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.20" package="com.shikkhanobishteacher.shikkhanobishteacher" android:installLocation="preferExternal" android:versionCode="20">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="30" />
 	<application android:label="ShikkhanobishTeacherApp.Android" android:theme="@style/MainTheme" android:icon="@mipmap/shikcon"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

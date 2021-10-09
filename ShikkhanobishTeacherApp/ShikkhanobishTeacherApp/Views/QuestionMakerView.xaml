@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="ShikkhanobishTeacherApp.Views.QuestionMakerView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="Question Maker" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="18"/>
+        <material:MaterialButton Text="Refresh Now" Grid.Row="1" ButtonType="Text" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" Clicked="RefreshView_Refreshing" FontSize="10"/>
+        <material:MaterialButton Text="What is this?" Grid.Row="1" ButtonType="Text" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Clicked="MaterialButton_Clicked" FontSize="10"/>
+        <Label x:Name="teacherName" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14" FontAttributes="Bold"/>
+        <WebView x:Name="websrc" Grid.Row="3"/>
+    </Grid>
+
+
+</ContentPage>

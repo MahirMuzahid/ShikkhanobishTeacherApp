@@ -83,16 +83,9 @@ namespace ShikkhanobishTeacherApp.View_Model
             popBtnEnabled = false;
             popBtnTxt = "Change";
             isrefreshing = false ;
-            KeepTeacherActive();
+           
         }
-        public async Task KeepTeacherActive()
-        {
-            int i = 0;
-            while (i == 0)
-            {
-               var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherActivityStatus".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID, activityStatus = 1 }).ReceiveJson<Response>();
-            }
-        }
+       
         private void changepass()
         {
             hasErrorF = false;

@@ -205,6 +205,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
             {
+                StaticPageForPassingData.isTeacherAlive = false;
                 sub1 = "";
                 sub2 = "";
                 sub3 = "";
@@ -218,7 +219,6 @@ namespace ShikkhanobishTeacherApp.View_Model
                 thisCourseList = StaticPageForPassingData.thisTeacherCourseList;
                 if (StaticPageForPassingData.isTuitionFound == true)
                 {
-                    await inActiveTeacher();
                     for (int i = 0; i < allfavTeacher.Count; i++)
                     {
                         if (allfavTeacher[i].studentID == StaticPageForPassingData.tuitionFoundClass.studentID)
@@ -364,45 +364,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         }
                     }
                 }
-                //for (int i = 0; i < thisSubList.Count; i++)
-                //{
-                //    if(i == 0)
-                //    {
-                //        sub1 = thisSubList[i].name;
-                //    }
-                //    if (i == 1)
-                //    {
-                //        sub2 = thisSubList[i].name;
-                //    }
-                //    if (i == 2)
-                //    {
-                //        sub3 = thisSubList[i].name;
-                //    }
-                //    if (i == 3)
-                //    {
-                //        sub4 = thisSubList[i].name;
-                //    }
-                //    if (i == 4)
-                //    {
-                //        sub5 = thisSubList[i].name;
-                //    }
-                //    if (i == 5)
-                //    {
-                //        sub6 = thisSubList[i].name;
-                //    }
-                //    if (i == 6)
-                //    {
-                //        sub7 = thisSubList[i].name;
-                //    }
-                //    if (i == 7)
-                //    {
-                //        sub8 = thisSubList[i].name;
-                //    }
-                //    if (i == 8)
-                //    {
-                //        sub9 = thisSubList[i].name;
-                //    }
-                //}
+                
               
                 
                 for(int i = 0; i < groupName.Count; i++)
@@ -431,11 +393,51 @@ namespace ShikkhanobishTeacherApp.View_Model
                 await MaterialDialog.Instance.AlertAsync(message: "If you are using dark mode in your phone. Please, trun of dark mode. You can not use this app with dark mode on.",
                                    title: "Please Turn Of Dark Mode");
             }
-           
+            
         }
 
+        public async Task KeepTeacherAlive()
+        {
+            while(StaticPageForPassingData.isTeacherAlive)
+            {
+                var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherActivityStatus".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Response>();
+            }
+            
+        }
+        public ICommand ShowInfo =>
+             new Command<string>(async (i) =>
+             {
+                 if(int.Parse(i) == 1)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Selection Status\" দিয়ে বোঝানো হয় যে আপনি আমাদের সিলেক্টেড টিচার কিনা। সিলেক্টেড টিচার হওয়ার আগ পর্যন্ত আপনি কোন টিউশন নিতে পারবেন না। সিলেক্টেড টিচার হতে \"Take Test\" বাটনে ক্লিক করুন। তারপর স্ক্রিনে যে পুরো আর্টিকেলটি আসবে তা ভাল করে পড়ুন। সেখান থেকেই ১৫ টা প্রশ্ন আসবে এবং ১৩ টি প্রশ্নের সঠিক উত্তর দিলেই আপনি হয়ে যাবেন আমাদের সিলেক্টেড টিচার।  ");
+                 }
+                 if (int.Parse(i) == 2)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Monetization Status\" দিয়ে বোঝানো হয় যে আপনি আমাদের মনিটাইজড টিচার কিনা। মনিটাইজড টিচার হওয়ার আগ পর্যন্ত আপনি কোন অর্থ উপার্জন করতে পারবেন না। মনিটাইজড টিচার হতে প্রথম ১৫ মিনিট আপনাকে ফ্রি পড়াতে হবে। ১৫ মিনিট ফ্রি পড়ানোর পর আপনি হয়ে যাবেন আমাদের মনিটাইজড টিচার।");
+                 }
+                 if (int.Parse(i) == 3)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Teacher Status\" দিয়ে বোঝানো হয় যে আপনি এই মুহূর্তে আপনি টিউশন নেয়ার জন্য প্রস্তুত কিনা। এ্যাপ থেকে বের হওইয়ার আগে অবশ্যই Teacher Status অফ করতে হবে।");
+                 }
+                 if (int.Parse(i) == 4)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Total Minute\" দিয়ে বোঝানো হয় আপনি মোট কত মিনিট টিউশন নিয়েছেন। ");
+                 }
+                 if (int.Parse(i) == 5)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Favourite Teacher\" শিক্ষানবিশের খুবই গুরুত্বপূর্ন একটি ফিচার। যদি কোন শিক্ষার্থী আপনার কাছে পড়ে আপনার পড়ানোর ধরন ভাল লাগে তাহলে সে আপনাকে ফেভারেট টিচার হিসেবে ইনক্লুড করতে পারবে। পরবর্তিতে সে চাইলেই আপনার কাছে পড়তে পারবে।  ");
+                 }
+                 if (int.Parse(i) == 6)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Report\" দিয়ে বোঝানো হয় যে, কতজন স্টুডেন্ট আপনাকে রিপোর্ট করেছে। পর পর তিনটি রিপোর্টের পর আপনার একাউন্ট টেম্পরারি ব্যান হয়ে যাবে। ");
+                 }
+                 if (int.Parse(i) == 7)
+                 {
+                     await MaterialDialog.Instance.AlertAsync(message: "\"Total Tuition\" দিয়ে বোঝানো হয় আপনি কতটা টিউশন মোট নিয়েছেন।");                    
+                 }
+                
 
-
+             });
         public async Task GetWithdrawList()
         {
             withdrawBtnEnabled = true;
@@ -520,6 +522,8 @@ namespace ShikkhanobishTeacherApp.View_Model
                 activeToggle = true;
             }
             activeswitchEnabled = true;
+            StaticPageForPassingData.isTeacherAlive = true;
+            KeepTeacherAlive();
 
         }
         public async Task inActiveTeacher()
@@ -528,6 +532,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
+            StaticPageForPassingData.isTeacherAlive = false;
             string uri = "https://shikkhanobishrealtimeapi.shikkhanobish.com/api/ShikkhanobishSignalR/PassActiveStatus?&teacherID=" + ThisTeacher.teacherID + "&isActive=" + false;
             HttpClient client = new HttpClient();
             StringContent content = new StringContent("", Encoding.UTF8, "application/json");
@@ -545,6 +550,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                 activeToggle = false;
             }
             activeswitchEnabled = true;
+            StaticPageForPassingData.isTeacherAlive = false;
         }
         private void Performclocsepopup()
         {
@@ -755,12 +761,14 @@ namespace ShikkhanobishTeacherApp.View_Model
                                                   .WithAutoCancel(true)
                                                   .WithChannelId("General")
                                                   .WithPriority(NotificationPriority.Max)
+                                                  .WithTimeout(TimeSpan.FromSeconds(30))
+                                                  .WithChannelId("ShikkhanobishTeacher")
                                                   .Build())
                                              .WithReturningData("Dummy Data")
                                              .WithTitle("Shikkhanobish")
                                              .WithDescription(name + " requested a tuition from you")
                                              .WithNotificationId(100)
-                                             .Create());
+                                             .Create()) ;
                     }
                     
 
@@ -804,7 +812,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             {
                 return;
             }
-            tuitionFoundVisibility = false;
+            
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Waiting for student response..."))
             {
                 VideoApiInfo info = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetVideoCallInfo".GetJsonAsync<VideoApiInfo>();
@@ -823,11 +831,12 @@ namespace ShikkhanobishTeacherApp.View_Model
                 StaticPageForPassingData.thisVideoCallStudentID = requestStudentID;
                 StaticPageForPassingData.isTuitionFound = false;
                 int waitSec = 30;
-                while (waitSec != 0)
+                while (waitSec != 0 && tuitionFoundVisibility )
                 {
                     waitSec--;
                     if (waitSec == 1)
                     {
+                        tuitionFoundVisibility = false;
                         dialog.MessageText = "Student didn't accept your call! Try Again...";
                     }
                     await Task.Delay(1000);

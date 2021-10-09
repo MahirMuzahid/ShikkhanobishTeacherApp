@@ -23,8 +23,9 @@ namespace ShikkhanobishTeacherApp.Droid
                 x.WithImportance(NotificationImportance.Max);
                 x.WithVibration(true);
                 x.WithDescription("GG Noob");
+                x.WithChannelId("ShikkhanobishTeacher");
                 x.WithLockScreenVisibility(NotificationVisibility.Public);
-                return new Plugin.LocalNotification.Platform.Droid.NotificationChannelRequest { Description = "asdasdas", Importance = NotificationImportance.Max };
+                return new Plugin.LocalNotification.Platform.Droid.NotificationChannelRequest { Description = "asdasdas", Importance = NotificationImportance.Max,Id = "ShikkhanobishTeacher" };
             }));
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

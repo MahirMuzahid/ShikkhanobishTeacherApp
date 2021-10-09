@@ -63,10 +63,10 @@
                         <material:MaterialCard Grid.RowSpan="4" Grid.ColumnSpan="2" Elevation="1"/>
                         <Label Text="Teacher Info" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" TextColor="{AppThemeBinding Light=Black, Dark=Black}"/>
                         <Frame BackgroundColor="#90000000" Grid.Row="1" Grid.ColumnSpan="2"/>
-                        <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="Transparent" Text="{Binding name}" ErrorText="{Binding nameErrorTxt}" HasError="{Binding hasNameError}"/>
-                        <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" InputType="Numeric" MaxLength="11" CardBackgroundColor="Transparent" Text="{Binding pnumber}" ErrorText="{Binding pnErrorTxt}" HasError="{Binding haspnError}"/>
-                        <material:MaterialTextField Placeholder="Password" Grid.Row="3" Grid.Column="0" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding password}" ErrorText="{Binding passErrorTxt}" HasError="{Binding hasPassError}"/>
-                        <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="Transparent" InputType="Password" Text="{Binding conFirmPassword}" ErrorText="{Binding conPassErrorTxt}" HasError="{Binding hasConPassError}"/>
+                        <material:MaterialTextField Placeholder="Name" Grid.Row="2" Grid.Column="0" CardBackgroundColor="#10000000" Text="{Binding name}" ErrorText="{Binding nameErrorTxt}" HasError="{Binding hasNameError}"/>
+                        <material:MaterialTextField Placeholder="Phone Number" Grid.Row="2" Grid.Column="1" InputType="Numeric" MaxLength="11" CardBackgroundColor="#10000000" Text="{Binding pnumber}" ErrorText="{Binding pnErrorTxt}" HasError="{Binding haspnError}"/>
+                        <material:MaterialTextField Placeholder="Password" Grid.Row="3" Grid.Column="0" CardBackgroundColor="#10000000" InputType="Password" Text="{Binding password}" ErrorText="{Binding passErrorTxt}" HasError="{Binding hasPassError}"/>
+                        <material:MaterialTextField Placeholder="Confirm Password" Grid.Row="3" Grid.Column="1" CardBackgroundColor="#10000000" InputType="Password" Text="{Binding conFirmPassword}" ErrorText="{Binding conPassErrorTxt}" HasError="{Binding hasConPassError}"/>
                         <Image Source="okicon.png"  Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Margin="15" Aspect="AspectFit"  IsVisible="{Binding isInfoAllRight}"/>
                     </Grid>
                     

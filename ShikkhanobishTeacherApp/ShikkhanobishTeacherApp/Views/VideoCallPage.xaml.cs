@@ -32,6 +32,7 @@ namespace ShikkhanobishTeacherApp.Views
             ConnectToRealTimeApiServer();
             timetxt.Text = "Safe Time";
             totalearnedtxt.Text = "0";
+            KeepTeacherAlive();
         }
         #region Connectivity
         public bool IsInternetConnectionAvailable()
@@ -76,6 +77,15 @@ namespace ShikkhanobishTeacherApp.Views
 
         }
         #endregion
+        public async Task KeepTeacherAlive()
+        {
+            StaticPageForPassingData.isTeacherAlive = true;
+            while (StaticPageForPassingData.isTeacherAlive)
+            {
+                var res = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/setTeacherActivityStatus".PostUrlEncodedAsync(new { teacherID = StaticPageForPassingData.thisTeacher.teacherID }).ReceiveJson<Response>();
+            }
+
+        }
         private async void OnEndCall(object sender, EventArgs e)
         {
             var result = await MaterialDialog.Instance.ConfirmAsync(message: "Only Student Can Cut Call",

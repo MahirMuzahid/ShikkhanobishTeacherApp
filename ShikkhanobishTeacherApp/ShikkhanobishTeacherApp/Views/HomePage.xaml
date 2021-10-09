@@ -9,11 +9,11 @@
 
         <Grid>
             <ScrollView>
-                <Grid >
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1000"/>
                     </Grid.RowDefinitions>
-                    <Grid>
+                    <Grid BackgroundColor="White">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="7*"/>
@@ -98,6 +98,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="selectionstatus.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Selection Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding selectionSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding selectionStsColor}"/>
                                     <material:MaterialButton Text="Take Test" ButtonType="Flat" TextColor="Blue" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" BackgroundColor="#50B0B9FF" VerticalOptions="Center" FontSize="11" PressedBackgroundColor="#20000000" IsVisible="{Binding takeTextBtnVisibility}" Command="{Binding teakeTestCommand}">
@@ -121,6 +126,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="monetization.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="2"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Monetization Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding monetizationSts}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding monistscolor}"/>
 
@@ -144,6 +154,11 @@
 
                                     <Image Source="{Binding activestatusImageSource}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
                                     <Label Text="Teacher Status" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="4"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="{Binding teacheractivity}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="13" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding tracheractColor}"/>
                                     <Switch IsToggled="{Binding activeToggle}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" OnColor="#7EE444" ThumbColor="#4DB014" IsEnabled="{Binding activeswitchEnabled}" IsVisible="{Binding activebtnVisbility}"/>
 
@@ -167,6 +182,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="totalmin.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="4"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Total Minute" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding totalMin}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
                                 </Grid>
@@ -188,6 +208,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="favourite.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="5"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Favourite Teacher" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding favTeacher}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black"/>
                                     <material:MaterialButton Text="See All" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" ButtonType="Text" FontSize="11" PressedBackgroundColor="#20000000" Command="{Binding favList}" IsVisible="{Binding favTeacherSeeVisibility}"/>
@@ -210,6 +235,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="report.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="6"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Report" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding report}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="{Binding reportTextColor}"/>
 
@@ -233,6 +263,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Image Source="tuition.png" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1"/>
+                                    <Image Source="whatisthis.png" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center" Aspect="AspectFit" Grid.Column="1" Margin="7">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ShowInfo}" CommandParameter="7"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                     <Label Text="Total Tuition" Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" FontSize="11" Grid.Column="1" />
                                     <Label Text="{Binding totalTuition}" Grid.Row="4" HorizontalOptions="Start" VerticalOptions="Start" FontSize="15" Grid.Column="1" FontAttributes="Bold" TextColor="Black" />
                                 </Grid>

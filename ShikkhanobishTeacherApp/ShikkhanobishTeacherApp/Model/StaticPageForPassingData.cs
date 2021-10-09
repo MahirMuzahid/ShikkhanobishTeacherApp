@@ -16,6 +16,7 @@ namespace ShikkhanobishTeacherApp.Model
         public static List<SubList> thisTeacherSubListName { get; set; }
         public static bool isTeacherOnBackground { get; set; }
         public static TuitionFoundClass tuitionFoundClass { get; set; }
+        public static bool isTeacherAlive { get; set; }
         public static bool isTuitionFound { get; set; }
         public static bool freomReg { get; set; }
         public static int thisVideoCallStudentID { get; set; }
