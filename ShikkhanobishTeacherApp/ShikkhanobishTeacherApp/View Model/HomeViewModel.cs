@@ -106,105 +106,11 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             regMsgVisiblity = true;
         }
-        public async Task GetProMsg(bool fromReg)
-        {
-            var reg = await SecureStorage.GetAsync("isRegpopupseen");
-            var pro = await SecureStorage.GetAsync("isPropopupseen");
-            int regno = 0, prono = 0;
-            if(reg != null)
-            {
-                regno = int.Parse(reg);
-            }
-            if(pro != null)
-            {
-                prono = int.Parse(pro);
-            }
-            var promsg = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetPromotionalMassage".GetJsonAsync<List<PromotionalMassage>>();
-            bool isShow = false;
-            for (int i = 0; i < promsg.Count; i++)
-            {
-                if (promsg[i].userType == "teacher")
-                {
-                    if (promsg[i].msgType == 1 && fromReg && regno != promsg[i].promotionImageID)
-                    {
-                        SecureStorage.SetAsync("isRegpopupseen", promsg[i].promotionImageID.ToString());
-                        isNewUpdate = "";
-                        PerformpopUPRegMsgVisiblility();
-                        promsgImgSrc = promsg[i].imageSrc;
-                        proMsgText = promsg[i].text;
-                        isShow = true;
-                        
-                        break;
-                    }                   
-                }               
-            }
-            if (!isShow)
-            {
-                for (int i = 0; i < promsg.Count; i++)
-                {
-                    if (promsg[i].userType == "teacher")
-                    {
-                        if (promsg[i].msgType == 3)
-                        {
-                            
-                            isNewUpdate = promsg[i].playstoreAppLink;
-                            PerformpopUPRegMsgVisiblility();
-                            promsgImgSrc = promsg[i].imageSrc;
-                            proMsgText = promsg[i].text;
-                            break;
-
-                        }
-                    }
-                }
-                if (!isShow)
-                {
-                    for (int i = 0; i < promsg.Count; i++)
-                    {
-                        if (promsg[i].userType == "teacher")
-                        {
-                            if (promsg[i].msgType == 2 && prono != promsg[i].promotionImageID)
-                            {
-                                SecureStorage.SetAsync("isPropopupseen", promsg[i].promotionImageID.ToString());
-                                isNewUpdate = "";
-                                PerformpopUPRegMsgVisiblility();
-                                promsgImgSrc = promsg[i].imageSrc;
-                                proMsgText = promsg[i].text;
-                                isShow = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                
-            }
-            
-        }
-        private void PerformlogOut()
-        {
-            SecureStorage.RemoveAll();
-            inActiveTeacher();
-            var existingPages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-            foreach (var page in existingPages)
-            {
-                Application.Current.MainPage.Navigation.RemovePage(page);
-            }
-            Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
-
-        }
-        public float CalculateRatting(float fs, float fos, float th, float to, float on)
-        {
-            float toalRating = 0;
-
-            float totalSum = fs * 5 + fos * 4 + th * 3 + to * 2 + on;
-
-            toalRating = totalSum / (fs + fos + th + to + on);
-
-            return toalRating;
-        }
+     
         public async Task GetAllInfo(bool fromReg)
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
-            {
+            {              
                 StaticPageForPassingData.isTeacherAlive = false;
                 sub1 = "";
                 sub2 = "";
@@ -381,6 +287,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                         groupNameClg = groupName[i].groupName;
                     }
                 }
+                await getUpdateList();
                 await GetFavTeacherList();
                 await GetProMsg(fromReg);
                 await ConnectToRealTimeApiServer();
@@ -395,7 +302,105 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             
         }
+        public async Task getUpdateList()
+        {
+            updateList = await "https://api.shikkhanobish.com/api/ShikkhanobishTeacher/getUpdateTeacher".GetJsonAsync<List<UpdateTeacher>>();
+        }
+        public async Task GetProMsg(bool fromReg)
+        {
+            var reg = await SecureStorage.GetAsync("isRegpopupseen");
+            var pro = await SecureStorage.GetAsync("isPropopupseen");
+            int regno = 0, prono = 0;
+            if (reg != null)
+            {
+                regno = int.Parse(reg);
+            }
+            if (pro != null)
+            {
+                prono = int.Parse(pro);
+            }
+            var promsg = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/GetPromotionalMassage".GetJsonAsync<List<PromotionalMassage>>();
+            bool isShow = false;
+            for (int i = 0; i < promsg.Count; i++)
+            {
+                if (promsg[i].userType == "teacher")
+                {
+                    if (promsg[i].msgType == 1 && fromReg && regno != promsg[i].promotionImageID)
+                    {
+                        SecureStorage.SetAsync("isRegpopupseen", promsg[i].promotionImageID.ToString());
+                        isNewUpdate = "";
+                        PerformpopUPRegMsgVisiblility();
+                        promsgImgSrc = promsg[i].imageSrc;
+                        proMsgText = promsg[i].text;
+                        isShow = true;
 
+                        break;
+                    }
+                }
+            }
+            if (!isShow)
+            {
+                for (int i = 0; i < promsg.Count; i++)
+                {
+                    if (promsg[i].userType == "teacher")
+                    {
+                        if (promsg[i].msgType == 3)
+                        {
+
+                            isNewUpdate = promsg[i].playstoreAppLink;
+                            PerformpopUPRegMsgVisiblility();
+                            promsgImgSrc = promsg[i].imageSrc;
+                            proMsgText = promsg[i].text;
+                            break;
+
+                        }
+                    }
+                }
+                if (!isShow)
+                {
+                    for (int i = 0; i < promsg.Count; i++)
+                    {
+                        if (promsg[i].userType == "teacher")
+                        {
+                            if (promsg[i].msgType == 2 && prono != promsg[i].promotionImageID)
+                            {
+                                SecureStorage.SetAsync("isPropopupseen", promsg[i].promotionImageID.ToString());
+                                isNewUpdate = "";
+                                PerformpopUPRegMsgVisiblility();
+                                promsgImgSrc = promsg[i].imageSrc;
+                                proMsgText = promsg[i].text;
+                                isShow = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+        private void PerformlogOut()
+        {
+            SecureStorage.RemoveAll();
+            inActiveTeacher();
+            var existingPages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+            foreach (var page in existingPages)
+            {
+                Application.Current.MainPage.Navigation.RemovePage(page);
+            }
+            Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+
+        }
+        public float CalculateRatting(float fs, float fos, float th, float to, float on)
+        {
+            float toalRating = 0;
+
+            float totalSum = fs * 5 + fos * 4 + th * 3 + to * 2 + on;
+
+            toalRating = totalSum / (fs + fos + th + to + on);
+
+            return toalRating;
+        }
         public async Task KeepTeacherAlive()
         {
             while(StaticPageForPassingData.isTeacherAlive)
@@ -1361,7 +1366,11 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
         }
 
-        
+        private List<UpdateTeacher> updateList1;
+
+        public List<UpdateTeacher> updateList { get => updateList1; set => SetProperty(ref updateList1, value); }
+
+
 
 
 

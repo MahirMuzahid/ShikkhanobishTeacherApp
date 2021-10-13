@@ -24,9 +24,15 @@
             <local:Profile />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Question Maker" IconImageSource="makeqsicon.png"  >
+    <NavigationPage Title="QS Maker" IconImageSource="makeqsicon.png"  >
         <x:Arguments>
             <local:QuestionMakerView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png"
+  >
+        <x:Arguments>
+            <local:TuitionLog />
         </x:Arguments>
     </NavigationPage>
 

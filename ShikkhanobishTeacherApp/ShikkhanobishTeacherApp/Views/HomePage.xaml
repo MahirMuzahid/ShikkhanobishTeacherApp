@@ -11,7 +11,7 @@
             <ScrollView>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1000"/>
+                        <RowDefinition Height="1250"/>
                     </Grid.RowDefinitions>
                     <Grid BackgroundColor="White">
                         <Grid>
@@ -19,6 +19,8 @@
                                 <RowDefinition Height="7*"/>
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height="40*"/>
+                                <RowDefinition Height=".05*"/>
+                                <RowDefinition Height="250"/>
                                 <RowDefinition Height=".05*"/>
                                 <RowDefinition Height="10*"/>
                                 <RowDefinition Height=".05*"/>
@@ -323,7 +325,42 @@
 
                             <Frame BackgroundColor="#80000000" Grid.Row="3" Grid.Column="1" HasShadow="False"/>
 
-                            <Grid Grid.Row="4" Grid.RowSpan="3" Grid.Column="1">
+                            <Grid Grid.Row="4" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Frame BackgroundColor="#7C3AFF" Grid.Row="0" HasShadow="False"/>
+                                <Label Text="Updates About Teachers" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Margin="10,0,0,0" TextColor="White" FontAttributes="Bold"/>
+                                <ListView ItemsSource="{Binding updateList}" Grid.Row="1" RowHeight="100" SeparatorColor="Black">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30"/>
+                                                        <RowDefinition Height="70"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,10,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding title}"  FontAttributes="Bold"/>
+                                                                <Span Text=" Date: " FontSize="11"/>
+                                                                <Span Text="{Binding updateTdate}" FontSize="11"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Text="{Binding description}" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,10,0,0" FontSize="12"/>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                            
+                            <Frame BackgroundColor="#80000000" Grid.Row="5" Grid.Column="1" HasShadow="False"/>
+
+                            <Grid Grid.Row="6" Grid.RowSpan="3" Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
@@ -368,52 +405,13 @@
 
                             </Grid>
 
-                            <Grid Grid.RowSpan="8" Grid.ColumnSpan="3" IsVisible="{Binding withdrawVisibility}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="20*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
 
-                                <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
-                                </Frame>
 
-                                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height=".7*"/>
-                                        <RowDefinition Height=".001*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height=".7*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width=".1*"/>
-                                        <ColumnDefinition Width="20*"/>
-                                        <ColumnDefinition Width=".1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
-                                    <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
-                                    <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
-                                    <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
-                                    <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
-                                    <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
-                                    <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
-                                    <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
-                                </Grid>
+                          
 
-                            </Grid>
 
-                           
 
-                            
-
-                            <Grid Grid.Row="7" Grid.Column="1">
+                            <Grid Grid.Row="9" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="1*"/>
@@ -554,6 +552,49 @@
                 </Grid>
             </Grid>
             <!--Favourite Student-->
+            
+            <!--Withdraw -->
+            <Grid IsVisible="{Binding withdrawVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame BackgroundColor="#50000000" Grid.RowSpan="3" Grid.ColumnSpan="3" >
+                </Frame>
+
+                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".7*"/>
+                        <RowDefinition Height=".001*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".7*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".1*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width=".1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame BackgroundColor="#05000000" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+                    <material:MaterialButton Text="Close" ButtonType="Text" Command="{Binding clocsepopup}" TextColor="Red" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" FontSize="11"/>
+                    <Label Text="Withdraw Money" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                    <material:MaterialTextField x:Name="wam" Placeholder="Amount" Grid.Column="1" Grid.Row="2" InputType="Numeric" CardBackgroundColor="White" Text="{Binding withdrawAmount}" HasError="{Binding wamError}" ErrorText="{Binding wamErrorText}"/>
+                    <material:MaterialTextField x:Name="wbn" Placeholder="Bkash Number" Grid.Column="1" Grid.Row="3" CardBackgroundColor="White" InputType="Numeric" Text="{Binding bnumber}" HasError="{Binding wbnError}" ErrorText="{Binding wbnErrorText}" />
+                    <material:MaterialTextField x:Name="wpass" Placeholder="Password" Grid.Column="1" Grid.Row="4" CardBackgroundColor="White" InputType="Password" Text="{Binding withdrawPassword}" HasError="{Binding wpassError}" ErrorText="{Binding wpassErrorText}"/>
+                    <Frame BackgroundColor="#4F43E8" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5"/>
+                    <material:MaterialButton Text="Withdraw" ButtonType="Text" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" TextColor="White" Command="{Binding withdrawNowComd}" IsEnabled="{Binding withdrawEnabled}" DisabledBackgroundColor="#10000000"/>
+                </Grid>
+                <!--Withdraw-->
+
+            </Grid>
 
         </Grid>
         

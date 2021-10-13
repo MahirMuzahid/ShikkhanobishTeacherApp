@@ -25,6 +25,23 @@ namespace ShikkhanobishTeacherApp.Views
             teacherName.Text = "Teacher Name: "+StaticPageForPassingData.thisTeacher.name;
             ConnectToRealTimeApiServer();
         }
+        public async Task EndOrBackBtn()
+        {
+            var result = await MaterialDialog.Instance.ConfirmAsync(message: "Do you want to close app?",
+                                  confirmingText: "Yes",
+                                  dismissiveText: "No");
+            var existingPages = Navigation.NavigationStack.ToList();
+            foreach (var page in existingPages)
+            {
+                Navigation.RemovePage(page);
+            }
+            Application.Current.Quit();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            EndOrBackBtn();
+            return true;
+        }
         public async Task ConnectToRealTimeApiServer()
         {
             _connection = new HubConnectionBuilder()
@@ -68,10 +85,19 @@ namespace ShikkhanobishTeacherApp.Views
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            websrc.Source = "https://makequestion.shikkhanobish.com/" + StaticPageForPassingData.thisTeacher.teacherID;
-            teacherName.Text = StaticPageForPassingData.thisTeacher.name;
-        }
+            RefreshPage();
 
+
+        }
+        public async Task RefreshPage()
+        {
+            using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Refreshing..."))
+            {
+                websrc.Source = "https://makequestion.shikkhanobish.com/" + StaticPageForPassingData.thisTeacher.teacherID;
+                teacherName.Text = StaticPageForPassingData.thisTeacher.name;
+                await Task.Delay(2000); // Represents a task that is running.
+            }
+        }
         private void MaterialButton_Clicked(object sender, EventArgs e)
         {
             ShowMSG();
