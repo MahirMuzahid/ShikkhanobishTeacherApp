@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
             <material:MaterialCard Grid.RowSpan="4" Elevation="20"/>
             <Image Source="online.gif" Grid.Row="0" IsAnimationPlaying="True"/>
-            <Label Grid.Row="1" Text="200" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="22">
+            <Label Grid.Row="1" Text="{Binding studentCount}" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="22">
             </Label>
             <Label Text="Number Of Student In Server" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
         </Grid>
@@ -54,9 +54,9 @@
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Mahir Muzahid"  FontAttributes="Bold"/>
+                                        <Span Text="{Binding studentName}"  FontAttributes="Bold"/>
                                         <Span Text=" is searching a tuition for "/>
-                                        <Span Text="Physics First Paper" FontAttributes="Bold"/>
+                                        <Span Text="{Binding subjectname}" FontAttributes="Bold"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

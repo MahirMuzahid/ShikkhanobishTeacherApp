@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using Flurl.Http;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
@@ -12,30 +13,33 @@ namespace ShikkhanobishTeacherApp.View_Model
 {
     public class TuitionLogViewModel: BaseViewMode, INotifyPropertyChanged
     {
-        int sec = 20;
+        int sec = 5;
         public TuitionLogViewModel()
         {
-            List<int> a = new List<int>();
-            a.Add(0);
-            a.Add(0);
-            a.Add(0);
-            a.Add(0);
-            a.Add(0);
-
-            logList = a;
+            GetTuitionLog();
+            getStudentNumber();
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 refreshlbl = "Refreshing In : " + sec + " Seconds";
                 sec--;
                 if(sec== 0)
                 {
-                    sec = 20;
+                    GetTuitionLog();
+                    sec = 5;
                 }
                 return true; 
             });
         }
-
-
+        public async Task getStudentNumber()
+        {
+            var stList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getStudent".GetJsonAsync<List<Student>>();
+            studentCount = stList.Count;
+        }
+        public async Task GetTuitionLog()
+        {
+            var lList = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/getTuiTionLogNeW".GetJsonAsync<List<TuiTionLog>>();
+            logList = lList;
+        }
 
         private Command qsCmd1;
 
@@ -65,8 +69,12 @@ namespace ShikkhanobishTeacherApp.View_Model
 
         public string refreshlbl { get => refreshlbl1; set => SetProperty(ref refreshlbl1, value); }
 
-        private List<int> logList1;
+        private List<TuiTionLog> logList1;
 
-        public List<int> logList { get => logList1; set => SetProperty(ref logList1, value); }
+        public List<TuiTionLog> logList { get => logList1; set => SetProperty(ref logList1, value); }
+
+        private int studentCount1;
+
+        public int studentCount { get => studentCount1; set => SetProperty(ref studentCount1, value); }
     }
 }

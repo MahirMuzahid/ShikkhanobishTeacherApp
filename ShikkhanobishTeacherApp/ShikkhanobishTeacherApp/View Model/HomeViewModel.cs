@@ -110,7 +110,8 @@ namespace ShikkhanobishTeacherApp.View_Model
         public async Task GetAllInfo(bool fromReg)
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
-            {              
+            {
+                activeswitchEnabled = true;
                 StaticPageForPassingData.isTeacherAlive = false;
                 sub1 = "";
                 sub2 = "";
@@ -200,9 +201,18 @@ namespace ShikkhanobishTeacherApp.View_Model
                     monetizationSts = "Monetized";
                     monistscolor = Color.ForestGreen;
                 }
-                await inActiveTeacher();
-                activestatusImageSource = "off.png";
-                teacheractivity = "Inactive";
+               if(ThisTeacher.activeStatus == 0)
+               {
+                    activestatusImageSource = "off.png";
+                    teacheractivity = "Inactive";
+               }
+               else
+               {
+                    activestatusImageSource = "on.png";
+                    teacheractivity = "Active";
+
+               }
+               
                 totalMin = ThisTeacher.totalMinuite + "";
                 favTeacher = ThisTeacher.favTeacherCount + "";
                 report = ThisTeacher.reportCount + "";
@@ -269,10 +279,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                             }
                         }
                     }
-                }
-                
-              
-                
+                }                                
                 for(int i = 0; i < groupName.Count; i++)
                 {
                     if (sub1 == groupName[i].name)
@@ -297,7 +304,7 @@ namespace ShikkhanobishTeacherApp.View_Model
             }
             if(Application.Current.RequestedTheme == OSAppTheme.Dark)
             {
-                await MaterialDialog.Instance.AlertAsync(message: "If you are using dark mode in your phone. Please, trun of dark mode. You can not use this app with dark mode on.",
+                await MaterialDialog.Instance.AlertAsync(message: "If you are using dark mode in your phone. Please, trun of dark mode. You will not see some text while using this app with dark mode on.",
                                    title: "Please Turn Of Dark Mode");
             }
             
