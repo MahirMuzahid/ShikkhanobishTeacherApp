@@ -175,6 +175,11 @@ namespace ShikkhanobishTeacherApp.View_Model
                     withList[i].statusText = "(Pending)";
                     withList[i].amountColor = "#90FFFFFF";
                 }
+                if (withList[i].status == 2)
+                {
+                    withList[i].statusText = "(Not Approved)";
+                    withList[i].amountColor = "#90FFFFFF";
+                }
                 else
                 {
                     withList[i].statusText = "";

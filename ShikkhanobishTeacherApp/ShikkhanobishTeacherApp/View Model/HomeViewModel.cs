@@ -182,6 +182,7 @@ namespace ShikkhanobishTeacherApp.View_Model
                     selectionStsColor = Color.FromHex("#DFC628");
                     takeTextBtnVisibility = true;
                     activebtnVisbility = false;
+                    withdrawBtnEnabled = false;
                 }
                 else
                 {
@@ -493,6 +494,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         }
         private void PerformwithdrawCmd()
         {
+
             withdrawEnabled = false;
             withdrawVisibility = true;
         }
