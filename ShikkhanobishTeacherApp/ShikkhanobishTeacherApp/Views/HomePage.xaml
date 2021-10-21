@@ -332,6 +332,7 @@
                                 </Grid.RowDefinitions>
                                 <Frame BackgroundColor="#7C3AFF" Grid.Row="0" HasShadow="False"/>
                                 <Label Text="Updates About Teachers" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0" Margin="10,0,0,0" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding appversion}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="0" Margin="0,0,10,0" TextColor="White" FontAttributes="Bold" FontSize="12"/>
                                 <ListView ItemsSource="{Binding updateList}" Grid.Row="1" RowHeight="100" SeparatorColor="Black">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>

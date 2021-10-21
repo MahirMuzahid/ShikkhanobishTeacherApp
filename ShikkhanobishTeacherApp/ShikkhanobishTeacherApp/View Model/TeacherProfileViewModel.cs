@@ -153,12 +153,53 @@ namespace ShikkhanobishTeacherApp.View_Model
             List<TeacherTuitionHistory> SortedList = new List<TeacherTuitionHistory>();
             SortedList = StaticPageForPassingData.tuitionList.OrderBy(x => x.date).ToList();
             SortedList.Reverse();
+            TeacherTuitionHistory st = new TeacherTuitionHistory();
+            SortedList.Add(st);
             StaticPageForPassingData.tuitionList = SortedList;
 
 
             tuiListItemSource = StaticPageForPassingData.tuitionList;
         }
+        public ICommand ReportStudent
+        {
+            get
+            {
+                return new Command<TeacherTuitionHistory>(async (tuitionHis) =>
+                {
+                    var actions = new string[] { "Yes", "No" };
+                    var result = await MaterialDialog.Instance.SelectActionAsync(title: "Do you want to report this student?",
+                                                             actions: actions);
+                    if(result == 0)
+                    {
 
+                        var actions2 = new string[] { "Aggresive Beheave", "Bad Internet Connection" };
+                        var result2 = await MaterialDialog.Instance.SelectActionAsync(title: "Please select why you want to report this student",
+                                                                 actions: actions2);
+                        if(result2 == 0 || result2 == 1)
+                        {
+                            var input = await MaterialDialog.Instance.InputAsync(title: "Description", message: "Wreite a short note, why you are reporting this student.", inputPlaceholder: "",confirmingText: "Submit", dismissiveText : "Cancle");
+                            if(input != "")
+                            {
+                                using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Submitting Report..."))
+                                {
+                                    Random rd = new Random();
+                                    int id = rd.Next(1000000, 9999999);
+                                    var res = await "https://api.shikkhanobish.com/api/ShikkhanobishLogin/setStudentReport".PostUrlEncodedAsync(new
+                                    {
+                                        studentReportID = id,
+                                        reportType = result2 + 1,
+                                        description = input,
+                                        studentID = tuitionHis.studentID,
+                                        teacherID = StaticPageForPassingData.thisTeacher.teacherID
+                                    }).ReceiveJson<Response>();
+                                }
+                                await MaterialDialog.Instance.AlertAsync(message: "Report Submitted.");
+                            }
+                        }
+                    }
+                });
+            }
+        }
         public async Task PopulateWithdrawList()
         {
             if (!IsInternetConnectionAvailable())

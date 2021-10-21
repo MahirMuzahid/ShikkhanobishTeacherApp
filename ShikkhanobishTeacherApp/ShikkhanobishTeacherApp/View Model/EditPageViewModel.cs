@@ -88,7 +88,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         #endregion
         public async Task GetAllInfo()
         {
-            await MaterialDialog.Instance.AlertAsync(message: "মনে রাখবেন! এটি আপনার বর্তমান টিউশন চয়েস কে রিপ্লেস করবে। সুতরাং সিলেক্ট করার সমইয় যেসব বিষয়গুলো আপনি পড়াতে চান তার সবই সিলেক্ট করুন। ");
+            await MaterialDialog.Instance.AlertAsync(message: "মনে রাখবেন! এটি আপনার বর্তমান টিউশন চয়েস কে রিপ্লেস করবে। সুতরাং সিলেক্ট করার সময় যেসব বিষয়গুলো আপনি পড়াতে চান তার সবই সিলেক্ট করুন। ");
             await GetAllSub();
             sendOTP = false;
             clsEightYesEnaled = true;

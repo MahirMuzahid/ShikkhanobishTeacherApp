@@ -111,6 +111,7 @@ namespace ShikkhanobishTeacherApp.View_Model
         {
             using (var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
             {
+                appversion = "App Version: " + VersionTracking.CurrentBuild;
                 activeswitchEnabled = true;
                 StaticPageForPassingData.isTeacherAlive = false;
                 sub1 = "";
@@ -1378,6 +1379,10 @@ namespace ShikkhanobishTeacherApp.View_Model
         private List<UpdateTeacher> updateList1;
 
         public List<UpdateTeacher> updateList { get => updateList1; set => SetProperty(ref updateList1, value); }
+
+        private string appversion1;
+
+        public string appversion { get => appversion1; set => SetProperty(ref appversion1, value); }
 
 
 
