@@ -4,7 +4,7 @@
        xmlns:local="clr-namespace:ShikkhanobishTeacherApp.Views"
        Title="ShikkhanobishTeacherApp"
        SelectedTabColor="Blue"   
-      x:Name="tabbedPage"
+       x:Name="tabbedPage"
        x:Class="ShikkhanobishTeacherApp.AppShell">
 
     <!--
@@ -29,8 +29,7 @@
             <local:QuestionMakerView />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png"
-  >
+    <NavigationPage Title="Tuition Log" IconImageSource="logicon.png">
         <x:Arguments>
             <local:TuitionLog />
         </x:Arguments>

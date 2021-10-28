@@ -789,7 +789,7 @@ namespace ShikkhanobishTeacherApp.View_Model
 
                 }
             });
-            _connection.On<int, int, bool>("studentTuitionResponse", async (teacherID, studentID, studentTuitionResponse) =>
+            _connection.On<int, int, bool,bool>("studentTuitionResponse", async (teacherID, studentID, studentTuitionResponse, hidestVideo) =>
             {
                 if (teacherID == ThisTeacher.teacherID && requestStudentID == studentID)
                 {
